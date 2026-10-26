@@ -1,0 +1,3804 @@
+{
+  "date": "2026-10-26T04:14:36.193Z",
+  "runsPerPage": 3,
+  "phoneRunsPerPage": 5,
+  "phoneProfile": {
+    "latencyMs": 150,
+    "mbps": 5,
+    "cpuSlowdown": 4,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "paths": [
+    "/",
+    "/blog",
+    "/about",
+    "/blog/shipping-less-javascript",
+    "/blog/prefetching-done-right",
+    "/blog/typed-routing"
+  ],
+  "environment": {
+    "node": "v24.21.0",
+    "chromium": "156.0.8078.4",
+    "platform": "darwin"
+  },
+  "results": [
+    {
+      "id": "next",
+      "label": "Next.js",
+      "version": "16.4.3",
+      "average": {
+        "jsRequests": 6,
+        "cssRequests": 3,
+        "dataRequests": 8.888888888888888,
+        "totalRequests": 18.88888888888889,
+        "jsGzipKiB": 138.3896484375,
+        "jsRawKiB": 464.6298828125,
+        "cssGzipKiB": 2.873046875,
+        "htmlGzipKiB": 6.691569010416667,
+        "phoneLcpMs": 433.3333333333333,
+        "phoneFcpMs": 433.3333333333333,
+        "phoneLoadMs": 688.4999999900659
+      },
+      "pages": [
+        {
+          "path": "/",
+          "requests": {
+            "js": 6,
+            "css": 3,
+            "document": 1,
+            "data": 14.666666666666666,
+            "other": 0
+          },
+          "totalRequests": 24.666666666666664,
+          "jsGzip": 141711,
+          "jsRaw": 475781,
+          "cssGzip": 2942,
+          "htmlGzip": 5803,
+          "sample": [
+            {
+              "url": "/",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 37434,
+              "gzipBytes": 5803
+            },
+            {
+              "url": "/_next/static/chunks/2cq62u56-tlx_.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 1334,
+              "gzipBytes": 554
+            },
+            {
+              "url": "/_next/static/chunks/0uto68i9-1n1o.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/_next/static/chunks/0z3mc70b85xhd.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7117,
+              "gzipBytes": 2023
+            },
+            {
+              "url": "/_next/static/chunks/3ftls9qex4y8f.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 5361,
+              "gzipBytes": 1974
+            },
+            {
+              "url": "/_next/static/chunks/2p7fkjq752zk3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 28833,
+              "gzipBytes": 7665
+            },
+            {
+              "url": "/_next/static/chunks/0vnpdpri6mv65.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 33373,
+              "gzipBytes": 9802
+            },
+            {
+              "url": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 10030,
+              "gzipBytes": 3940
+            },
+            {
+              "url": "/_next/static/chunks/2j7gyxdod6l97.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 168366,
+              "gzipBytes": 46355
+            },
+            {
+              "url": "/_next/static/chunks/1_glfrvfa_qbx.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 229818,
+              "gzipBytes": 71975
+            },
+            {
+              "url": "/?_rsc=5CB68i4pnAekjehf",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 272,
+              "gzipBytes": 195
+            },
+            {
+              "url": "/blog?_rsc=5CB68i4pnAekjehf",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 319,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/about?_rsc=5CB68i4pnAekjehf",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 320,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/blog/shipping-less-javascript?_rsc=5CB68i4pnAekjehf",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 418,
+              "gzipBytes": 257
+            },
+            {
+              "url": "/?_rsc=8nTjltbQWvg6NcbE",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 20970,
+              "gzipBytes": 3983
+            },
+            {
+              "url": "/blog?_rsc=Npvf18QV6N2pz_RZ",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 25651,
+              "gzipBytes": 4794
+            },
+            {
+              "url": "/about?_rsc=hzcUC6YqarYE9pKE",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 10185,
+              "gzipBytes": 3561
+            },
+            {
+              "url": "/blog/the-cost-of-hydration?_rsc=5CB68i4pnAekjehf",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 415,
+              "gzipBytes": 254
+            },
+            {
+              "url": "/blog/streaming-server-rendering?_rsc=5CB68i4pnAekjehf",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 420,
+              "gzipBytes": 258
+            },
+            {
+              "url": "/blog/islands-in-practice?_rsc=5CB68i4pnAekjehf",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 413,
+              "gzipBytes": 252
+            },
+            {
+              "url": "/blog/shipping-less-javascript?_rsc=hjRwlybSvoEojtGc",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 19584,
+              "gzipBytes": 5635
+            },
+            {
+              "url": "/blog/the-cost-of-hydration?_rsc=hjRwlybSvoEojtGc",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 19466,
+              "gzipBytes": 5617
+            },
+            {
+              "url": "/blog/streaming-server-rendering?_rsc=hjRwlybSvoEojtGc",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 19166,
+              "gzipBytes": 5514
+            },
+            {
+              "url": "/blog/islands-in-practice?_rsc=hjRwlybSvoEojtGc",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 20047,
+              "gzipBytes": 5752
+            },
+            {
+              "url": "/blog/measuring-what-matters?_rsc=hjRwlybSvoEojtGc",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 18529,
+              "gzipBytes": 5386
+            }
+          ],
+          "phone": {
+            "lcp": 424,
+            "fcp": 424,
+            "load": 691.3000000119209,
+            "runs": [
+              {
+                "lcp": 436,
+                "fcp": 436,
+                "load": 693.7000000476837
+              },
+              {
+                "lcp": 420,
+                "fcp": 420,
+                "load": 685.5
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 696.2000000476837
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 691.3000000119209
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 683.3999999761581
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog",
+          "requests": {
+            "js": 6,
+            "css": 3,
+            "document": 1,
+            "data": 14.666666666666666,
+            "other": 0
+          },
+          "totalRequests": 24.666666666666664,
+          "jsGzip": 141711,
+          "jsRaw": 475781,
+          "cssGzip": 2942,
+          "htmlGzip": 7057,
+          "sample": [
+            {
+              "url": "/blog",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 45871,
+              "gzipBytes": 7057
+            },
+            {
+              "url": "/_next/static/chunks/2cq62u56-tlx_.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 1334,
+              "gzipBytes": 554
+            },
+            {
+              "url": "/_next/static/chunks/0z3mc70b85xhd.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7117,
+              "gzipBytes": 2023
+            },
+            {
+              "url": "/_next/static/chunks/0uto68i9-1n1o.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/_next/static/chunks/3ftls9qex4y8f.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 5361,
+              "gzipBytes": 1974
+            },
+            {
+              "url": "/_next/static/chunks/2p7fkjq752zk3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 28833,
+              "gzipBytes": 7665
+            },
+            {
+              "url": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 10030,
+              "gzipBytes": 3940
+            },
+            {
+              "url": "/_next/static/chunks/0vnpdpri6mv65.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 33373,
+              "gzipBytes": 9802
+            },
+            {
+              "url": "/_next/static/chunks/2j7gyxdod6l97.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 168366,
+              "gzipBytes": 46355
+            },
+            {
+              "url": "/_next/static/chunks/1_glfrvfa_qbx.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 229818,
+              "gzipBytes": 71975
+            },
+            {
+              "url": "/?_rsc=oz-_Q2BhlE850NaL",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 272,
+              "gzipBytes": 195
+            },
+            {
+              "url": "/blog?_rsc=oz-_Q2BhlE850NaL",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 319,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/about?_rsc=oz-_Q2BhlE850NaL",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 320,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/blog/shipping-less-javascript?_rsc=oz-_Q2BhlE850NaL",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 418,
+              "gzipBytes": 257
+            },
+            {
+              "url": "/blog/the-cost-of-hydration?_rsc=oz-_Q2BhlE850NaL",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 415,
+              "gzipBytes": 254
+            },
+            {
+              "url": "/blog/streaming-server-rendering?_rsc=oz-_Q2BhlE850NaL",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 420,
+              "gzipBytes": 258
+            },
+            {
+              "url": "/blog/islands-in-practice?_rsc=oz-_Q2BhlE850NaL",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 413,
+              "gzipBytes": 252
+            },
+            {
+              "url": "/?_rsc=vtmPbIC4DZK5EuSK",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 20970,
+              "gzipBytes": 3983
+            },
+            {
+              "url": "/blog?_rsc=eWoz-kbRk1LkQOHT",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 25651,
+              "gzipBytes": 4794
+            },
+            {
+              "url": "/about?_rsc=5_cHYQEBXTpsm6UJ",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 10185,
+              "gzipBytes": 3561
+            },
+            {
+              "url": "/blog/shipping-less-javascript?_rsc=gIAB2TkNpNZOZpkT",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 19584,
+              "gzipBytes": 5635
+            },
+            {
+              "url": "/blog/the-cost-of-hydration?_rsc=gIAB2TkNpNZOZpkT",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 19466,
+              "gzipBytes": 5617
+            },
+            {
+              "url": "/blog/streaming-server-rendering?_rsc=gIAB2TkNpNZOZpkT",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 19166,
+              "gzipBytes": 5514
+            },
+            {
+              "url": "/blog/islands-in-practice?_rsc=gIAB2TkNpNZOZpkT",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 20047,
+              "gzipBytes": 5752
+            },
+            {
+              "url": "/blog/measuring-what-matters?_rsc=gIAB2TkNpNZOZpkT",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 18529,
+              "gzipBytes": 5386
+            }
+          ],
+          "phone": {
+            "lcp": 424,
+            "fcp": 424,
+            "load": 688.5999999642372,
+            "runs": [
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 688.4000000357628
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 693.3000000119209
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 688.1000000238419
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 688.5999999642372
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 707.8000000119209
+              }
+            ]
+          }
+        },
+        {
+          "path": "/about",
+          "requests": {
+            "js": 6,
+            "css": 3,
+            "document": 1,
+            "data": 6,
+            "other": 0
+          },
+          "totalRequests": 16,
+          "jsGzip": 141711,
+          "jsRaw": 475781,
+          "cssGzip": 2942,
+          "htmlGzip": 5092,
+          "sample": [
+            {
+              "url": "/about",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 19103,
+              "gzipBytes": 5092
+            },
+            {
+              "url": "/_next/static/chunks/2cq62u56-tlx_.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 1334,
+              "gzipBytes": 554
+            },
+            {
+              "url": "/_next/static/chunks/0z3mc70b85xhd.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7117,
+              "gzipBytes": 2023
+            },
+            {
+              "url": "/_next/static/chunks/0uto68i9-1n1o.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/_next/static/chunks/3ftls9qex4y8f.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 5361,
+              "gzipBytes": 1974
+            },
+            {
+              "url": "/_next/static/chunks/2p7fkjq752zk3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 28833,
+              "gzipBytes": 7665
+            },
+            {
+              "url": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 10030,
+              "gzipBytes": 3940
+            },
+            {
+              "url": "/_next/static/chunks/0vnpdpri6mv65.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 33373,
+              "gzipBytes": 9802
+            },
+            {
+              "url": "/_next/static/chunks/2j7gyxdod6l97.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 168366,
+              "gzipBytes": 46355
+            },
+            {
+              "url": "/_next/static/chunks/1_glfrvfa_qbx.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 229818,
+              "gzipBytes": 71975
+            },
+            {
+              "url": "/?_rsc=Sdev7PUlRw12F58X",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 272,
+              "gzipBytes": 195
+            },
+            {
+              "url": "/blog?_rsc=Sdev7PUlRw12F58X",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 319,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/about?_rsc=Sdev7PUlRw12F58X",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 320,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/?_rsc=IbqYazZHyjXYH_Ld",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 20970,
+              "gzipBytes": 3983
+            },
+            {
+              "url": "/blog?_rsc=PvdXdD9hzpthEKPE",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 25651,
+              "gzipBytes": 4794
+            },
+            {
+              "url": "/about?_rsc=-PmfjtzM0R4ONS4g",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 10185,
+              "gzipBytes": 3561
+            }
+          ],
+          "phone": {
+            "lcp": 424,
+            "fcp": 424,
+            "load": 686.6999999880791,
+            "runs": [
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 700.6000000238419
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 691
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 686.6999999880791
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 685.5
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 683.5
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/shipping-less-javascript",
+          "requests": {
+            "js": 6,
+            "css": 3,
+            "document": 1,
+            "data": 6,
+            "other": 0
+          },
+          "totalRequests": 16,
+          "jsGzip": 141711,
+          "jsRaw": 475781,
+          "cssGzip": 2942,
+          "htmlGzip": 7805,
+          "sample": [
+            {
+              "url": "/blog/shipping-less-javascript",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 36027,
+              "gzipBytes": 7805
+            },
+            {
+              "url": "/_next/static/chunks/2cq62u56-tlx_.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 1334,
+              "gzipBytes": 554
+            },
+            {
+              "url": "/_next/static/chunks/0uto68i9-1n1o.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/_next/static/chunks/0z3mc70b85xhd.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7117,
+              "gzipBytes": 2023
+            },
+            {
+              "url": "/_next/static/chunks/3ftls9qex4y8f.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 5361,
+              "gzipBytes": 1974
+            },
+            {
+              "url": "/_next/static/chunks/2p7fkjq752zk3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 28833,
+              "gzipBytes": 7665
+            },
+            {
+              "url": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 10030,
+              "gzipBytes": 3940
+            },
+            {
+              "url": "/_next/static/chunks/0vnpdpri6mv65.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 33373,
+              "gzipBytes": 9802
+            },
+            {
+              "url": "/_next/static/chunks/2j7gyxdod6l97.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 168366,
+              "gzipBytes": 46355
+            },
+            {
+              "url": "/_next/static/chunks/1_glfrvfa_qbx.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 229818,
+              "gzipBytes": 71975
+            },
+            {
+              "url": "/?_rsc=hWwYrWcgQJ8mLvxr",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 272,
+              "gzipBytes": 195
+            },
+            {
+              "url": "/blog?_rsc=hWwYrWcgQJ8mLvxr",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 319,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/about?_rsc=hWwYrWcgQJ8mLvxr",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 320,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/?_rsc=rQrQX7AIn-QnMBG8",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 20970,
+              "gzipBytes": 3983
+            },
+            {
+              "url": "/blog?_rsc=_NVdU8Mt8d95uBeI",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 25651,
+              "gzipBytes": 4794
+            },
+            {
+              "url": "/about?_rsc=wNjD6UmYD4KxJo9F",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 10185,
+              "gzipBytes": 3561
+            }
+          ],
+          "phone": {
+            "lcp": 444,
+            "fcp": 444,
+            "load": 692.1999999880791,
+            "runs": [
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 692.1999999880791
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 678.4000000357628
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 683.3000000119209
+              },
+              {
+                "lcp": 452,
+                "fcp": 452,
+                "load": 693.4000000357628
+              },
+              {
+                "lcp": 452,
+                "fcp": 452,
+                "load": 694.8999999761581
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/prefetching-done-right",
+          "requests": {
+            "js": 6,
+            "css": 3,
+            "document": 1,
+            "data": 6,
+            "other": 0
+          },
+          "totalRequests": 16,
+          "jsGzip": 141711,
+          "jsRaw": 475781,
+          "cssGzip": 2942,
+          "htmlGzip": 7704,
+          "sample": [
+            {
+              "url": "/blog/prefetching-done-right",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 34831,
+              "gzipBytes": 7704
+            },
+            {
+              "url": "/_next/static/chunks/2cq62u56-tlx_.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 1334,
+              "gzipBytes": 554
+            },
+            {
+              "url": "/_next/static/chunks/0uto68i9-1n1o.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/_next/static/chunks/0z3mc70b85xhd.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7117,
+              "gzipBytes": 2023
+            },
+            {
+              "url": "/_next/static/chunks/3ftls9qex4y8f.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 5361,
+              "gzipBytes": 1974
+            },
+            {
+              "url": "/_next/static/chunks/2p7fkjq752zk3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 28833,
+              "gzipBytes": 7665
+            },
+            {
+              "url": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 10030,
+              "gzipBytes": 3940
+            },
+            {
+              "url": "/_next/static/chunks/0vnpdpri6mv65.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 33373,
+              "gzipBytes": 9802
+            },
+            {
+              "url": "/_next/static/chunks/2j7gyxdod6l97.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 168366,
+              "gzipBytes": 46355
+            },
+            {
+              "url": "/_next/static/chunks/1_glfrvfa_qbx.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 229818,
+              "gzipBytes": 71975
+            },
+            {
+              "url": "/?_rsc=nLQFB4FhMt-8Ukrz",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 272,
+              "gzipBytes": 195
+            },
+            {
+              "url": "/blog?_rsc=nLQFB4FhMt-8Ukrz",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 319,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/about?_rsc=nLQFB4FhMt-8Ukrz",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 320,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/?_rsc=NJ4YNgPLgAGVdOms",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 20970,
+              "gzipBytes": 3983
+            },
+            {
+              "url": "/blog?_rsc=6s-dH9-GNt5_IW-Q",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 25651,
+              "gzipBytes": 4794
+            },
+            {
+              "url": "/about?_rsc=1NMjLX9kl8GC7Tdl",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 10185,
+              "gzipBytes": 3561
+            }
+          ],
+          "phone": {
+            "lcp": 440,
+            "fcp": 440,
+            "load": 686.0999999642372,
+            "runs": [
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 686.0999999642372
+              },
+              {
+                "lcp": 436,
+                "fcp": 436,
+                "load": 686.4000000357628
+              },
+              {
+                "lcp": 448,
+                "fcp": 448,
+                "load": 691.3000000119209
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 683.1000000238419
+              },
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 685.5
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/typed-routing",
+          "requests": {
+            "js": 6,
+            "css": 3,
+            "document": 1,
+            "data": 6,
+            "other": 0
+          },
+          "totalRequests": 16,
+          "jsGzip": 141711,
+          "jsRaw": 475781,
+          "cssGzip": 2942,
+          "htmlGzip": 7652,
+          "sample": [
+            {
+              "url": "/blog/typed-routing",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 34453,
+              "gzipBytes": 7652
+            },
+            {
+              "url": "/_next/static/chunks/0uto68i9-1n1o.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/_next/static/chunks/2cq62u56-tlx_.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 1334,
+              "gzipBytes": 554
+            },
+            {
+              "url": "/_next/static/chunks/0z3mc70b85xhd.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7117,
+              "gzipBytes": 2023
+            },
+            {
+              "url": "/_next/static/chunks/3ftls9qex4y8f.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 5361,
+              "gzipBytes": 1974
+            },
+            {
+              "url": "/_next/static/chunks/2p7fkjq752zk3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 28833,
+              "gzipBytes": 7665
+            },
+            {
+              "url": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 10030,
+              "gzipBytes": 3940
+            },
+            {
+              "url": "/_next/static/chunks/0vnpdpri6mv65.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 33373,
+              "gzipBytes": 9802
+            },
+            {
+              "url": "/_next/static/chunks/2j7gyxdod6l97.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 168366,
+              "gzipBytes": 46355
+            },
+            {
+              "url": "/_next/static/chunks/1_glfrvfa_qbx.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 229818,
+              "gzipBytes": 71975
+            },
+            {
+              "url": "/?_rsc=KyaXQtzO-b-_5wpS",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 272,
+              "gzipBytes": 195
+            },
+            {
+              "url": "/blog?_rsc=KyaXQtzO-b-_5wpS",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 319,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/about?_rsc=KyaXQtzO-b-_5wpS",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 320,
+              "gzipBytes": 211
+            },
+            {
+              "url": "/?_rsc=pdSKH2d3zfbKNtDW",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 20970,
+              "gzipBytes": 3983
+            },
+            {
+              "url": "/blog?_rsc=HcvfiwL7LgzKfnqN",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 25651,
+              "gzipBytes": 4794
+            },
+            {
+              "url": "/about?_rsc=rdQMv9G7jDqqpQR9",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 10185,
+              "gzipBytes": 3561
+            }
+          ],
+          "phone": {
+            "lcp": 444,
+            "fcp": 444,
+            "load": 686.1000000238419,
+            "runs": [
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 682.3999999761581
+              },
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 690.2000000476837
+              },
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 685.3000000119209
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 689.6999999880791
+              },
+              {
+                "lcp": 456,
+                "fcp": 456,
+                "load": 686.1000000238419
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "vinext",
+      "label": "Vinext",
+      "version": "1.3.1",
+      "average": {
+        "jsRequests": 7,
+        "cssRequests": 2,
+        "dataRequests": 4.5,
+        "totalRequests": 14.5,
+        "jsGzipKiB": 150.6435546875,
+        "jsRawKiB": 490.3369140625,
+        "cssGzipKiB": 2.82421875,
+        "htmlGzipKiB": 8.021647135416666,
+        "phoneLcpMs": 446.6666666666667,
+        "phoneFcpMs": 446.6666666666667,
+        "phoneLoadMs": 1219.9833333392937
+      },
+      "pages": [
+        {
+          "path": "/",
+          "requests": {
+            "js": 7,
+            "css": 2,
+            "document": 1,
+            "data": 8,
+            "other": 0
+          },
+          "totalRequests": 18,
+          "jsGzip": 154259,
+          "jsRaw": 502105,
+          "cssGzip": 2892,
+          "htmlGzip": 7210,
+          "sample": [
+            {
+              "url": "/",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 65789,
+              "gzipBytes": 7210
+            },
+            {
+              "url": "/_next/static/css/Cn2Rj6At.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 4063,
+              "gzipBytes": 1354
+            },
+            {
+              "url": "/_next/static/css/D3iOWeOv.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 5169,
+              "gzipBytes": 1538
+            },
+            {
+              "url": "/_next/static/chunks/CcyWYbDU.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 755,
+              "gzipBytes": 452
+            },
+            {
+              "url": "/_next/static/chunks/c5d94m_o.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 979,
+              "gzipBytes": 345
+            },
+            {
+              "url": "/_next/static/chunks/Ooxjlqob.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 465,
+              "gzipBytes": 330
+            },
+            {
+              "url": "/_next/static/chunks/DldLwJT-.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 24712,
+              "gzipBytes": 8888
+            },
+            {
+              "url": "/_next/static/chunks/DJBYIetm.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 110180,
+              "gzipBytes": 32604
+            },
+            {
+              "url": "/_next/static/chunks/CpZasvo3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 145740,
+              "gzipBytes": 43983
+            },
+            {
+              "url": "/_next/static/chunks/B0PXqnjO.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 219274,
+              "gzipBytes": 67657
+            },
+            {
+              "url": "/blog/route-level-code-splitting?_rsc=NZOER9_Iicx1d9mR",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 28778,
+              "gzipBytes": 6337
+            },
+            {
+              "url": "/blog/measuring-what-matters?_rsc=NZOER9_Iicx1d9mR",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 28781,
+              "gzipBytes": 6375
+            },
+            {
+              "url": "/blog/islands-in-practice?_rsc=NZOER9_Iicx1d9mR",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 30263,
+              "gzipBytes": 6755
+            },
+            {
+              "url": "/blog/streaming-server-rendering?_rsc=NZOER9_Iicx1d9mR",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 29466,
+              "gzipBytes": 6511
+            },
+            {
+              "url": "/blog/the-cost-of-hydration?_rsc=NZOER9_Iicx1d9mR",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 29706,
+              "gzipBytes": 6608
+            },
+            {
+              "url": "/blog/shipping-less-javascript?_rsc=NZOER9_Iicx1d9mR",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 29860,
+              "gzipBytes": 6635
+            },
+            {
+              "url": "/about?_rsc=NZOER9_Iicx1d9mR",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 15170,
+              "gzipBytes": 4131
+            },
+            {
+              "url": "/blog?_rsc=NZOER9_Iicx1d9mR",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 57168,
+              "gzipBytes": 5950
+            }
+          ],
+          "phone": {
+            "lcp": 440,
+            "fcp": 440,
+            "load": 1221.800000011921,
+            "runs": [
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 1224.9000000357628
+              },
+              {
+                "lcp": 436,
+                "fcp": 436,
+                "load": 1223.199999988079
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 1221.800000011921
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 1218.5
+              },
+              {
+                "lcp": 428,
+                "fcp": 428,
+                "load": 1216.3999999761581
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog",
+          "requests": {
+            "js": 7,
+            "css": 2,
+            "document": 1,
+            "data": 8,
+            "other": 0
+          },
+          "totalRequests": 18,
+          "jsGzip": 154259,
+          "jsRaw": 502105,
+          "cssGzip": 2892,
+          "htmlGzip": 9124,
+          "sample": [
+            {
+              "url": "/blog",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 80842,
+              "gzipBytes": 9124
+            },
+            {
+              "url": "/_next/static/css/Cn2Rj6At.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 4063,
+              "gzipBytes": 1354
+            },
+            {
+              "url": "/_next/static/css/D3iOWeOv.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 5169,
+              "gzipBytes": 1538
+            },
+            {
+              "url": "/_next/static/chunks/CcyWYbDU.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 755,
+              "gzipBytes": 452
+            },
+            {
+              "url": "/_next/static/chunks/c5d94m_o.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 979,
+              "gzipBytes": 345
+            },
+            {
+              "url": "/_next/static/chunks/Ooxjlqob.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 465,
+              "gzipBytes": 330
+            },
+            {
+              "url": "/_next/static/chunks/DldLwJT-.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 24712,
+              "gzipBytes": 8888
+            },
+            {
+              "url": "/_next/static/chunks/DJBYIetm.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 110180,
+              "gzipBytes": 32604
+            },
+            {
+              "url": "/_next/static/chunks/CpZasvo3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 145740,
+              "gzipBytes": 43983
+            },
+            {
+              "url": "/_next/static/chunks/B0PXqnjO.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 219274,
+              "gzipBytes": 67657
+            },
+            {
+              "url": "/blog/route-level-code-splitting?_rsc=qNOYF1316hFVM-mY",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 28778,
+              "gzipBytes": 6337
+            },
+            {
+              "url": "/blog/measuring-what-matters?_rsc=qNOYF1316hFVM-mY",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 28781,
+              "gzipBytes": 6375
+            },
+            {
+              "url": "/blog/islands-in-practice?_rsc=qNOYF1316hFVM-mY",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 30263,
+              "gzipBytes": 6755
+            },
+            {
+              "url": "/blog/streaming-server-rendering?_rsc=qNOYF1316hFVM-mY",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 29466,
+              "gzipBytes": 6511
+            },
+            {
+              "url": "/blog/the-cost-of-hydration?_rsc=qNOYF1316hFVM-mY",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 29706,
+              "gzipBytes": 6608
+            },
+            {
+              "url": "/blog/shipping-less-javascript?_rsc=qNOYF1316hFVM-mY",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 29860,
+              "gzipBytes": 6635
+            },
+            {
+              "url": "/?_rsc=qNOYF1316hFVM-mY",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 46454,
+              "gzipBytes": 4955
+            },
+            {
+              "url": "/about?_rsc=qNOYF1316hFVM-mY",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 15170,
+              "gzipBytes": 4131
+            }
+          ],
+          "phone": {
+            "lcp": 436,
+            "fcp": 436,
+            "load": 1220,
+            "runs": [
+              {
+                "lcp": 436,
+                "fcp": 436,
+                "load": 1223.8999999761581
+              },
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 1219.5
+              },
+              {
+                "lcp": 432,
+                "fcp": 432,
+                "load": 1215.0999999642372
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 1224.6000000238419
+              },
+              {
+                "lcp": 436,
+                "fcp": 436,
+                "load": 1220
+              }
+            ]
+          }
+        },
+        {
+          "path": "/about",
+          "requests": {
+            "js": 7,
+            "css": 2,
+            "document": 1,
+            "data": 2,
+            "other": 0
+          },
+          "totalRequests": 12,
+          "jsGzip": 154259,
+          "jsRaw": 502105,
+          "cssGzip": 2892,
+          "htmlGzip": 5698,
+          "sample": [
+            {
+              "url": "/about",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 24164,
+              "gzipBytes": 5698
+            },
+            {
+              "url": "/_next/static/css/Cn2Rj6At.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 4063,
+              "gzipBytes": 1354
+            },
+            {
+              "url": "/_next/static/css/D3iOWeOv.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 5169,
+              "gzipBytes": 1538
+            },
+            {
+              "url": "/_next/static/chunks/CcyWYbDU.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 755,
+              "gzipBytes": 452
+            },
+            {
+              "url": "/_next/static/chunks/c5d94m_o.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 979,
+              "gzipBytes": 345
+            },
+            {
+              "url": "/_next/static/chunks/Ooxjlqob.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 465,
+              "gzipBytes": 330
+            },
+            {
+              "url": "/_next/static/chunks/DldLwJT-.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 24712,
+              "gzipBytes": 8888
+            },
+            {
+              "url": "/_next/static/chunks/DJBYIetm.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 110180,
+              "gzipBytes": 32604
+            },
+            {
+              "url": "/_next/static/chunks/CpZasvo3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 145740,
+              "gzipBytes": 43983
+            },
+            {
+              "url": "/_next/static/chunks/B0PXqnjO.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 219274,
+              "gzipBytes": 67657
+            },
+            {
+              "url": "/?_rsc=pLJGGFQyJAB1jrj8",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 46454,
+              "gzipBytes": 4955
+            },
+            {
+              "url": "/blog?_rsc=pLJGGFQyJAB1jrj8",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 57168,
+              "gzipBytes": 5950
+            }
+          ],
+          "phone": {
+            "lcp": 428,
+            "fcp": 428,
+            "load": 1218.1000000238419,
+            "runs": [
+              {
+                "lcp": 432,
+                "fcp": 432,
+                "load": 1219.199999988079
+              },
+              {
+                "lcp": 432,
+                "fcp": 432,
+                "load": 1217.9000000357628
+              },
+              {
+                "lcp": 428,
+                "fcp": 428,
+                "load": 1218.5
+              },
+              {
+                "lcp": 428,
+                "fcp": 428,
+                "load": 1217.300000011921
+              },
+              {
+                "lcp": 428,
+                "fcp": 428,
+                "load": 1218.1000000238419
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/shipping-less-javascript",
+          "requests": {
+            "js": 7,
+            "css": 2,
+            "document": 1,
+            "data": 3,
+            "other": 0
+          },
+          "totalRequests": 13,
+          "jsGzip": 154259,
+          "jsRaw": 502105,
+          "cssGzip": 2892,
+          "htmlGzip": 9185,
+          "sample": [
+            {
+              "url": "/blog/shipping-less-javascript",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 47208,
+              "gzipBytes": 9185
+            },
+            {
+              "url": "/_next/static/css/Cn2Rj6At.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 4063,
+              "gzipBytes": 1354
+            },
+            {
+              "url": "/_next/static/css/D3iOWeOv.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 5169,
+              "gzipBytes": 1538
+            },
+            {
+              "url": "/_next/static/chunks/CcyWYbDU.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 755,
+              "gzipBytes": 452
+            },
+            {
+              "url": "/_next/static/chunks/c5d94m_o.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 979,
+              "gzipBytes": 345
+            },
+            {
+              "url": "/_next/static/chunks/Ooxjlqob.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 465,
+              "gzipBytes": 330
+            },
+            {
+              "url": "/_next/static/chunks/DldLwJT-.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 24712,
+              "gzipBytes": 8888
+            },
+            {
+              "url": "/_next/static/chunks/DJBYIetm.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 110180,
+              "gzipBytes": 32604
+            },
+            {
+              "url": "/_next/static/chunks/CpZasvo3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 145740,
+              "gzipBytes": 43983
+            },
+            {
+              "url": "/_next/static/chunks/B0PXqnjO.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 219274,
+              "gzipBytes": 67657
+            },
+            {
+              "url": "/blog?_rsc=3JkyjmWqOLi_rIWs",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 57168,
+              "gzipBytes": 5950
+            },
+            {
+              "url": "/?_rsc=3JkyjmWqOLi_rIWs",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 46454,
+              "gzipBytes": 4955
+            },
+            {
+              "url": "/about?_rsc=3JkyjmWqOLi_rIWs",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 15170,
+              "gzipBytes": 4131
+            }
+          ],
+          "phone": {
+            "lcp": 460,
+            "fcp": 460,
+            "load": 1221.5,
+            "runs": [
+              {
+                "lcp": 448,
+                "fcp": 448,
+                "load": 1218.9000000357628
+              },
+              {
+                "lcp": 448,
+                "fcp": 448,
+                "load": 1217.199999988079
+              },
+              {
+                "lcp": 460,
+                "fcp": 460,
+                "load": 1222.9000000357628
+              },
+              {
+                "lcp": 476,
+                "fcp": 476,
+                "load": 1221.5
+              },
+              {
+                "lcp": 468,
+                "fcp": 468,
+                "load": 1223.1000000238419
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/prefetching-done-right",
+          "requests": {
+            "js": 7,
+            "css": 2,
+            "document": 1,
+            "data": 3,
+            "other": 0
+          },
+          "totalRequests": 13,
+          "jsGzip": 154259,
+          "jsRaw": 502105,
+          "cssGzip": 2892,
+          "htmlGzip": 9083,
+          "sample": [
+            {
+              "url": "/blog/prefetching-done-right",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 46012,
+              "gzipBytes": 9083
+            },
+            {
+              "url": "/_next/static/css/Cn2Rj6At.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 4063,
+              "gzipBytes": 1354
+            },
+            {
+              "url": "/_next/static/css/D3iOWeOv.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 5169,
+              "gzipBytes": 1538
+            },
+            {
+              "url": "/_next/static/chunks/CcyWYbDU.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 755,
+              "gzipBytes": 452
+            },
+            {
+              "url": "/_next/static/chunks/Ooxjlqob.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 465,
+              "gzipBytes": 330
+            },
+            {
+              "url": "/_next/static/chunks/c5d94m_o.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 979,
+              "gzipBytes": 345
+            },
+            {
+              "url": "/_next/static/chunks/DldLwJT-.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 24712,
+              "gzipBytes": 8888
+            },
+            {
+              "url": "/_next/static/chunks/DJBYIetm.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 110180,
+              "gzipBytes": 32604
+            },
+            {
+              "url": "/_next/static/chunks/CpZasvo3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 145740,
+              "gzipBytes": 43983
+            },
+            {
+              "url": "/_next/static/chunks/B0PXqnjO.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 219274,
+              "gzipBytes": 67657
+            },
+            {
+              "url": "/blog?_rsc=S0tWllbkT8PZUj4a",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 57168,
+              "gzipBytes": 5950
+            },
+            {
+              "url": "/?_rsc=S0tWllbkT8PZUj4a",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 46454,
+              "gzipBytes": 4955
+            },
+            {
+              "url": "/about?_rsc=S0tWllbkT8PZUj4a",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 15170,
+              "gzipBytes": 4131
+            }
+          ],
+          "phone": {
+            "lcp": 456,
+            "fcp": 456,
+            "load": 1217.9000000357628,
+            "runs": [
+              {
+                "lcp": 460,
+                "fcp": 460,
+                "load": 1220.800000011921
+              },
+              {
+                "lcp": 456,
+                "fcp": 456,
+                "load": 1217.699999988079
+              },
+              {
+                "lcp": 460,
+                "fcp": 460,
+                "load": 1214.3999999761581
+              },
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 1217.9000000357628
+              },
+              {
+                "lcp": 456,
+                "fcp": 456,
+                "load": 1220.5999999642372
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/typed-routing",
+          "requests": {
+            "js": 7,
+            "css": 2,
+            "document": 1,
+            "data": 3,
+            "other": 0
+          },
+          "totalRequests": 13,
+          "jsGzip": 154259,
+          "jsRaw": 502105,
+          "cssGzip": 2892,
+          "htmlGzip": 8985,
+          "sample": [
+            {
+              "url": "/blog/typed-routing",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 45491,
+              "gzipBytes": 8985
+            },
+            {
+              "url": "/_next/static/css/Cn2Rj6At.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 4063,
+              "gzipBytes": 1354
+            },
+            {
+              "url": "/_next/static/css/D3iOWeOv.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 5169,
+              "gzipBytes": 1538
+            },
+            {
+              "url": "/_next/static/chunks/CcyWYbDU.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 755,
+              "gzipBytes": 452
+            },
+            {
+              "url": "/_next/static/chunks/c5d94m_o.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 979,
+              "gzipBytes": 345
+            },
+            {
+              "url": "/_next/static/chunks/Ooxjlqob.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 465,
+              "gzipBytes": 330
+            },
+            {
+              "url": "/_next/static/chunks/DldLwJT-.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 24712,
+              "gzipBytes": 8888
+            },
+            {
+              "url": "/_next/static/chunks/DJBYIetm.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 110180,
+              "gzipBytes": 32604
+            },
+            {
+              "url": "/_next/static/chunks/CpZasvo3.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 145740,
+              "gzipBytes": 43983
+            },
+            {
+              "url": "/_next/static/chunks/B0PXqnjO.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 219274,
+              "gzipBytes": 67657
+            },
+            {
+              "url": "/blog?_rsc=qiSKt1V6UudryVVK",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 57168,
+              "gzipBytes": 5950
+            },
+            {
+              "url": "/?_rsc=qiSKt1V6UudryVVK",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 46454,
+              "gzipBytes": 4955
+            },
+            {
+              "url": "/about?_rsc=qiSKt1V6UudryVVK",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 15170,
+              "gzipBytes": 4131
+            }
+          ],
+          "phone": {
+            "lcp": 460,
+            "fcp": 460,
+            "load": 1220.5999999642372,
+            "runs": [
+              {
+                "lcp": 448,
+                "fcp": 448,
+                "load": 1217.6000000238419
+              },
+              {
+                "lcp": 456,
+                "fcp": 456,
+                "load": 1222.699999988079
+              },
+              {
+                "lcp": 460,
+                "fcp": 460,
+                "load": 1223.300000011921
+              },
+              {
+                "lcp": 464,
+                "fcp": 464,
+                "load": 1220.5
+              },
+              {
+                "lcp": 472,
+                "fcp": 472,
+                "load": 1220.5999999642372
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tanstack-start",
+      "label": "TanStack Start",
+      "version": "1.169.4",
+      "average": {
+        "jsRequests": 3,
+        "cssRequests": 3,
+        "dataRequests": 0,
+        "totalRequests": 7,
+        "jsGzipKiB": 115.9931640625,
+        "jsRawKiB": 358.3009440104167,
+        "cssGzipKiB": 2.8505859375,
+        "htmlGzipKiB": 4.561252170138888,
+        "phoneLcpMs": 425.3333333333333,
+        "phoneFcpMs": 425.3333333333333,
+        "phoneLoadMs": 629.9500000079473
+      },
+      "pages": [
+        {
+          "path": "/",
+          "requests": {
+            "js": 3,
+            "css": 3,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 7,
+          "jsGzip": 118780,
+          "jsRaw": 366906,
+          "cssGzip": 2919,
+          "htmlGzip": 3938,
+          "sample": [
+            {
+              "url": "/",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 19273,
+              "gzipBytes": 3938
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/Comments-rwm664UI.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 840,
+              "gzipBytes": 396
+            },
+            {
+              "url": "/assets/index-Cy6-i95-.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7782,
+              "gzipBytes": 2158
+            },
+            {
+              "url": "/assets/routes-CkGwLO3_.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 188,
+              "gzipBytes": 170
+            },
+            {
+              "url": "/assets/Comments.module-D0X7JFx4.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 13139,
+              "gzipBytes": 5583
+            },
+            {
+              "url": "/assets/index-B6XchrK6.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 353579,
+              "gzipBytes": 113027
+            }
+          ],
+          "phone": {
+            "lcp": 412,
+            "fcp": 412,
+            "load": 630.0999999642372,
+            "runs": [
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 629.1999999880791
+              },
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 631.0999999642372
+              },
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 630.0999999642372
+              },
+              {
+                "lcp": 420,
+                "fcp": 420,
+                "load": 633.2999999523163
+              },
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 627.3999999761581
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog",
+          "requests": {
+            "js": 3,
+            "css": 3,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 7,
+          "jsGzip": 118779,
+          "jsRaw": 366901,
+          "cssGzip": 2919,
+          "htmlGzip": 5109.333333333333,
+          "sample": [
+            {
+              "url": "/blog",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 24176,
+              "gzipBytes": 5109
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/Comments-rwm664UI.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 840,
+              "gzipBytes": 396
+            },
+            {
+              "url": "/assets/index-Cy6-i95-.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7782,
+              "gzipBytes": 2158
+            },
+            {
+              "url": "/assets/blog-oXSoNZg2.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 183,
+              "gzipBytes": 169
+            },
+            {
+              "url": "/assets/Comments.module-D0X7JFx4.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 13139,
+              "gzipBytes": 5583
+            },
+            {
+              "url": "/assets/index-B6XchrK6.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 353579,
+              "gzipBytes": 113027
+            }
+          ],
+          "phone": {
+            "lcp": 408,
+            "fcp": 408,
+            "load": 630.3999999761581,
+            "runs": [
+              {
+                "lcp": 408,
+                "fcp": 408,
+                "load": 630.3999999761581
+              },
+              {
+                "lcp": 408,
+                "fcp": 408,
+                "load": 628.1000000238419
+              },
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 633.5
+              },
+              {
+                "lcp": 404,
+                "fcp": 404,
+                "load": 627.8000000119209
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 633.3999999761581
+              }
+            ]
+          }
+        },
+        {
+          "path": "/about",
+          "requests": {
+            "js": 3,
+            "css": 3,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 7,
+          "jsGzip": 118763,
+          "jsRaw": 366876,
+          "cssGzip": 2919,
+          "htmlGzip": 2862.6666666666665,
+          "sample": [
+            {
+              "url": "/about",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 7404,
+              "gzipBytes": 2863
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/Comments-rwm664UI.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 840,
+              "gzipBytes": 396
+            },
+            {
+              "url": "/assets/index-Cy6-i95-.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7782,
+              "gzipBytes": 2158
+            },
+            {
+              "url": "/assets/about-B0b1BYAW.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 158,
+              "gzipBytes": 153
+            },
+            {
+              "url": "/assets/Comments.module-D0X7JFx4.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 13139,
+              "gzipBytes": 5583
+            },
+            {
+              "url": "/assets/index-B6XchrK6.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 353579,
+              "gzipBytes": 113027
+            }
+          ],
+          "phone": {
+            "lcp": 412,
+            "fcp": 412,
+            "load": 625.2000000476837,
+            "runs": [
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 614.8999999761581
+              },
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 628.6000000238419
+              },
+              {
+                "lcp": 408,
+                "fcp": 408,
+                "load": 622.6000000238419
+              },
+              {
+                "lcp": 408,
+                "fcp": 408,
+                "load": 625.2000000476837
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 630.6999999880791
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/shipping-less-javascript",
+          "requests": {
+            "js": 3,
+            "css": 3,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 7,
+          "jsGzip": 118780,
+          "jsRaw": 366906,
+          "cssGzip": 2919,
+          "htmlGzip": 5453,
+          "sample": [
+            {
+              "url": "/blog/shipping-less-javascript",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 22325,
+              "gzipBytes": 5453
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/Comments-rwm664UI.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 840,
+              "gzipBytes": 396
+            },
+            {
+              "url": "/assets/index-Cy6-i95-.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7782,
+              "gzipBytes": 2158
+            },
+            {
+              "url": "/assets/_slug-C7bmlkR8.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 188,
+              "gzipBytes": 170
+            },
+            {
+              "url": "/assets/Comments.module-D0X7JFx4.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 13139,
+              "gzipBytes": 5583
+            },
+            {
+              "url": "/assets/index-B6XchrK6.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 353579,
+              "gzipBytes": 113027
+            }
+          ],
+          "phone": {
+            "lcp": 440,
+            "fcp": 440,
+            "load": 629.9000000357628,
+            "runs": [
+              {
+                "lcp": 432,
+                "fcp": 432,
+                "load": 627.4000000357628
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 625.4000000357628
+              },
+              {
+                "lcp": 436,
+                "fcp": 436,
+                "load": 629.9000000357628
+              },
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 637.6999999880791
+              },
+              {
+                "lcp": 456,
+                "fcp": 456,
+                "load": 636.6999999880791
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/prefetching-done-right",
+          "requests": {
+            "js": 3,
+            "css": 3,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 7,
+          "jsGzip": 118780,
+          "jsRaw": 366906,
+          "cssGzip": 2919,
+          "htmlGzip": 5347.333333333333,
+          "sample": [
+            {
+              "url": "/blog/prefetching-done-right",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 21108,
+              "gzipBytes": 5348
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/Comments-rwm664UI.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 840,
+              "gzipBytes": 396
+            },
+            {
+              "url": "/assets/index-Cy6-i95-.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7782,
+              "gzipBytes": 2158
+            },
+            {
+              "url": "/assets/_slug-C7bmlkR8.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 188,
+              "gzipBytes": 170
+            },
+            {
+              "url": "/assets/Comments.module-D0X7JFx4.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 13139,
+              "gzipBytes": 5583
+            },
+            {
+              "url": "/assets/index-B6XchrK6.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 353579,
+              "gzipBytes": 113027
+            }
+          ],
+          "phone": {
+            "lcp": 440,
+            "fcp": 440,
+            "load": 631.8999999761581,
+            "runs": [
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 630.5
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 638.0999999642372
+              },
+              {
+                "lcp": 432,
+                "fcp": 432,
+                "load": 603.2999999523163
+              },
+              {
+                "lcp": 436,
+                "fcp": 436,
+                "load": 631.8999999761581
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 638.8999999761581
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/typed-routing",
+          "requests": {
+            "js": 3,
+            "css": 3,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 7,
+          "jsGzip": 118780,
+          "jsRaw": 366906,
+          "cssGzip": 2919,
+          "htmlGzip": 5314,
+          "sample": [
+            {
+              "url": "/blog/typed-routing",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 20797,
+              "gzipBytes": 5315
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/Comments-rwm664UI.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 840,
+              "gzipBytes": 396
+            },
+            {
+              "url": "/assets/index-Cy6-i95-.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 7782,
+              "gzipBytes": 2158
+            },
+            {
+              "url": "/assets/_slug-C7bmlkR8.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 188,
+              "gzipBytes": 170
+            },
+            {
+              "url": "/assets/Comments.module-D0X7JFx4.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 13139,
+              "gzipBytes": 5583
+            },
+            {
+              "url": "/assets/index-B6XchrK6.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 353579,
+              "gzipBytes": 113027
+            }
+          ],
+          "phone": {
+            "lcp": 440,
+            "fcp": 440,
+            "load": 632.2000000476837,
+            "runs": [
+              {
+                "lcp": 436,
+                "fcp": 436,
+                "load": 631.1000000238419
+              },
+              {
+                "lcp": 432,
+                "fcp": 432,
+                "load": 624.3000000119209
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 632.2000000476837
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 636
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 633.3999999761581
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "react-router",
+      "label": "React Router",
+      "version": "7.18.4",
+      "average": {
+        "jsRequests": 5,
+        "cssRequests": 2,
+        "dataRequests": 1,
+        "totalRequests": 9,
+        "jsGzipKiB": 114.35693359375,
+        "jsRawKiB": 358.0724283854167,
+        "cssGzipKiB": 2.6396484375,
+        "htmlGzipKiB": 4.894694010416667,
+        "phoneLcpMs": 442.6666666666667,
+        "phoneFcpMs": 442.6666666666667,
+        "phoneLoadMs": 521.5
+      },
+      "pages": [
+        {
+          "path": "/",
+          "requests": {
+            "js": 5,
+            "css": 2,
+            "document": 1,
+            "data": 1,
+            "other": 0
+          },
+          "totalRequests": 9,
+          "jsGzip": 117065,
+          "jsRaw": 366610,
+          "cssGzip": 2703,
+          "htmlGzip": 4244,
+          "sample": [
+            {
+              "url": "/",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 20007,
+              "gzipBytes": 4244
+            },
+            {
+              "url": "/assets/root-DdoMEPi0.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 723,
+              "gzipBytes": 412
+            },
+            {
+              "url": "/assets/link-QZ_dnOAl.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 8621,
+              "gzipBytes": 2338
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/home-BDBT86VQ.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 191,
+              "gzipBytes": 170
+            },
+            {
+              "url": "/assets/link-BWH_lfwG.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 22103,
+              "gzipBytes": 7960
+            },
+            {
+              "url": "/assets/jsx-runtime-DeuJF0sL.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 128797,
+              "gzipBytes": 42041
+            },
+            {
+              "url": "/assets/entry.client-Bg1WppeW.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 214796,
+              "gzipBytes": 66482
+            },
+            {
+              "url": "/__manifest?paths=%2F%2C%2Fabout%2C%2Fblog%2C%2Fblog%2Fcss-without-the-waterfall%2C%2Fblog%2Fdesigning-a-performance-budget%2C%2Fblog%2Fedge-rendering-tradeoffs%2C%2Fblog%2Feffects-as-values%2C%2Fblog%2Fislands-in-practice%2C%2Fblog%2Fmeasuring-what-matters%2C%2Fblog%2Fprefetching-done-right%2C%2Fblog%2Froute-level-code-splitting%2C%2Fblog%2Fshipping-less-javascript%2C%2Fblog%2Fstatic-generation-at-scale%2C%2Fblog%2Fstreaming-server-rendering%2C%2Fblog%2Fthe-cost-of-hydration%2C%2Fblog%2Fthe-elm-architecture-on-the-web&version=9a079bef",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 1836,
+              "gzipBytes": 351
+            }
+          ],
+          "phone": {
+            "lcp": 432,
+            "fcp": 432,
+            "load": 517.5999999642372,
+            "runs": [
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 515.8999999761581
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 510.9000000357628
+              },
+              {
+                "lcp": 440,
+                "fcp": 440,
+                "load": 518.5999999642372
+              },
+              {
+                "lcp": 564,
+                "fcp": 564,
+                "load": 560.3000000119209
+              },
+              {
+                "lcp": 432,
+                "fcp": 432,
+                "load": 517.5999999642372
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog",
+          "requests": {
+            "js": 5,
+            "css": 2,
+            "document": 1,
+            "data": 1,
+            "other": 0
+          },
+          "totalRequests": 9,
+          "jsGzip": 117105,
+          "jsRaw": 366662,
+          "cssGzip": 2703,
+          "htmlGzip": 5504,
+          "sample": [
+            {
+              "url": "/blog",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 26447,
+              "gzipBytes": 5504
+            },
+            {
+              "url": "/assets/root-DdoMEPi0.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 723,
+              "gzipBytes": 412
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/link-QZ_dnOAl.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 8621,
+              "gzipBytes": 2338
+            },
+            {
+              "url": "/assets/link-BWH_lfwG.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 22103,
+              "gzipBytes": 7960
+            },
+            {
+              "url": "/assets/blog-DaADcyh_.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 243,
+              "gzipBytes": 210
+            },
+            {
+              "url": "/assets/jsx-runtime-DeuJF0sL.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 128797,
+              "gzipBytes": 42041
+            },
+            {
+              "url": "/assets/entry.client-Bg1WppeW.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 214796,
+              "gzipBytes": 66482
+            },
+            {
+              "url": "/__manifest?paths=%2F%2C%2Fabout%2C%2Fblog%2C%2Fblog%2Fbenchmarking-frameworks-honestly%2C%2Fblog%2Fbundle-analysis-workflows%2C%2Fblog%2Fcaching-server-components%2C%2Fblog%2Fclient-navigation-costs%2C%2Fblog%2Fcss-without-the-waterfall%2C%2Fblog%2Fdesigning-a-performance-budget%2C%2Fblog%2Fedge-rendering-tradeoffs%2C%2Fblog%2Feffects-as-values%2C%2Fblog%2Ffonts-and-layout-shift%2C%2Fblog%2Fimages-are-still-the-problem%2C%2Fblog%2Fislands-in-practice%2C%2Fblog%2Fmeasuring-what-matters%2C%2Fblog%2Fmodule-graph-hygiene%2C%2Fblog%2Fprefetching-done-right%2C%2Fblog%2Fprogressive-enhancement-today%2C%2Fblog%2Fresumability-explained%2C%2Fblog%2Froute-level-code-splitting%2C%2Fblog%2Fshipping-less-javascript%2C%2Fblog%2Fstatic-generation-at-scale%2C%2Fblog%2Fstreaming-server-rendering%2C%2Fblog%2Fthe-cost-of-hydration%2C%2Fblog%2Fthe-elm-architecture-on-the-web%2C%2Fblog%2Fthe-long-tail-of-third-parties%2C%2Fblog%2Ftyped-routing&version=9a079bef",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 1836,
+              "gzipBytes": 351
+            }
+          ],
+          "phone": {
+            "lcp": 428,
+            "fcp": 428,
+            "load": 519,
+            "runs": [
+              {
+                "lcp": 428,
+                "fcp": 428,
+                "load": 522
+              },
+              {
+                "lcp": 428,
+                "fcp": 428,
+                "load": 519.8000000119209
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 518.6999999880791
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 518.6999999880791
+              },
+              {
+                "lcp": 428,
+                "fcp": 428,
+                "load": 519
+              }
+            ]
+          }
+        },
+        {
+          "path": "/about",
+          "requests": {
+            "js": 5,
+            "css": 2,
+            "document": 1,
+            "data": 1,
+            "other": 0
+          },
+          "totalRequests": 9,
+          "jsGzip": 117091,
+          "jsRaw": 366637,
+          "cssGzip": 2703,
+          "htmlGzip": 2929,
+          "sample": [
+            {
+              "url": "/about",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 9016,
+              "gzipBytes": 2929
+            },
+            {
+              "url": "/assets/root-DdoMEPi0.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 723,
+              "gzipBytes": 412
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/link-QZ_dnOAl.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 8621,
+              "gzipBytes": 2338
+            },
+            {
+              "url": "/assets/link-BWH_lfwG.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 22103,
+              "gzipBytes": 7960
+            },
+            {
+              "url": "/assets/about-BPzoZimv.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 218,
+              "gzipBytes": 196
+            },
+            {
+              "url": "/assets/jsx-runtime-DeuJF0sL.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 128797,
+              "gzipBytes": 42041
+            },
+            {
+              "url": "/assets/entry.client-Bg1WppeW.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 214796,
+              "gzipBytes": 66482
+            },
+            {
+              "url": "/__manifest?paths=%2F%2C%2Fabout%2C%2Fblog&version=9a079bef",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 1458,
+              "gzipBytes": 323
+            }
+          ],
+          "phone": {
+            "lcp": 432,
+            "fcp": 432,
+            "load": 526.6000000238419,
+            "runs": [
+              {
+                "lcp": 564,
+                "fcp": 564,
+                "load": 580.3000000119209
+              },
+              {
+                "lcp": 420,
+                "fcp": 420,
+                "load": 515.1000000238419
+              },
+              {
+                "lcp": 576,
+                "fcp": 576,
+                "load": 582.1000000238419
+              },
+              {
+                "lcp": 432,
+                "fcp": 432,
+                "load": 526.6000000238419
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 519.1000000238419
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/shipping-less-javascript",
+          "requests": {
+            "js": 5,
+            "css": 2,
+            "document": 1,
+            "data": 1,
+            "other": 0
+          },
+          "totalRequests": 9,
+          "jsGzip": 117116,
+          "jsRaw": 366696,
+          "cssGzip": 2703,
+          "htmlGzip": 5850,
+          "sample": [
+            {
+              "url": "/blog/shipping-less-javascript",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 25076,
+              "gzipBytes": 5850
+            },
+            {
+              "url": "/assets/root-DdoMEPi0.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 723,
+              "gzipBytes": 412
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/link-QZ_dnOAl.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 8621,
+              "gzipBytes": 2338
+            },
+            {
+              "url": "/assets/post-BL8VW5uG.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 277,
+              "gzipBytes": 221
+            },
+            {
+              "url": "/assets/link-BWH_lfwG.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 22103,
+              "gzipBytes": 7960
+            },
+            {
+              "url": "/assets/jsx-runtime-DeuJF0sL.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 128797,
+              "gzipBytes": 42041
+            },
+            {
+              "url": "/assets/entry.client-Bg1WppeW.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 214796,
+              "gzipBytes": 66482
+            },
+            {
+              "url": "/__manifest?paths=%2F%2C%2Fabout%2C%2Fblog%2C%2Fblog%2Fislands-in-practice%2C%2Fblog%2Fstreaming-server-rendering%2C%2Fblog%2Fthe-cost-of-hydration&version=9a079bef",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 1836,
+              "gzipBytes": 351
+            }
+          ],
+          "phone": {
+            "lcp": 456,
+            "fcp": 456,
+            "load": 523.0999999642372,
+            "runs": [
+              {
+                "lcp": 456,
+                "fcp": 456,
+                "load": 523.0999999642372
+              },
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 514.8000000119209
+              },
+              {
+                "lcp": 584,
+                "fcp": 584,
+                "load": 604
+              },
+              {
+                "lcp": 592,
+                "fcp": 592,
+                "load": 609.3999999761581
+              },
+              {
+                "lcp": 456,
+                "fcp": 456,
+                "load": 520.5
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/prefetching-done-right",
+          "requests": {
+            "js": 5,
+            "css": 2,
+            "document": 1,
+            "data": 1,
+            "other": 0
+          },
+          "totalRequests": 9,
+          "jsGzip": 117116,
+          "jsRaw": 366696,
+          "cssGzip": 2703,
+          "htmlGzip": 5789,
+          "sample": [
+            {
+              "url": "/blog/prefetching-done-right",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 23961,
+              "gzipBytes": 5789
+            },
+            {
+              "url": "/assets/root-DdoMEPi0.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 723,
+              "gzipBytes": 412
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/link-QZ_dnOAl.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 8621,
+              "gzipBytes": 2338
+            },
+            {
+              "url": "/assets/link-BWH_lfwG.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 22103,
+              "gzipBytes": 7960
+            },
+            {
+              "url": "/assets/post-BL8VW5uG.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 277,
+              "gzipBytes": 221
+            },
+            {
+              "url": "/assets/jsx-runtime-DeuJF0sL.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 128797,
+              "gzipBytes": 42041
+            },
+            {
+              "url": "/assets/entry.client-Bg1WppeW.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 214796,
+              "gzipBytes": 66482
+            },
+            {
+              "url": "/__manifest?paths=%2F%2C%2Fabout%2C%2Fblog%2C%2Fblog%2Fdesigning-a-performance-budget%2C%2Fblog%2Fedge-rendering-tradeoffs%2C%2Fblog%2Fresumability-explained&version=9a079bef",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 1836,
+              "gzipBytes": 351
+            }
+          ],
+          "phone": {
+            "lcp": 452,
+            "fcp": 452,
+            "load": 521.8000000119209,
+            "runs": [
+              {
+                "lcp": 460,
+                "fcp": 460,
+                "load": 523.2000000476837
+              },
+              {
+                "lcp": 452,
+                "fcp": 452,
+                "load": 519.8000000119209
+              },
+              {
+                "lcp": 448,
+                "fcp": 448,
+                "load": 522.8999999761581
+              },
+              {
+                "lcp": 460,
+                "fcp": 460,
+                "load": 521.8000000119209
+              },
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 521.6000000238419
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/typed-routing",
+          "requests": {
+            "js": 5,
+            "css": 2,
+            "document": 1,
+            "data": 1,
+            "other": 0
+          },
+          "totalRequests": 9,
+          "jsGzip": 117116,
+          "jsRaw": 366696,
+          "cssGzip": 2703,
+          "htmlGzip": 5757,
+          "sample": [
+            {
+              "url": "/blog/typed-routing",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 23655,
+              "gzipBytes": 5757
+            },
+            {
+              "url": "/assets/root-DdoMEPi0.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 723,
+              "gzipBytes": 412
+            },
+            {
+              "url": "/assets/styles-CnuUfleD.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 608,
+              "gzipBytes": 365
+            },
+            {
+              "url": "/assets/link-BWH_lfwG.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 22103,
+              "gzipBytes": 7960
+            },
+            {
+              "url": "/assets/link-QZ_dnOAl.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 8621,
+              "gzipBytes": 2338
+            },
+            {
+              "url": "/assets/post-BL8VW5uG.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 277,
+              "gzipBytes": 221
+            },
+            {
+              "url": "/assets/jsx-runtime-DeuJF0sL.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 128797,
+              "gzipBytes": 42041
+            },
+            {
+              "url": "/assets/entry.client-Bg1WppeW.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 214796,
+              "gzipBytes": 66482
+            },
+            {
+              "url": "/__manifest?paths=%2F%2C%2Fabout%2C%2Fblog%2C%2Fblog%2Fbenchmarking-frameworks-honestly%2C%2Fblog%2Ffonts-and-layout-shift%2C%2Fblog%2Fimages-are-still-the-problem&version=9a079bef",
+              "kind": "data",
+              "status": 200,
+              "rawBytes": 1836,
+              "gzipBytes": 351
+            }
+          ],
+          "phone": {
+            "lcp": 456,
+            "fcp": 456,
+            "load": 520.9000000357628,
+            "runs": [
+              {
+                "lcp": 460,
+                "fcp": 460,
+                "load": 520.9000000357628
+              },
+              {
+                "lcp": 456,
+                "fcp": 456,
+                "load": 524.3000000119209
+              },
+              {
+                "lcp": 436,
+                "fcp": 436,
+                "load": 511.5
+              },
+              {
+                "lcp": 592,
+                "fcp": 592,
+                "load": 609.6999999880791
+              },
+              {
+                "lcp": 444,
+                "fcp": 444,
+                "load": 518.1000000238419
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "foldkit",
+      "label": "Foldkit",
+      "version": "0.169.0",
+      "average": {
+        "jsRequests": 1,
+        "cssRequests": 1,
+        "dataRequests": 0,
+        "totalRequests": 3,
+        "jsGzipKiB": 104.47265625,
+        "jsRawKiB": 320.720703125,
+        "cssGzipKiB": 2.5390625,
+        "htmlGzipKiB": 3.9423828125,
+        "phoneLcpMs": 462,
+        "phoneFcpMs": 414,
+        "phoneLoadMs": 685.2333333293597
+      },
+      "pages": [
+        {
+          "path": "/",
+          "requests": {
+            "js": 1,
+            "css": 1,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 3,
+          "jsGzip": 106980,
+          "jsRaw": 328418,
+          "cssGzip": 2600,
+          "htmlGzip": 4037,
+          "sample": [
+            {
+              "url": "/",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 24868,
+              "gzipBytes": 4037
+            },
+            {
+              "url": "/assets/app-CAVI6qJS.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 9228,
+              "gzipBytes": 2600
+            },
+            {
+              "url": "/assets/app-DjO8EWq5.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 328418,
+              "gzipBytes": 106980
+            }
+          ],
+          "phone": {
+            "lcp": 416,
+            "fcp": 416,
+            "load": 707.5999999642372,
+            "runs": [
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 709.9000000357628
+              },
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 701.6999999880791
+              },
+              {
+                "lcp": 420,
+                "fcp": 420,
+                "load": 710.4000000357628
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 707.5999999642372
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 703.5
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog",
+          "requests": {
+            "js": 1,
+            "css": 1,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 3,
+          "jsGzip": 106980,
+          "jsRaw": 328418,
+          "cssGzip": 2600,
+          "htmlGzip": 4037,
+          "sample": [
+            {
+              "url": "/blog",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 24868,
+              "gzipBytes": 4037
+            },
+            {
+              "url": "/assets/app-CAVI6qJS.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 9228,
+              "gzipBytes": 2600
+            },
+            {
+              "url": "/assets/app-DjO8EWq5.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 328418,
+              "gzipBytes": 106980
+            }
+          ],
+          "phone": {
+            "lcp": 416,
+            "fcp": 416,
+            "load": 720.1999999880791,
+            "runs": [
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 699.6999999880791
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 724.3000000119209
+              },
+              {
+                "lcp": 420,
+                "fcp": 420,
+                "load": 720.1999999880791
+              },
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 727.3000000119209
+              },
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 712.6999999880791
+              }
+            ]
+          }
+        },
+        {
+          "path": "/about",
+          "requests": {
+            "js": 1,
+            "css": 1,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 3,
+          "jsGzip": 106980,
+          "jsRaw": 328418,
+          "cssGzip": 2600,
+          "htmlGzip": 4037,
+          "sample": [
+            {
+              "url": "/about",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 24868,
+              "gzipBytes": 4037
+            },
+            {
+              "url": "/assets/app-CAVI6qJS.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 9228,
+              "gzipBytes": 2600
+            },
+            {
+              "url": "/assets/app-DjO8EWq5.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 328418,
+              "gzipBytes": 106980
+            }
+          ],
+          "phone": {
+            "lcp": 700,
+            "fcp": 412,
+            "load": 680.6000000238419,
+            "runs": [
+              {
+                "lcp": 688,
+                "fcp": 412,
+                "load": 671.3000000119209
+              },
+              {
+                "lcp": 700,
+                "fcp": 408,
+                "load": 681.5
+              },
+              {
+                "lcp": 704,
+                "fcp": 416,
+                "load": 684.3999999761581
+              },
+              {
+                "lcp": 700,
+                "fcp": 412,
+                "load": 680.6000000238419
+              },
+              {
+                "lcp": 696,
+                "fcp": 416,
+                "load": 679.6000000238419
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/shipping-less-javascript",
+          "requests": {
+            "js": 1,
+            "css": 1,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 3,
+          "jsGzip": 106980,
+          "jsRaw": 328418,
+          "cssGzip": 2600,
+          "htmlGzip": 4037,
+          "sample": [
+            {
+              "url": "/blog/shipping-less-javascript",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 24868,
+              "gzipBytes": 4037
+            },
+            {
+              "url": "/assets/app-CAVI6qJS.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 9228,
+              "gzipBytes": 2600
+            },
+            {
+              "url": "/assets/app-DjO8EWq5.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 328418,
+              "gzipBytes": 106980
+            }
+          ],
+          "phone": {
+            "lcp": 412,
+            "fcp": 412,
+            "load": 664.6999999880791,
+            "runs": [
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 678.1000000238419
+              },
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 664.6999999880791
+              },
+              {
+                "lcp": 408,
+                "fcp": 408,
+                "load": 646.5
+              },
+              {
+                "lcp": 408,
+                "fcp": 408,
+                "load": 667.1999999880791
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 653.1000000238419
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/prefetching-done-right",
+          "requests": {
+            "js": 1,
+            "css": 1,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 3,
+          "jsGzip": 106980,
+          "jsRaw": 328418,
+          "cssGzip": 2600,
+          "htmlGzip": 4037,
+          "sample": [
+            {
+              "url": "/blog/prefetching-done-right",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 24868,
+              "gzipBytes": 4037
+            },
+            {
+              "url": "/assets/app-CAVI6qJS.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 9228,
+              "gzipBytes": 2600
+            },
+            {
+              "url": "/assets/app-DjO8EWq5.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 328418,
+              "gzipBytes": 106980
+            }
+          ],
+          "phone": {
+            "lcp": 416,
+            "fcp": 416,
+            "load": 671.6999999880791,
+            "runs": [
+              {
+                "lcp": 424,
+                "fcp": 424,
+                "load": 676
+              },
+              {
+                "lcp": 420,
+                "fcp": 420,
+                "load": 676.3000000119209
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 631.5
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 671.6999999880791
+              },
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 663
+              }
+            ]
+          }
+        },
+        {
+          "path": "/blog/typed-routing",
+          "requests": {
+            "js": 1,
+            "css": 1,
+            "document": 1,
+            "data": 0,
+            "other": 0
+          },
+          "totalRequests": 3,
+          "jsGzip": 106980,
+          "jsRaw": 328418,
+          "cssGzip": 2600,
+          "htmlGzip": 4037,
+          "sample": [
+            {
+              "url": "/blog/typed-routing",
+              "kind": "document",
+              "status": 200,
+              "rawBytes": 24868,
+              "gzipBytes": 4037
+            },
+            {
+              "url": "/assets/app-CAVI6qJS.css",
+              "kind": "css",
+              "status": 200,
+              "rawBytes": 9228,
+              "gzipBytes": 2600
+            },
+            {
+              "url": "/assets/app-DjO8EWq5.js",
+              "kind": "js",
+              "status": 200,
+              "rawBytes": 328418,
+              "gzipBytes": 106980
+            }
+          ],
+          "phone": {
+            "lcp": 412,
+            "fcp": 412,
+            "load": 666.6000000238419,
+            "runs": [
+              {
+                "lcp": 412,
+                "fcp": 412,
+                "load": 675.8000000119209
+              },
+              {
+                "lcp": 416,
+                "fcp": 416,
+                "load": 664.5
+              },
+              {
+                "lcp": 408,
+                "fcp": 408,
+                "load": 666.6000000238419
+              },
+              {
+                "lcp": 420,
+                "fcp": 420,
+                "load": 676.8000000119209
+              },
+              {
+                "lcp": 408,
+                "fcp": 408,
+                "load": 661.6000000238419
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

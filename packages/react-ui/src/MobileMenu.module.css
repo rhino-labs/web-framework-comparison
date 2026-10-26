@@ -1,0 +1,9 @@
+.wrap { display: flex; align-items: center; }
+.toggle { display: none; }
+.nav { display: flex; gap: 1.25rem; }
+@media (max-width: 640px) {
+  .toggle { display: inline-block; }
+  .nav { display: none; position: absolute; top: 4rem; right: 1.25rem; flex-direction: column; gap: 0.5rem;
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; z-index: 10; }
+  .open .nav { display: flex; }
+}

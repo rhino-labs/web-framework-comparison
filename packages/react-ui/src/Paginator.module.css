@@ -1,0 +1,2 @@
+.pager { display: flex; gap: 0.5rem; justify-content: center; align-items: center; margin-top: 2rem; }
+.page[aria-current='page'] { border-color: var(--accent); color: var(--accent); }

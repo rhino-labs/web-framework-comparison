@@ -1,0 +1,30 @@
+{
+  "name": "@bench/next",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:next": "next build",
+    "build:vinext": "vite build",
+    "build:all": "pnpm build:next && pnpm build:vinext",
+    "start:next": "next start",
+    "start:vinext": "vinext start"
+  },
+  "dependencies": {
+    "@bench/content": "workspace:*",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-server-dom-webpack": "19.3.1",
+    "vinext": "1.3.1",
+    "@bench/react-ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.0.0",
+    "@vitejs/plugin-rsc": "^0.5.38",
+    "typescript": "^5.9.0",
+    "vite": "^8.3.5"
+  }
+}

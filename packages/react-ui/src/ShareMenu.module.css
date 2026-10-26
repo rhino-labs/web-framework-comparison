@@ -1,0 +1,5 @@
+.wrap { position: relative; }
+.menu { position: absolute; bottom: calc(100% + 0.4rem); left: 0; display: grid; min-width: 10rem; z-index: 10;
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.4rem; }
+.item { text-align: left; border: 0; background: none; padding: 0.35rem 0.6rem; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 0.9rem; }
+.item:hover { background: var(--bg); }

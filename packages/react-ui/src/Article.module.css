@@ -1,0 +1,5 @@
+.article h1 { font-size: 2.25rem; line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 0.75rem; }
+.article h2 { font-size: 1.35rem; margin: 2.25rem 0 0.5rem; scroll-margin-top: 1rem; }
+.article blockquote { margin: 1.5rem 0; padding-left: 1rem; border-left: 3px solid var(--accent); color: var(--muted); font-style: italic; }
+.footer { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin: 3rem 0 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.actions { display: flex; gap: 0.5rem; }

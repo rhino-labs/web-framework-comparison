@@ -1,0 +1,8 @@
+.kbd { font-size: 11px; color: var(--muted); border: 1px solid var(--border); border-radius: 4px; padding: 0 4px; margin-left: 6px; }
+.backdrop { position: fixed; inset: 0; background: rgb(0 0 0 / 0.4); display: grid; place-items: start center; padding-top: 12vh; z-index: 50; }
+.dialog { width: min(32rem, 92vw); background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.input { width: 100%; border: 0; border-bottom: 1px solid var(--border); padding: 0.9rem 1rem; background: transparent; outline: none; }
+.results { list-style: none; margin: 0; padding: 0.4rem; max-height: 50vh; overflow: auto; }
+.result { display: block; padding: 0.5rem 0.75rem; border-radius: 8px; text-decoration: none; }
+.result:hover, .result:focus { background: var(--bg); }
+.empty { padding: 1rem; color: var(--muted); margin: 0; }

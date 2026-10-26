@@ -1,0 +1,11 @@
+node_modules
+.next
+dist
+.output
+.tanstack
+.vinext
+.react-router
+build
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store

@@ -1,0 +1,12 @@
+{
+  "name": "web-framework-comparison",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.9",
+  "scripts": {
+    "build": "pnpm --filter \"./apps/*\" run build:all",
+    "bench": "node bench/src/run.ts",
+    "chart": "node bench/src/chart.ts",
+    "all": "pnpm build && pnpm bench && pnpm chart"
+  }
+}

@@ -1,0 +1,31 @@
+/* Global tokens and reset only. Component styles live in CSS modules in
+   packages/react-ui/src (shared by every framework, including Foldkit). */
+:root {
+  --bg: #fafaf9;
+  --fg: #1c1917;
+  --muted: #78716c;
+  --border: #e7e5e4;
+  --accent: #2563eb;
+  --card: #ffffff;
+  --radius: 12px;
+  color-scheme: light;
+}
+[data-theme='dark'] {
+  --bg: #0c0a09;
+  --fg: #f5f5f4;
+  --muted: #a8a29e;
+  --border: #292524;
+  --accent: #60a5fa;
+  --card: #1c1917;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 17px/1.65 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+a { color: inherit; }
+button, input, textarea { font: inherit; color: inherit; }

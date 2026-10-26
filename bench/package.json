@@ -1,0 +1,9 @@
+{
+  "name": "@bench/runner",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@bench/content": "workspace:*",
+    "playwright": "^1.58.0"
+  }
+}

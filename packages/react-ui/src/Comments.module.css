@@ -1,0 +1,8 @@
+.section { margin-top: 3rem; }
+.list { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 1rem; }
+.comment { border-left: 2px solid var(--border); padding-left: 1rem; }
+.author { font-weight: 600; font-size: 0.9rem; }
+.body { margin: 0.2rem 0 0; }
+.form { display: grid; gap: 0.5rem; }
+.textarea { border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem; background: var(--card); min-height: 5rem; }
+.placeholder { color: var(--muted); }
