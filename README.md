@@ -20,13 +20,13 @@ loads per page.
 
 | Framework | JS requests | CSS requests | JS (gzip) | LCP, 4G phone | Prefetched JS | Data requests |
 | --- | --- | --- | --- | --- | --- | --- |
-| Next.js 16.4.3 | 6.3 | 3.0 | 139 KiB | 509 ms | +2.9 (+6 KiB) | 27.2 |
-| Vinext 1.3.1 | 9.2 | 5.2 | 153 KiB | 436 ms | +4.0 (+6 KiB) | 12.6 |
-| TanStack Start 1.169.4 | 3.9 | 4.2 | 123 KiB | 428 ms | 0 | 0 |
-| React Router 7.18.4 | 6.9 | 4.2 | 116 KiB | 460 ms | 0 | 1.0 |
-| Astro 7.4.2 | 15.6 | 0 | 73 KiB | 276 ms | 0 | 0 |
-| Foldkit 0.169.0 | 1.0 | 1.0 | 159 KiB | 453 ms | 0 | 0 |
-| Xote 7.1.0 | 1.0 | 1.0 | 70 KiB | 454 ms | 0 | 0 |
+| Next.js 16.4.3 | 6.3 | 3.0 | 139 KiB | 510 ms | +2.9 (+6 KiB) | 27.2 |
+| Vinext 1.3.1 | 9.2 | 5.2 | 153 KiB | 444 ms | +4.0 (+6 KiB) | 12.6 |
+| TanStack Start 1.169.4 | 3.9 | 4.2 | 123 KiB | 431 ms | 0 | 0 |
+| React Router 8.5.0 | 6.9 | 4.2 | 120 KiB | 455 ms | 0 | 1.0 |
+| Astro 7.4.2 | 15.6 | 0 | 73 KiB | 282 ms | 0 | 0 |
+| Foldkit 0.169.0 | 1.0 | 1.0 | 159 KiB | 446 ms | 0 | 0 |
+| Xote 7.1.0 | 1.0 | 1.0 | 70 KiB | 450 ms | 0 | 0 |
 
 Content pages (home, blog, articles, about, a section index) and generated
 widget pages behave differently, so here is the split:
@@ -36,7 +36,7 @@ widget pages behave differently, so here is the split:
 | Next.js | 6 / 3, 138 KiB | 7 / 3, 141 KiB |
 | Vinext | 8 / 4, 152 KiB | 12 / 8, 155 KiB |
 | TanStack Start | 3 / 3, 122 KiB | 6 / 7, 125 KiB |
-| React Router | 6 / 3, 115 KiB | 9 / 7, 118 KiB |
+| React Router | 6 / 3, 119 KiB | 9 / 7, 122 KiB |
 | Astro | 14 / 0, 73 KiB | 19 / 0, 75 KiB |
 | Foldkit | 1 / 1, 159 KiB | 1 / 1, 159 KiB |
 | Xote | 1 / 1, 70 KiB | 1 / 1, 70 KiB |
@@ -54,6 +54,9 @@ Things worth noticing:
 - **Next.js** groups a route's client components into one chunk, but ships
   the CSS of all widgets on every page (10.8 KiB gzip of CSS, against about
   3.5 KiB in the other React apps).
+- **React Router 8** ships about 4 KiB more JS than 7.18.4 did, all in its
+  own runtime (the router chunk and the client entry); the React chunk is a
+  little smaller.
 - **Vinext** splits the most among the React frameworks: one more JS and CSS
   file per widget group.
 - **Next.js and vinext** prefetch the routes linked in the viewport after the
@@ -74,7 +77,7 @@ isn't idiomatic.
 | Next.js        | `apps/next`           | App Router, RSC, SSG            | `next start`              |
 | Vinext         | `apps/next` (same!)   | the same `app/` dir, built by Vite | `vinext start`         |
 | TanStack Start | `apps/tanstack-start` | SSR, data via `createServerFn`  | `vite preview`            |
-| React Router 7 | `apps/react-router`   | framework mode, SSR, server loaders | `react-router-serve`  |
+| React Router 8 | `apps/react-router`   | framework mode, SSR, server loaders | `react-router-serve`  |
 | Astro          | `apps/astro`          | SSG, React islands (`client:load`) | static files           |
 | Foldkit        | `apps/foldkit`        | SSG + hydration, data via Flags | static files              |
 | Xote (ReScript) | `apps/xote`          | SSG + hydration, signals, data in a JSON script | static files |
