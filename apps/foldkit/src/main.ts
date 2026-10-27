@@ -6,8 +6,10 @@ import { UrlRequest, load } from 'foldkit/navigation'
 import { modifyFields } from 'foldkit/struct'
 import { Url, toString as urlToString } from 'foldkit/url'
 
-import { Comment, Post, PostSummary, SearchItem } from './domain'
+import { Comment, FeatureData, Post, PostSummary, SearchItem, SectionData } from './domain'
+import { widgets } from './generated/widgets'
 import { AppRoute, urlToAppRoute } from './route'
+import { WidgetMsg, WidgetState } from './widget'
 
 // MODEL
 
@@ -34,6 +36,9 @@ export const Model = Schema.Struct({
   summaries: Schema.Array(PostSummary),
   byTopic: Schema.Array(Schema.Array(PostSummary)),
   maybePost: Schema.Option(Post),
+  maybeSection: Schema.Option(SectionData),
+  maybeFeature: Schema.Option(FeatureData),
+  widgets: Schema.Record(Schema.String, WidgetState),
   comments: Schema.Array(Comment),
   searchItems: Schema.Array(SearchItem),
   theme: Theme,
@@ -67,6 +72,8 @@ export const Flags = Schema.Struct({
   summaries: Schema.Array(PostSummary),
   byTopic: Schema.Array(Schema.Array(PostSummary)),
   post: Schema.NullOr(Post),
+  section: Schema.NullOr(SectionData),
+  feature: Schema.NullOr(FeatureData),
   comments: Schema.Array(Comment),
   searchItems: Schema.Array(SearchItem),
 })
@@ -114,6 +121,7 @@ export const Message = defineMessageUnion({
   ClickedFaq: { index: Schema.Number },
   UpdatedContactField: { field: ContactField, value: Schema.String },
   SubmittedContact: {},
+  ChangedWidget: { id: Schema.String, msg: WidgetMsg },
 })
 export type Message = typeof Message.Type
 
@@ -204,6 +212,9 @@ export const init: Runtime.RoutingApplicationInit<Model, Message, Flags> = (flag
     summaries: flags.summaries,
     byTopic: flags.byTopic,
     maybePost: Option.fromNullOr(flags.post),
+    maybeSection: Option.fromNullOr(flags.section),
+    maybeFeature: Option.fromNullOr(flags.feature),
+    widgets: {},
     comments: flags.comments,
     searchItems: flags.searchItems,
     theme: 'Light',
@@ -355,6 +366,16 @@ export const update = (model: Model, message: Message) =>
           }),
         }),
       }
+    },
+    ChangedWidget: ({ id, msg }) => {
+      const widget = widgets[id]
+      return widget
+        ? {
+            model: modifyFields(model, {
+              widgets: states => ({ ...states, [id]: widget.update(states[id] ?? widget.init, msg) }),
+            }),
+          }
+        : { model }
     },
   })
 

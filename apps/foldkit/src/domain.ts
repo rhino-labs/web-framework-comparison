@@ -33,3 +33,22 @@ export type Comment = typeof Comment.Type
 
 export const SearchItem = Schema.Struct({ title: Schema.String, href: Schema.String })
 export type SearchItem = typeof SearchItem.Type
+
+export const PageLink = Schema.Struct({ title: Schema.String, href: Schema.String })
+export type PageLink = typeof PageLink.Type
+
+export const SectionData = Schema.Struct({
+  section: Schema.Struct({ slug: Schema.String, title: Schema.String, tagline: Schema.String }),
+  pages: Schema.Array(Schema.Struct({ ...PageLink.fields, tagline: Schema.String })),
+})
+export type SectionData = typeof SectionData.Type
+
+export const FeatureData = Schema.Struct({
+  section: Schema.Struct({ slug: Schema.String, title: Schema.String }),
+  href: Schema.String,
+  title: Schema.String,
+  tagline: Schema.String,
+  paragraphs: Schema.Array(Schema.String),
+  siblings: Schema.Array(PageLink),
+})
+export type FeatureData = typeof FeatureData.Type

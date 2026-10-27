@@ -1,5 +1,6 @@
 import { site } from '@bench/content'
-import { BlogPage, blogData } from '@bench/react-ui'
+import { blogData } from '@bench/content/server'
+import { BlogPage } from '@bench/react-ui'
 import { Link } from '../link'
 import type { Route } from './+types/blog'
 

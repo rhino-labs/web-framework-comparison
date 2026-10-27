@@ -1,17 +1,15 @@
+import { Fragment, type ReactNode } from 'react'
 import {
-  allPostSummaries,
-  commentsFor,
   faq,
-  getPost,
-  relatedPosts,
   headingsOf,
   homeTopics,
-  latestPostSummaries,
   paginate,
-  postsTagged,
   site,
-  type Post,
-  type PostSummary,
+  type BlogData,
+  type FeatureData,
+  type HomeData,
+  type PostData,
+  type SectionData,
 } from '@bench/content'
 import type { LinkComponent } from './types'
 import { Hero } from './Hero'
@@ -33,12 +31,11 @@ import { TableOfContents } from './TableOfContents'
 import { ReadingProgress } from './ReadingProgress'
 import { LazyComments } from './LazyComments'
 import a from './Article.module.css'
+import f from './FeatureLayout.module.css'
 
 // Page bodies are shared by every React framework; each framework's route
-// only loads data (on the server) and passes its own Link.
-
-export type HomeData = { latest: PostSummary[]; byTopic: PostSummary[][] }
-export const homeData = (): HomeData => ({ latest: latestPostSummaries(), byTopic: homeTopics.map(t => postsTagged(t)) })
+// only loads data (on the server, from @bench/content/server) and passes its
+// own Link.
 
 export function HomePage({ data, Link }: { data: HomeData; Link: LinkComponent }) {
   return (
@@ -59,9 +56,6 @@ export function HomePage({ data, Link }: { data: HomeData; Link: LinkComponent }
   )
 }
 
-export type BlogData = { posts: PostSummary[] }
-export const blogData = (): BlogData => ({ posts: allPostSummaries() })
-
 export function BlogPage({ data, Link }: { data: BlogData; Link: LinkComponent }) {
   return (
     <>
@@ -74,12 +68,6 @@ export function BlogPage({ data, Link }: { data: BlogData; Link: LinkComponent }
       </Paginator>
     </>
   )
-}
-
-export type PostData = { post: Post; related: PostSummary[]; comments: ReturnType<typeof commentsFor> }
-export const postData = (slug: string): PostData | undefined => {
-  const post = getPost(slug)
-  return post && { post, related: relatedPosts(slug), comments: commentsFor(slug) }
 }
 
 export function PostPage({ data: { post, related, comments }, Link }: { data: PostData; Link: LinkComponent }) {
@@ -122,5 +110,58 @@ export function AboutPage({ Link }: { Link: LinkComponent }) {
       <SectionTitle>Get in touch</SectionTitle>
       <ContactForm />
     </article>
+  )
+}
+
+export function SectionPage({ data: { section, pages }, Link }: { data: SectionData; Link: LinkComponent }) {
+  return (
+    <>
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: section.title }]} Link={Link} />
+      <Hero title={section.title} tagline={section.tagline} />
+      <ul className={f.cards}>
+        {pages.map(p => (
+          <li key={p.href} className={f.card}>
+            <Link href={p.href} className={f.cardLink}>{p.title}</Link>
+            <p className={f.cardText}>{p.tagline}</p>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}
+
+/** Layout for generated pages. Each generated page passes its own widgets as
+ * children; a paragraph of copy follows each one. */
+export function FeatureLayout({ data, Link, children }: { data: FeatureData; Link: LinkComponent; children: ReactNode }) {
+  const [intro, ...rest] = data.paragraphs
+  return (
+    <div className={f.layout}>
+      <aside className={f.sidebar}>
+        <p className={f.sidebarTitle}>{data.section.title}</p>
+        <nav aria-label={`${data.section.title} pages`}>
+          <ul className={f.nav}>
+            {data.siblings.map(p => (
+              <li key={p.href}>
+                <Link href={p.href} className={p.href === data.href ? `${f.navLink} ${f.current}` : f.navLink}>{p.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+      <article className={`${a.article} ${f.body}`}>
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: data.section.title, href: `/${data.section.slug}` }, { label: data.title }]} Link={Link} />
+        <h1>{data.title}</h1>
+        <p className={f.lede}>{data.tagline}</p>
+        <p>{intro}</p>
+        {Array.isArray(children)
+          ? children.map((widget, i) => (
+              <Fragment key={i}>
+                {widget}
+                <p>{rest[i]}</p>
+              </Fragment>
+            ))
+          : children}
+      </article>
+    </div>
   )
 }

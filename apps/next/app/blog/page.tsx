@@ -1,4 +1,5 @@
-import { BlogPage, blogData } from '@bench/react-ui'
+import { blogData } from '@bench/content/server'
+import { BlogPage } from '@bench/react-ui'
 import { Link } from '../link'
 
 export const metadata = { title: 'Blog' }

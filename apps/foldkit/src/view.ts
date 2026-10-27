@@ -1,7 +1,7 @@
 import { Array, Option } from 'effect'
 import { type Document, type Html, type HtmlBuilder } from 'foldkit/html'
 
-import { faq, formatDate, homeTopics, paginate, site, team } from '@bench/content'
+import { faq, formatDate, homeTopics, paginate, sections, site, team } from '@bench/content'
 // The same CSS modules the React frameworks use, so every framework ships
 // identical styles and markup.
 import accordion from '@bench/react-ui/Accordion.module.css'
@@ -15,6 +15,7 @@ import codeBlock from '@bench/react-ui/CodeBlock.module.css'
 import commentsStyle from '@bench/react-ui/Comments.module.css'
 import contactForm from '@bench/react-ui/ContactForm.module.css'
 import cookieBanner from '@bench/react-ui/CookieBanner.module.css'
+import feature from '@bench/react-ui/FeatureLayout.module.css'
 import footer from '@bench/react-ui/Footer.module.css'
 import header from '@bench/react-ui/Header.module.css'
 import hero from '@bench/react-ui/Hero.module.css'
@@ -34,9 +35,10 @@ import tag from '@bench/react-ui/Tag.module.css'
 import teamGrid from '@bench/react-ui/TeamGrid.module.css'
 import toc from '@bench/react-ui/TableOfContents.module.css'
 
-import { type Block, type Comment, type Post, type PostSummary } from './domain'
+import { type Block, type Comment, type FeatureData, type Post, type PostSummary, type SectionData } from './domain'
+import { pageWidgets, widgets } from './generated/widgets'
 import { type ContactField, Message, type Model } from './main'
-import { AppRoute, aboutRouter, blogPostRouter, blogRouter, homeRouter } from './route'
+import { AppRoute, aboutRouter, blogPostRouter, blogRouter, homeRouter, sectionRouter } from './route'
 
 const cx = (...classNames: ReadonlyArray<string | undefined | false>): string =>
   Array.filter(classNames, Boolean).join(' ')
@@ -63,6 +65,9 @@ const headerView = (model: Model, h: HtmlBuilder<Message>): Html =>
             [h.Class(cx(mobileMenu.nav))],
             [
               h.a([h.Href(blogRouter()), h.Class(cx(header.navLink))], ['Blog']),
+              ...Array.map(sections, section =>
+                h.a([h.Href(sectionRouter({ section: section.slug })), h.Class(cx(header.navLink))], [section.title]),
+              ),
               h.a([h.Href(aboutRouter()), h.Class(cx(header.navLink))], ['About']),
             ],
           ),
@@ -166,6 +171,9 @@ const footerView = (model: Model, h: HtmlBuilder<Message>): Html =>
             [h.Class(cx(footer.links))],
             [
               h.li([], [h.a([h.Href(blogRouter())], ['Blog'])]),
+              ...Array.map(sections, section =>
+                h.li([], [h.a([h.Href(sectionRouter({ section: section.slug }))], [section.title])]),
+              ),
               h.li([], [h.a([h.Href(aboutRouter())], ['About'])]),
             ],
           ),
@@ -637,6 +645,94 @@ const aboutView = (model: Model, h: HtmlBuilder<Message>): Html =>
     ],
   )
 
+// SECTIONS
+
+const sectionView = ({ section, pages }: SectionData, h: HtmlBuilder<Message>): Html =>
+  h.div(
+    [],
+    [
+      breadcrumbsView([{ label: 'Home', href: homeRouter() }, { label: section.title }], h),
+      heroView(section.title, section.tagline, h),
+      h.ul(
+        [h.Class(cx(feature.cards))],
+        Array.map(pages, page =>
+          h.keyed('li')(
+            page.href,
+            [h.Class(cx(feature.card))],
+            [
+              h.a([h.Href(page.href), h.Class(cx(feature.cardLink))], [page.title]),
+              h.p([h.Class(cx(feature.cardText))], [page.tagline]),
+            ],
+          ),
+        ),
+      ),
+    ],
+  )
+
+// NOTE: the same layout as the React FeatureLayout; the widgets are the
+// generated submodels in src/generated/widgets.
+const featureView = (model: Model, data: FeatureData, h: HtmlBuilder<Message>): Html => {
+  const widgetViews = Array.flatMap(pageWidgets[data.href] ?? [], id => {
+    const widget = widgets[id]
+    return widget
+      ? [
+          widget.view(model.widgets[id] ?? widget.init, h, msg => Message.ChangedWidget({ id, msg })),
+        ]
+      : []
+  })
+  return h.div(
+    [h.Class(cx(feature.layout))],
+    [
+      h.aside(
+        [h.Class(cx(feature.sidebar))],
+        [
+          h.p([h.Class(cx(feature.sidebarTitle))], [data.section.title]),
+          h.nav(
+            [h.AriaLabel(`${data.section.title} pages`)],
+            [
+              h.ul(
+                [h.Class(cx(feature.nav))],
+                Array.map(data.siblings, page =>
+                  h.keyed('li')(
+                    page.href,
+                    [],
+                    [
+                      h.a(
+                        [h.Href(page.href), h.Class(cx(feature.navLink, page.href === data.href && feature.current))],
+                        [page.title],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      h.article(
+        [h.Class(cx(article.article, feature.body))],
+        [
+          breadcrumbsView(
+            [
+              { label: 'Home', href: homeRouter() },
+              { label: data.section.title, href: sectionRouter({ section: data.section.slug }) },
+              { label: data.title },
+            ],
+            h,
+          ),
+          h.h1([], [data.title]),
+          h.p([h.Class(cx(feature.lede))], [data.tagline]),
+          h.p([], [data.paragraphs[0] ?? '']),
+          ...Array.flatMap(widgetViews, (widgetView, index) => [
+            widgetView,
+            h.p([], [data.paragraphs[index + 1] ?? '']),
+          ]),
+        ],
+      ),
+    ],
+  )
+}
+
 // PAGE
 
 const notFoundView = (h: HtmlBuilder<Message>): Html =>
@@ -652,6 +748,16 @@ const pageView = (model: Model, h: HtmlBuilder<Message>): Html =>
         onSome: post => postView(model, post, h),
       }),
     About: () => aboutView(model, h),
+    Section: () =>
+      Option.match(model.maybeSection, {
+        onNone: () => notFoundView(h),
+        onSome: data => sectionView(data, h),
+      }),
+    Feature: () =>
+      Option.match(model.maybeFeature, {
+        onNone: () => notFoundView(h),
+        onSome: data => featureView(model, data, h),
+      }),
     NotFound: () => notFoundView(h),
   })
 
@@ -665,6 +771,16 @@ const routeTitle = (model: Model): string =>
         onSome: post => `${post.title} | ${site.name}`,
       }),
     About: () => `About | ${site.name}`,
+    Section: () =>
+      Option.match(model.maybeSection, {
+        onNone: () => site.name,
+        onSome: data => `${data.section.title} | ${site.name}`,
+      }),
+    Feature: () =>
+      Option.match(model.maybeFeature, {
+        onNone: () => site.name,
+        onSome: data => `${data.title} | ${site.name}`,
+      }),
     NotFound: () => `Not Found | ${site.name}`,
   })
 

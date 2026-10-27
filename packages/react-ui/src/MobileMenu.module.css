@@ -1,6 +1,6 @@
 .wrap { display: flex; align-items: center; }
 .toggle { display: none; }
-.nav { display: flex; gap: 1.25rem; }
+.nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem; }
 @media (max-width: 640px) {
   .toggle { display: inline-block; }
   .nav { display: none; position: absolute; top: 4rem; right: 1.25rem; flex-direction: column; gap: 0.5rem;

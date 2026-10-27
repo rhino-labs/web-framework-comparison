@@ -1,5 +1,7 @@
-// Starts each framework's production server, loads every benchmark page in a
-// fresh (cold-cache) browser context, and records the requests it makes. Then
+// Starts each framework's production server behind the same HTTP/2 proxy,
+// loads every benchmark page in a fresh (cold-cache) browser context, and
+// records the requests it makes, split into those made while the page loads
+// and those made after the load event (link prefetching, idle work). Then
 // loads each page again on a simulated phone (4G network + 4x CPU throttle)
 // and records LCP.
 //
@@ -13,7 +15,8 @@ import { parseArgs } from 'node:util'
 import { gzipSync } from 'node:zlib'
 import { chromium, type Browser } from 'playwright'
 // relative import: Node won't strip types from .ts files inside node_modules
-import { benchmarkPaths } from '../../packages/content/src/index.ts'
+import { benchmarkPaths } from '../../packages/content/src/server.ts'
+import { startProxy } from './h2proxy.ts'
 import { targets, type Target } from './targets.ts'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
@@ -36,14 +39,22 @@ const selected = args.only ? targets.filter(t => args.only!.split(',').includes(
 
 type Kind = 'js' | 'css' | 'document' | 'data' | 'other'
 
-type RequestRecord = { url: string; kind: Kind; status: number; rawBytes: number; gzipBytes: number }
+/** `load`: started before the load event. `after-load`: prefetches and other
+ * work the page started once it had loaded. */
+type Phase = 'load' | 'after-load'
+
+type RequestRecord = { url: string; kind: Kind; phase: Phase; status: number; rawBytes: number; gzipBytes: number }
 
 type PageResult = {
   path: string
+  /** requests made while the page loads */
   requests: Record<Kind, number>
+  /** requests made after the load event */
+  afterLoad: Record<Kind, number>
   totalRequests: number
   jsGzip: number
   jsRaw: number
+  jsGzipAfterLoad: number
   cssGzip: number
   htmlGzip: number
   /** per-run detail of the first run, for debugging */
@@ -62,9 +73,10 @@ const classify = (resourceType: string, contentType: string, url: string): Kind 
 const gz = (buf: Buffer) => gzipSync(buf, { level: 6 }).length
 
 async function measurePage(browser: Browser, origin: string, path: string): Promise<RequestRecord[]> {
-  const context = await browser.newContext({ viewport: { width: 1280, height: 900 } })
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, ignoreHTTPSErrors: true })
+  await context.addInitScript(() => performance.setResourceTimingBufferSize(5000))
   const page = await context.newPage()
-  const pending: Promise<RequestRecord | undefined>[] = []
+  const pending: Promise<Omit<RequestRecord, 'phase'> | undefined>[] = []
   const errors: string[] = []
   page.on('pageerror', e => errors.push(e.message))
   page.on('console', m => m.type() === 'error' && errors.push(m.text()))
@@ -84,13 +96,31 @@ async function measurePage(browser: Browser, origin: string, path: string): Prom
   // let idle-time work (viewport link prefetching, lazy chunks) happen
   await page.waitForTimeout(settleMs)
   await page.waitForLoadState('networkidle')
+  const timing = await page.evaluate(() => {
+    const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
+    return {
+      loadEventStart: nav.loadEventStart,
+      protocol: nav.nextHopProtocol,
+      starts: (performance.getEntriesByType('resource') as PerformanceResourceTiming[]).map(e => [e.name, e.startTime] as const),
+    }
+  })
+  if (timing.protocol !== 'h2') errors.push(`served over ${timing.protocol}, expected h2`)
+  // first start time per URL; anything the page requested after this point
+  // (e.g. after the toggle click below) counts as after-load
+  const startOf = new Map<string, number>()
+  for (const [url, start] of timing.starts) if (!startOf.has(url)) startOf.set(url, start)
   // sanity check: the interactive island must work, i.e. the page hydrated
   const toggle = page.getByRole('button', { name: /mode$/ })
   await toggle.click()
   const hydrated = (await page.locator('html').getAttribute('data-theme')) === 'dark'
   if (!hydrated) errors.push('theme toggle did not work (page not hydrated?)')
   if (errors.length) console.warn(`  ! ${path}: ${[...new Set(errors)].join(' | ')}`)
-  const records = (await Promise.all(pending)).filter((r): r is RequestRecord => !!r)
+  const records = (await Promise.all(pending))
+    .filter(r => !!r)
+    .map((r): RequestRecord => {
+      const start = r.kind === 'document' ? 0 : startOf.get(r.url)
+      return { ...r, phase: start !== undefined && start < timing.loadEventStart ? 'load' : 'after-load' }
+    })
   await context.close()
   return records
 }
@@ -103,6 +133,7 @@ async function measurePhone(browser: Browser, origin: string, path: string): Pro
     deviceScaleFactor: 3,
     isMobile: true,
     hasTouch: true,
+    ignoreHTTPSErrors: true,
   })
   // record LCP candidates from the very start of the navigation
   await context.addInitScript(() => {
@@ -143,16 +174,20 @@ const median = (xs: number[]) => {
 
 const summarize = (path: string, all: RequestRecord[][]): PageResult => {
   const avg = (f: (rs: RequestRecord[]) => number) => all.reduce((n, rs) => n + f(rs), 0) / all.length
-  const count = (kind: Kind) => avg(rs => rs.filter(r => r.kind === kind).length)
-  const bytes = (kind: Kind, key: 'gzipBytes' | 'rawBytes') =>
-    avg(rs => rs.filter(r => r.kind === kind).reduce((n, r) => n + r[key], 0))
-  const requests = { js: count('js'), css: count('css'), document: count('document'), data: count('data'), other: count('other') }
+  const count = (kind: Kind, phase: Phase) => avg(rs => rs.filter(r => r.kind === kind && r.phase === phase).length)
+  const bytes = (kind: Kind, key: 'gzipBytes' | 'rawBytes', phase: Phase = 'load') =>
+    avg(rs => rs.filter(r => r.kind === kind && r.phase === phase).reduce((n, r) => n + r[key], 0))
+  const kinds = (phase: Phase) =>
+    Object.fromEntries((['js', 'css', 'document', 'data', 'other'] as const).map(k => [k, count(k, phase)])) as Record<Kind, number>
+  const requests = kinds('load')
   return {
     path,
     requests,
+    afterLoad: kinds('after-load'),
     totalRequests: Object.values(requests).reduce((a, b) => a + b, 0),
     jsGzip: bytes('js', 'gzipBytes'),
     jsRaw: bytes('js', 'rawBytes'),
+    jsGzipAfterLoad: bytes('js', 'gzipBytes', 'after-load'),
     cssGzip: bytes('css', 'gzipBytes'),
     htmlGzip: bytes('document', 'gzipBytes'),
     sample: all[0]!.map(r => ({ ...r, url: r.url.replace(/^https?:\/\/[^/]+/, '') })),
@@ -200,7 +235,7 @@ const stopServer = (child: ChildProcess) => {
   } catch {}
 }
 
-const browser = await chromium.launch()
+const browser = await chromium.launch({ args: ['--ignore-certificate-errors'] })
 const browserVersion = browser.version()
 const results = []
 try {
@@ -208,10 +243,11 @@ try {
     const version = versionOf(t)
     console.log(`\n▶ ${t.label} ${version}`)
     const server = await startServer(t)
+    const proxy = await startProxy(t.port, t.port + 1000)
     try {
-      const origin = `http://localhost:${t.port}`
+      const origin = proxy.origin
       // warm the server once so lazy server compilation doesn't skew anything
-      for (const path of benchmarkPaths) await fetch(origin + path)
+      for (const path of benchmarkPaths) await fetch(`http://localhost:${t.port}${path}`)
       const pages: (PageResult & { phone: { lcp: number; fcp: number; load: number; runs: PhoneRun[] } })[] = []
       for (const path of benchmarkPaths) {
         const all: RequestRecord[][] = []
@@ -231,7 +267,7 @@ try {
         }
         pages.push(p)
         console.log(
-          `  ${path.padEnd(42)} js ${p.requests.js.toFixed(1).padStart(5)}  css ${p.requests.css.toFixed(1).padStart(4)}  data ${p.requests.data.toFixed(1).padStart(4)}  js-gz ${(p.jsGzip / 1024).toFixed(1).padStart(7)} KiB  phone LCP ${Math.round(p.phone.lcp).toString().padStart(5)} ms`,
+          `  ${path.padEnd(38)} js ${p.requests.js.toFixed(1).padStart(4)} (+${p.afterLoad.js.toFixed(1)})  css ${p.requests.css.toFixed(1).padStart(4)}  data ${(p.requests.data + p.afterLoad.data).toFixed(1).padStart(4)}  js-gz ${(p.jsGzip / 1024).toFixed(1).padStart(6)} KiB (+${(p.jsGzipAfterLoad / 1024).toFixed(1)})  phone LCP ${Math.round(p.phone.lcp).toString().padStart(5)} ms`,
         )
       }
       const mean = (f: (p: PageResult) => number) => pages.reduce((n, p) => n + f(p), 0) / pages.length
@@ -242,10 +278,13 @@ try {
         average: {
           jsRequests: mean(p => p.requests.js),
           cssRequests: mean(p => p.requests.css),
-          dataRequests: mean(p => p.requests.data),
+          jsRequestsAfterLoad: mean(p => p.afterLoad.js),
+          cssRequestsAfterLoad: mean(p => p.afterLoad.css),
+          dataRequests: mean(p => p.requests.data + p.afterLoad.data),
           totalRequests: mean(p => p.totalRequests),
           jsGzipKiB: mean(p => p.jsGzip) / 1024,
           jsRawKiB: mean(p => p.jsRaw) / 1024,
+          jsGzipAfterLoadKiB: mean(p => p.jsGzipAfterLoad) / 1024,
           cssGzipKiB: mean(p => p.cssGzip) / 1024,
           htmlGzipKiB: mean(p => p.htmlGzip) / 1024,
           phoneLcpMs: mean(p => p.phone.lcp),
@@ -255,6 +294,7 @@ try {
         pages,
       })
     } finally {
+      await proxy.close()
       stopServer(server)
     }
   }
@@ -267,6 +307,7 @@ const out = {
   runsPerPage: runs,
   phoneRunsPerPage: phoneRuns,
   phoneProfile,
+  protocol: 'h2 (local TLS proxy)',
   paths: benchmarkPaths,
   environment: { node: process.version, chromium: browserVersion, platform: process.platform },
   results,
@@ -282,6 +323,7 @@ console.table(
       {
         'JS reqs': +r.average.jsRequests.toFixed(1),
         'CSS reqs': +r.average.cssRequests.toFixed(1),
+        'JS after load': +r.average.jsRequestsAfterLoad.toFixed(1),
         'data reqs': +r.average.dataRequests.toFixed(1),
         'JS gzip KiB': Math.round(r.average.jsGzipKiB),
         'CSS gzip KiB': +r.average.cssGzipKiB.toFixed(1),

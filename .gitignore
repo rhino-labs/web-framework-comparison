@@ -9,3 +9,7 @@ build
 next-env.d.ts
 *.tsbuildinfo
 .DS_Store
+# Written by scripts/generate.ts (run by `pnpm build`)
+generated/
+(generated)/
+routeTree.gen.ts

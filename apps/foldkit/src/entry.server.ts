@@ -1,41 +1,44 @@
 import { Effect } from 'effect'
 import { Server } from 'foldkit/experimental'
 
-import {
-  allPostSummaries,
-  benchmarkPaths,
-  commentsFor,
-  getPost,
-  homeTopics,
-  latestPostSummaries,
-  posts,
-  postsTagged,
-  relatedPosts,
-  searchIndex,
-} from '@bench/content'
+import { allPaths, blogData, featureData, homeData, postData, searchIndex, sectionData } from '@bench/content/server'
 
 import { Flags, init } from './main'
 import { view } from './view'
 
 export const renderDocument = Server.renderDocument
 
-export const prerenderPaths: ReadonlyArray<string> = [
-  ...new Set([...benchmarkPaths, ...posts.map(post => `/blog/${post.slug}`)]),
-]
+export const prerenderPaths: ReadonlyArray<string> = allPaths()
 
+// NOTE: each page gets only the data it renders, the same payload the React
+// frameworks serialize for hydration.
 const flagsForPath = (pathname: string): Flags => {
-  const base = { summaries: [], byTopic: [], post: null, comments: [], searchItems: searchIndex() }
-  const slug = pathname.match(/^\/blog\/([^/]+)\/?$/)?.[1]
-  if (slug) {
-    return { ...base, summaries: relatedPosts(slug), post: getPost(slug) ?? null, comments: commentsFor(slug) }
+  const path = pathname.replace(/(.)\/$/, '$1')
+  const base: Flags = {
+    summaries: [],
+    byTopic: [],
+    post: null,
+    section: null,
+    feature: null,
+    comments: [],
+    searchItems: searchIndex(),
   }
-  if (pathname.replace(/\/$/, '') === '/blog') {
-    return { ...base, summaries: allPostSummaries() }
+  if (path === '/') {
+    const { latest, byTopic } = homeData()
+    return { ...base, summaries: latest, byTopic }
   }
-  if (pathname === '/') {
-    return { ...base, summaries: latestPostSummaries(), byTopic: homeTopics.map(topic => postsTagged(topic)) }
+  if (path === '/blog') {
+    return { ...base, summaries: blogData().posts }
   }
-  return base
+  const [first, second] = path.slice(1).split('/')
+  if (first === 'blog' && second) {
+    const data = postData(second)
+    return data ? { ...base, summaries: data.related, post: data.post, comments: data.comments } : base
+  }
+  if (first && second) {
+    return { ...base, feature: featureData(first, second) ?? null }
+  }
+  return first ? { ...base, section: sectionData(first) ?? null } : base
 }
 
 export const renderPage = (request: Request): Promise<Server.EntryResult> =>

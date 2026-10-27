@@ -1,0 +1,9 @@
+/* Base styles shared by every generated widget. Each widget also has its own
+   module under generated/widgets with its accent and kind-specific rules. */
+.widget { margin: 1.75rem 0; padding: 1rem 1.25rem 1.1rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+.title { margin: 0 0 0.75rem; font-size: 1rem; letter-spacing: -0.005em; }
+.row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+.item { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.panel { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.95rem; }
+.note { margin: 0.75rem 0 0; color: var(--muted); font-size: 0.85rem; }

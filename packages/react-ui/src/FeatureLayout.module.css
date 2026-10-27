@@ -1,0 +1,19 @@
+.layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+.sidebar { position: sticky; top: 1rem; font-size: 0.9rem; }
+.sidebarTitle { margin: 0 0 0.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; color: var(--muted); }
+.nav { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; }
+.navLink { display: block; padding: 0.3rem 0.6rem; border-radius: 8px; text-decoration: none; color: var(--muted); }
+.navLink:hover { color: var(--fg); background: var(--card); }
+.current { color: var(--fg); background: var(--card); font-weight: 600; }
+.body { min-width: 0; }
+.lede { font-size: 1.15rem; color: var(--muted); margin-top: 0; }
+.cards { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 1rem; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; }
+.cardLink { font-weight: 600; text-decoration: none; }
+.cardLink:hover { color: var(--accent); }
+.cardText { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.92rem; }
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; gap: 1rem; }
+  .sidebar { position: static; }
+  .nav { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+}

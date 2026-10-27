@@ -1,6 +1,7 @@
 import { data } from 'react-router'
 import { site } from '@bench/content'
-import { PostPage, postData } from '@bench/react-ui'
+import { postData } from '@bench/content/server'
+import { PostPage } from '@bench/react-ui'
 import { Link } from '../link'
 import type { Route } from './+types/post'
 

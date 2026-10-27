@@ -7,6 +7,8 @@ import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parseArgs } from 'node:util'
 import { chromium } from 'playwright'
+// relative import: Node won't strip types from .ts files inside node_modules
+import { allPaths } from '../../packages/content/src/server.ts'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const resultsDir = join(root, 'bench/results')
@@ -19,6 +21,7 @@ type Result = {
 }
 const data = JSON.parse(readFileSync(join(resultsDir, 'latest.json'), 'utf8')) as {
   results: Result[]
+  paths?: string[]
   phoneProfile?: { latencyMs: number; mbps: number; cpuSlowdown: number }
 }
 const results = data.results
@@ -32,10 +35,11 @@ const { values: args } = parseArgs({
 })
 
 const phone = data.phoneProfile
+const pageCount = `${allPaths().length}-page`
 const hasLcp = results.every(r => r.average.phoneLcpMs !== undefined)
 const subtitle =
   args.subtitle ??
-  `Content site prototype, production build, cold cache, averaged over pages` +
+  `${data.paths?.length ?? ''} pages of a ${pageCount} content site, production build over HTTP/2, cold cache, until the load event` +
     (phone && hasLcp ? ` · LCP: ${phone.latencyMs} ms RTT, ${phone.mbps} Mbit/s, ${phone.cpuSlowdown}× CPU throttle` : '')
 
 const reqs = (r: Result) => r.average.jsRequests + r.average.cssRequests

@@ -1,4 +1,4 @@
 .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
 .columns { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
-.links { display: flex; gap: 1rem; list-style: none; padding: 0; margin: 0; }
+.links { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; list-style: none; padding: 0; margin: 0; }
 .copy { margin-top: 2rem; font-size: 0.8rem; }

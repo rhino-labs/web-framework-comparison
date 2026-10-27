@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteLoaderData } from 'react-router'
 import { site } from '@bench/content'
+import { searchIndex } from '@bench/content/server'
 import { Shell } from '@bench/react-ui'
 import { Link } from './link'
 import styles from '@bench/content/styles.css?url'
@@ -13,7 +14,11 @@ export const meta: Route.MetaFunction = () => [
   { name: 'description', content: site.tagline },
 ]
 
+export const loader = () => ({ searchItems: searchIndex() })
+
 export function Layout({ children }: { children: ReactNode }) {
+  // Layout also renders error pages, where the root loader may not have run.
+  const searchItems = useRouteLoaderData<typeof loader>('root')?.searchItems ?? []
   return (
     <html lang="en">
       <head>
@@ -23,7 +28,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <Links />
       </head>
       <body>
-        <Shell Link={Link}>{children}</Shell>
+        <Shell Link={Link} searchItems={searchItems}>{children}</Shell>
         <ScrollRestoration />
         <Scripts />
       </body>

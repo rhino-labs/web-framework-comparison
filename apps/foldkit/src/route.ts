@@ -7,6 +7,8 @@ export const AppRoute = defineRouteUnion({
   Blog: {},
   BlogPost: { slug: Schema.String },
   About: {},
+  Section: { section: Schema.String },
+  Feature: { section: Schema.String, slug: Schema.String },
   NotFound: { path: Schema.String },
 })
 
@@ -21,6 +23,9 @@ export const blogPostRouter = pipe(
 )
 export const aboutRouter = pipe(literal('about'), Route.mapTo(AppRoute.About))
 
-const routeParser = Route.oneOf(blogPostRouter, blogRouter, aboutRouter, homeRouter)
+export const featureRouter = pipe(string('section'), slash(string('slug')), Route.mapTo(AppRoute.Feature))
+export const sectionRouter = pipe(string('section'), Route.mapTo(AppRoute.Section))
+
+const routeParser = Route.oneOf(blogPostRouter, blogRouter, aboutRouter, featureRouter, sectionRouter, homeRouter)
 
 export const urlToAppRoute = Route.parseUrlWithFallback(routeParser, AppRoute.NotFound)

@@ -5,7 +5,9 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./*.module.css": "./src/*.module.css"
+    "./*.module.css": "./src/*.module.css",
+    "./generated/pages/*": "./src/generated/pages/*.tsx",
+    "./generated/widgets/*.module.css": "./src/generated/widgets/*.module.css"
   },
   "dependencies": {
     "@bench/content": "workspace:*"

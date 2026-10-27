@@ -1,4 +1,5 @@
-import { HomePage, homeData } from '@bench/react-ui'
+import { homeData } from '@bench/content/server'
+import { HomePage } from '@bench/react-ui'
 import { Link } from './link'
 
 export default function Home() {

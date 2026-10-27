@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
-import { getPost, posts } from '@bench/content'
-import { PostPage, postData } from '@bench/react-ui'
+import { getPost, postData, posts } from '@bench/content/server'
+import { PostPage } from '@bench/react-ui'
 import { Link } from '../../link'
 
 type Props = { params: Promise<{ slug: string }> }
