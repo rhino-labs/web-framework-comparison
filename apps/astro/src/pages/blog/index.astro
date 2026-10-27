@@ -1,0 +1,16 @@
+---
+import { blogData } from '@bench/content/server'
+import { Breadcrumbs } from '@bench/react-ui/components/Breadcrumbs'
+import { Hero } from '@bench/react-ui/components/Hero'
+import Base from '../../layouts/Base.astro'
+import BlogPaginator from '../../islands/BlogPaginator'
+import { Link } from '../../link'
+
+const { posts } = blogData()
+---
+
+<Base title="Blog">
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Blog' }]} Link={Link} />
+  <Hero title="Blog" tagline="Every essay, newest first." />
+  <BlogPaginator client:load posts={posts} />
+</Base>

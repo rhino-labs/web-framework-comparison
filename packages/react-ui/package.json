@@ -7,7 +7,9 @@
     ".": "./src/index.ts",
     "./*.module.css": "./src/*.module.css",
     "./generated/pages/*": "./src/generated/pages/*.tsx",
-    "./generated/widgets/*.module.css": "./src/generated/widgets/*.module.css"
+    "./generated/widgets/*.module.css": "./src/generated/widgets/*.module.css",
+    "./components/*": "./src/*.tsx",
+    "./widgets/*": "./src/generated/widgets/*.tsx"
   },
   "dependencies": {
     "@bench/content": "workspace:*"

@@ -1,0 +1,20 @@
+{
+  "name": "@bench/xote",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:all": "rescript build && vite build && vite build --ssr src/EntryServer.res.mjs --outDir dist/server && node prerender.mjs",
+    "start": "node ../../bench/src/static-server.ts dist/client 4107"
+  },
+  "dependencies": {
+    "@bench/content": "workspace:*",
+    "@bench/react-ui": "workspace:*",
+    "@rescript/runtime": "^12.3.1",
+    "rescript-signals": "^3.1.0",
+    "xote": "7.1.0"
+  },
+  "devDependencies": {
+    "rescript": "^12.3.1",
+    "vite": "^8.3.5"
+  }
+}

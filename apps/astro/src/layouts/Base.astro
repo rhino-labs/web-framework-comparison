@@ -1,0 +1,55 @@
+---
+import '@bench/content/styles.css'
+import { sections, site } from '@bench/content'
+import { searchIndex } from '@bench/content/server'
+import { MobileMenu } from '@bench/react-ui/components/MobileMenu'
+import { SearchDialog } from '@bench/react-ui/components/SearchDialog'
+import { ThemeToggle } from '@bench/react-ui/components/ThemeToggle'
+import { NewsletterForm } from '@bench/react-ui/components/NewsletterForm'
+import { BackToTop } from '@bench/react-ui/components/BackToTop'
+import { CookieBanner } from '@bench/react-ui/components/CookieBanner'
+import s from '@bench/react-ui/Shell.module.css'
+import h from '@bench/react-ui/Header.module.css'
+import f from '@bench/react-ui/Footer.module.css'
+
+// The same markup as the shared React Shell, with each interactive part as
+// its own island.
+const { title } = Astro.props as { title?: string }
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ? `${title} | ${site.name}` : site.name}</title>
+    <meta name="description" content={site.tagline} />
+  </head>
+  <body>
+    <div class={s.shell}>
+      <header class={h.header}>
+        <a href="/" class={h.brand}>{site.name}</a>
+        <MobileMenu client:load>
+          <a href="/blog" class={h.navLink}>Blog</a>
+          {sections.map(section => <a href={`/${section.slug}`} class={h.navLink}>{section.title}</a>)}
+          <a href="/about" class={h.navLink}>About</a>
+        </MobileMenu>
+        <SearchDialog client:load items={searchIndex()} />
+        <ThemeToggle client:load />
+      </header>
+      <main class={s.main}><slot /></main>
+      <footer class={f.footer}>
+        <div class={f.columns}>
+          <NewsletterForm client:load />
+          <ul class={f.links}>
+            <li><a href="/blog">Blog</a></li>
+            {sections.map(section => <li><a href={`/${section.slug}`}>{section.title}</a></li>)}
+            <li><a href="/about">About</a></li>
+          </ul>
+        </div>
+        <p class={f.copy}>© 2026 {site.name}</p>
+      </footer>
+      <BackToTop client:load />
+      <CookieBanner client:load />
+    </div>
+  </body>
+</html>

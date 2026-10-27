@@ -1,0 +1,25 @@
+---
+import { faq, site } from '@bench/content'
+import { Breadcrumbs } from '@bench/react-ui/components/Breadcrumbs'
+import { SectionTitle } from '@bench/react-ui/components/SectionTitle'
+import { TeamGrid } from '@bench/react-ui/components/TeamGrid'
+import { Accordion } from '@bench/react-ui/components/Accordion'
+import { ContactForm } from '@bench/react-ui/components/ContactForm'
+import a from '@bench/react-ui/Article.module.css'
+import Base from '../layouts/Base.astro'
+import { Link } from '../link'
+---
+
+<Base title="About">
+  <article class={a.article}>
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About' }]} Link={Link} />
+    <h1>About</h1>
+    {site.about.map(p => <p>{p}</p>)}
+    <SectionTitle>The team</SectionTitle>
+    <TeamGrid />
+    <SectionTitle>Questions</SectionTitle>
+    <Accordion client:load items={faq} />
+    <SectionTitle>Get in touch</SectionTitle>
+    <ContactForm client:load />
+  </article>
+</Base>

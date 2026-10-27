@@ -1,0 +1,46 @@
+---
+import { headingsOf } from '@bench/content'
+import { postData, posts } from '@bench/content/server'
+import { ReadingProgress } from '@bench/react-ui/components/ReadingProgress'
+import { Breadcrumbs } from '@bench/react-ui/components/Breadcrumbs'
+import { PostMeta } from '@bench/react-ui/components/PostMeta'
+import { TableOfContents } from '@bench/react-ui/components/TableOfContents'
+import { Callout } from '@bench/react-ui/components/Callout'
+import { LikeButton } from '@bench/react-ui/components/LikeButton'
+import { ShareMenu } from '@bench/react-ui/components/ShareMenu'
+import { AuthorBio } from '@bench/react-ui/components/AuthorBio'
+import { SectionTitle } from '@bench/react-ui/components/SectionTitle'
+import { PostList } from '@bench/react-ui/components/PostList'
+import { LazyComments } from '@bench/react-ui/components/LazyComments'
+import a from '@bench/react-ui/Article.module.css'
+import Base from '../../layouts/Base.astro'
+import ArticleBody from '../../components/ArticleBody.astro'
+import { Link } from '../../link'
+
+export const getStaticPaths = () => posts.map(p => ({ params: { slug: p.slug } }))
+
+const { post, related, comments } = postData(Astro.params.slug!)!
+---
+
+<Base title={post.title}>
+  <article class={a.article}>
+    <ReadingProgress client:load />
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog' }, { label: post.title }]} Link={Link} />
+    <h1>{post.title}</h1>
+    <PostMeta author={post.author} date={post.date} readingMinutes={post.readingMinutes} />
+    <TableOfContents client:load headings={headingsOf(post)} />
+    <ArticleBody blocks={post.blocks} />
+    <Callout title="Measure, don't guess">Every claim in this article can be reproduced with the benchmark harness in this repository.</Callout>
+    <div class={a.footer}>
+      <div class={a.actions}>
+        <LikeButton client:load />
+        <ShareMenu client:load title={post.title} path={`/blog/${post.slug}`} />
+      </div>
+      <PostMeta date={post.date} readingMinutes={post.readingMinutes} tags={post.tags} />
+    </div>
+    <AuthorBio name={post.author} />
+    <SectionTitle>Keep reading</SectionTitle>
+    <PostList posts={related} Link={Link} />
+    <LazyComments client:load comments={comments} />
+  </article>
+</Base>

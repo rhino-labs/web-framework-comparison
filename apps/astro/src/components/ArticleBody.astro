@@ -1,0 +1,24 @@
+---
+import type { Block } from '@bench/content'
+import { CodeBlock } from '@bench/react-ui/components/CodeBlock'
+
+// The shared ArticleBody, with the code block's copy button as an island.
+const { blocks } = Astro.props as { blocks: Block[] }
+---
+
+{
+  blocks.map(b => {
+    switch (b.type) {
+      case 'p':
+        return <p>{b.text}</p>
+      case 'h2':
+        return <h2 id={b.id}>{b.text}</h2>
+      case 'ul':
+        return <ul>{b.items.map(item => <li>{item}</li>)}</ul>
+      case 'code':
+        return <CodeBlock client:load code={b.text} />
+      case 'quote':
+        return <blockquote>{b.text}</blockquote>
+    }
+  })
+}

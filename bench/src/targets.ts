@@ -47,11 +47,30 @@ export const targets: Target[] = [
     port: 4105,
   },
   {
+    id: 'astro',
+    label: 'Astro',
+    versionOf: 'astro',
+    cwd: 'apps/astro',
+    // static output; `astro preview` is avoided because Astro 7 may detach it
+    // into a background daemon the harness can't stop
+    start: 'node ../../bench/src/static-server.ts dist {port}',
+    port: 4106,
+  },
+  {
     id: 'foldkit',
     label: 'Foldkit',
     versionOf: 'foldkit',
     cwd: 'apps/foldkit',
-    start: 'node_modules/.bin/vite preview --outDir dist/client --port {port} --strictPort',
+    // prerendered files; see bench/src/static-server.ts
+    start: 'node ../../bench/src/static-server.ts dist/client {port}',
     port: 4104,
+  },
+  {
+    id: 'xote',
+    label: 'Xote',
+    versionOf: 'xote',
+    cwd: 'apps/xote',
+    start: 'node ../../bench/src/static-server.ts dist/client {port}',
+    port: 4107,
   },
 ]

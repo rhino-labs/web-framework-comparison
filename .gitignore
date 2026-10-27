@@ -13,3 +13,9 @@ next-env.d.ts
 generated/
 (generated)/
 routeTree.gen.ts
+/apps/astro/src/pages/*/
+!/apps/astro/src/pages/blog/
+.astro
+# ReScript output (apps/xote)
+*.res.mjs
+/apps/xote/lib/

@@ -1,0 +1,21 @@
+---
+import { homeTopics, site } from '@bench/content'
+import { homeData } from '@bench/content/server'
+import { Hero } from '@bench/react-ui/components/Hero'
+import { SectionTitle } from '@bench/react-ui/components/SectionTitle'
+import { PostList } from '@bench/react-ui/components/PostList'
+import Base from '../layouts/Base.astro'
+import TopicTabs from '../islands/TopicTabs'
+import { Link } from '../link'
+
+const data = homeData()
+---
+
+<Base>
+  <Hero title={site.name} tagline={site.tagline} />
+  <SectionTitle>Latest</SectionTitle>
+  <PostList posts={data.latest} Link={Link} />
+  <SectionTitle>Browse by topic</SectionTitle>
+  <TopicTabs client:load labels={homeTopics} byTopic={data.byTopic} />
+  <p><a href="/blog">All posts →</a></p>
+</Base>

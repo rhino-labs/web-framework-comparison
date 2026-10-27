@@ -1,7 +1,8 @@
 // Starts each framework's production server behind the same HTTP/2 proxy,
 // loads every benchmark page in a fresh (cold-cache) browser context, and
-// records the requests it makes, split into those made while the page loads
-// and those made after the load event (link prefetching, idle work). Then
+// records the requests it makes, split into those the page needs (including
+// code an island or lazy hydration imports after the load event) and
+// prefetching for other routes. Then
 // loads each page again on a simulated phone (4G network + 4x CPU throttle)
 // and records LCP.
 //
@@ -15,7 +16,7 @@ import { parseArgs } from 'node:util'
 import { gzipSync } from 'node:zlib'
 import { chromium, type Browser } from 'playwright'
 // relative import: Node won't strip types from .ts files inside node_modules
-import { benchmarkPaths } from '../../packages/content/src/server.ts'
+import { benchmarkPaths, headingFor } from '../../packages/content/src/server.ts'
 import { startProxy } from './h2proxy.ts'
 import { targets, type Target } from './targets.ts'
 
@@ -39,22 +40,24 @@ const selected = args.only ? targets.filter(t => args.only!.split(',').includes(
 
 type Kind = 'js' | 'css' | 'document' | 'data' | 'other'
 
-/** `load`: started before the load event. `after-load`: prefetches and other
- * work the page started once it had loaded. */
-type Phase = 'load' | 'after-load'
+/** `prefetch`: started after the load event and after the page's first
+ * fetch/XHR request, i.e. code pulled in by route prefetching (Next/vinext
+ * fetch a route's RSC payload, then its chunks). Everything else is `page`,
+ * including code a page imports after load to hydrate (Astro islands). */
+type Phase = 'page' | 'prefetch'
 
 type RequestRecord = { url: string; kind: Kind; phase: Phase; status: number; rawBytes: number; gzipBytes: number }
 
 type PageResult = {
   path: string
-  /** requests made while the page loads */
+  /** requests the page itself makes */
   requests: Record<Kind, number>
-  /** requests made after the load event */
-  afterLoad: Record<Kind, number>
+  /** requests made by prefetching other routes */
+  prefetch: Record<Kind, number>
   totalRequests: number
   jsGzip: number
   jsRaw: number
-  jsGzipAfterLoad: number
+  jsGzipPrefetch: number
   cssGzip: number
   htmlGzip: number
   /** per-run detail of the first run, for debugging */
@@ -102,11 +105,19 @@ async function measurePage(browser: Browser, origin: string, path: string): Prom
       loadEventStart: nav.loadEventStart,
       protocol: nav.nextHopProtocol,
       starts: (performance.getEntriesByType('resource') as PerformanceResourceTiming[]).map(e => [e.name, e.startTime] as const),
+      firstFetchStart: Math.min(
+        ...(performance.getEntriesByType('resource') as PerformanceResourceTiming[])
+          .filter(e => e.initiatorType === 'fetch' || e.initiatorType === 'xmlhttprequest')
+          .map(e => e.startTime),
+      ),
     }
   })
   if (timing.protocol !== 'h2') errors.push(`served over ${timing.protocol}, expected h2`)
-  // first start time per URL; anything the page requested after this point
-  // (e.g. after the toggle click below) counts as after-load
+  // the server must have served this page, not a fallback
+  const heading = (await page.locator('h1').first().textContent())?.trim()
+  if (heading !== headingFor(path)) errors.push(`wrong page: <h1> is "${heading}", expected "${headingFor(path)}"`)
+  // first start time per URL. Requests the resource timings don't list (e.g.
+  // made by the toggle click below) aren't part of the page load.
   const startOf = new Map<string, number>()
   for (const [url, start] of timing.starts) if (!startOf.has(url)) startOf.set(url, start)
   // sanity check: the interactive island must work, i.e. the page hydrated
@@ -119,7 +130,8 @@ async function measurePage(browser: Browser, origin: string, path: string): Prom
     .filter(r => !!r)
     .map((r): RequestRecord => {
       const start = r.kind === 'document' ? 0 : startOf.get(r.url)
-      return { ...r, phase: start !== undefined && start < timing.loadEventStart ? 'load' : 'after-load' }
+      const isPrefetch = start === undefined || (start > timing.loadEventStart && start > timing.firstFetchStart)
+      return { ...r, phase: isPrefetch ? 'prefetch' : 'page' }
     })
   await context.close()
   return records
@@ -175,19 +187,19 @@ const median = (xs: number[]) => {
 const summarize = (path: string, all: RequestRecord[][]): PageResult => {
   const avg = (f: (rs: RequestRecord[]) => number) => all.reduce((n, rs) => n + f(rs), 0) / all.length
   const count = (kind: Kind, phase: Phase) => avg(rs => rs.filter(r => r.kind === kind && r.phase === phase).length)
-  const bytes = (kind: Kind, key: 'gzipBytes' | 'rawBytes', phase: Phase = 'load') =>
+  const bytes = (kind: Kind, key: 'gzipBytes' | 'rawBytes', phase: Phase = 'page') =>
     avg(rs => rs.filter(r => r.kind === kind && r.phase === phase).reduce((n, r) => n + r[key], 0))
   const kinds = (phase: Phase) =>
     Object.fromEntries((['js', 'css', 'document', 'data', 'other'] as const).map(k => [k, count(k, phase)])) as Record<Kind, number>
-  const requests = kinds('load')
+  const requests = kinds('page')
   return {
     path,
     requests,
-    afterLoad: kinds('after-load'),
+    prefetch: kinds('prefetch'),
     totalRequests: Object.values(requests).reduce((a, b) => a + b, 0),
     jsGzip: bytes('js', 'gzipBytes'),
     jsRaw: bytes('js', 'rawBytes'),
-    jsGzipAfterLoad: bytes('js', 'gzipBytes', 'after-load'),
+    jsGzipPrefetch: bytes('js', 'gzipBytes', 'prefetch'),
     cssGzip: bytes('css', 'gzipBytes'),
     htmlGzip: bytes('document', 'gzipBytes'),
     sample: all[0]!.map(r => ({ ...r, url: r.url.replace(/^https?:\/\/[^/]+/, '') })),
@@ -267,7 +279,7 @@ try {
         }
         pages.push(p)
         console.log(
-          `  ${path.padEnd(38)} js ${p.requests.js.toFixed(1).padStart(4)} (+${p.afterLoad.js.toFixed(1)})  css ${p.requests.css.toFixed(1).padStart(4)}  data ${(p.requests.data + p.afterLoad.data).toFixed(1).padStart(4)}  js-gz ${(p.jsGzip / 1024).toFixed(1).padStart(6)} KiB (+${(p.jsGzipAfterLoad / 1024).toFixed(1)})  phone LCP ${Math.round(p.phone.lcp).toString().padStart(5)} ms`,
+          `  ${path.padEnd(38)} js ${p.requests.js.toFixed(1).padStart(4)} (+${p.prefetch.js.toFixed(1)})  css ${p.requests.css.toFixed(1).padStart(4)}  data ${(p.requests.data + p.prefetch.data).toFixed(1).padStart(4)}  js-gz ${(p.jsGzip / 1024).toFixed(1).padStart(6)} KiB (+${(p.jsGzipPrefetch / 1024).toFixed(1)})  phone LCP ${Math.round(p.phone.lcp).toString().padStart(5)} ms`,
         )
       }
       const mean = (f: (p: PageResult) => number) => pages.reduce((n, p) => n + f(p), 0) / pages.length
@@ -278,13 +290,13 @@ try {
         average: {
           jsRequests: mean(p => p.requests.js),
           cssRequests: mean(p => p.requests.css),
-          jsRequestsAfterLoad: mean(p => p.afterLoad.js),
-          cssRequestsAfterLoad: mean(p => p.afterLoad.css),
-          dataRequests: mean(p => p.requests.data + p.afterLoad.data),
+          jsRequestsPrefetch: mean(p => p.prefetch.js),
+          cssRequestsPrefetch: mean(p => p.prefetch.css),
+          dataRequests: mean(p => p.requests.data + p.prefetch.data),
           totalRequests: mean(p => p.totalRequests),
           jsGzipKiB: mean(p => p.jsGzip) / 1024,
           jsRawKiB: mean(p => p.jsRaw) / 1024,
-          jsGzipAfterLoadKiB: mean(p => p.jsGzipAfterLoad) / 1024,
+          jsGzipPrefetchKiB: mean(p => p.jsGzipPrefetch) / 1024,
           cssGzipKiB: mean(p => p.cssGzip) / 1024,
           htmlGzipKiB: mean(p => p.htmlGzip) / 1024,
           phoneLcpMs: mean(p => p.phone.lcp),
@@ -323,7 +335,7 @@ console.table(
       {
         'JS reqs': +r.average.jsRequests.toFixed(1),
         'CSS reqs': +r.average.cssRequests.toFixed(1),
-        'JS after load': +r.average.jsRequestsAfterLoad.toFixed(1),
+        'JS prefetch': +r.average.jsRequestsPrefetch.toFixed(1),
         'data reqs': +r.average.dataRequests.toFixed(1),
         'JS gzip KiB': Math.round(r.average.jsGzipKiB),
         'CSS gzip KiB': +r.average.cssGzipKiB.toFixed(1),

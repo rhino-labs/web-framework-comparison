@@ -1,0 +1,37 @@
+---
+import type { FeatureData } from '@bench/content'
+import { Breadcrumbs } from '@bench/react-ui/components/Breadcrumbs'
+import a from '@bench/react-ui/Article.module.css'
+import f from '@bench/react-ui/FeatureLayout.module.css'
+import Base from './Base.astro'
+import { Link } from '../link'
+
+// The same markup as the shared React FeatureLayout. Generated pages put
+// their widget islands, each followed by a paragraph, in the slot.
+const { data } = Astro.props as { data: FeatureData }
+---
+
+<Base title={data.title}>
+  <div class={f.layout}>
+    <aside class={f.sidebar}>
+      <p class={f.sidebarTitle}>{data.section.title}</p>
+      <nav aria-label={`${data.section.title} pages`}>
+        <ul class={f.nav}>
+          {data.siblings.map(p => (
+            <li><a href={p.href} class={p.href === data.href ? `${f.navLink} ${f.current}` : f.navLink}>{p.title}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+    <article class={`${a.article} ${f.body}`}>
+      <Breadcrumbs
+        items={[{ label: 'Home', href: '/' }, { label: data.section.title, href: `/${data.section.slug}` }, { label: data.title }]}
+        Link={Link}
+      />
+      <h1>{data.title}</h1>
+      <p class={f.lede}>{data.tagline}</p>
+      <p>{data.paragraphs[0]}</p>
+      <slot />
+    </article>
+  </div>
+</Base>

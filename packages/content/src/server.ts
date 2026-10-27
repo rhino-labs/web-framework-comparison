@@ -332,6 +332,17 @@ export const allPaths = (): string[] => [
   ...featurePages.map(featureHref),
 ]
 
+/** The <h1> each path renders, so the harness can check it got the right page. */
+export const headingFor = (path: string): string | undefined => {
+  if (path === '/') return 'Field Notes'
+  if (path === '/blog') return 'Blog'
+  if (path === '/about') return 'About'
+  const [first, second] = path.slice(1).split('/')
+  if (first === 'blog') return posts.find(p => p.slug === second)?.title
+  if (!second) return sections.find(s => s.slug === first)?.title
+  return featurePages.find(p => p.section === first && p.slug === second)?.title
+}
+
 const featureAt = (sectionIndex: number, pageIndex: number) =>
   featureHref(featurePages[sectionIndex * pagesPerSection + Math.min(pageIndex, pagesPerSection - 1)]!)
 

@@ -1,6 +1,7 @@
 # web-framework-comparison
 
-An open benchmark that builds the same content site in several web frameworks.
+An open benchmark that builds the same content site in several web frameworks:
+Next.js, vinext, TanStack Start, React Router, Astro, Foldkit and Xote.
 "Field Notes" has 153 pages: a home page, a blog with 96 articles, an about
 page, and six sections of generated docs/guides/tools pages, each with its own
 set of interactive widgets (312 client components in total). A Playwright
@@ -11,18 +12,21 @@ weight, and LCP on a throttled 4G phone.
 
 ## Latest results
 
-Run on 2026-10-26 (darwin, Node v24.21.0, Chromium 156.0.8078.4), every
-server behind the same local HTTP/2 proxy. Averages over 10 pages. Requests
-and weight count what a page loads before its `load` event (mean of 3 cold
-loads); LCP is the median of 5 cold loads per page.
+Run on 2026-10-27 (darwin, Node v24.21.0, Chromium 156.0.8078.4), every
+server behind the same local HTTP/2 + gzip proxy. Averages over 10 pages.
+Requests and weight are the mean of 3 cold loads and exclude prefetching
+(see [What is measured](#what-is-measured)); LCP is the median of 5 cold
+loads per page.
 
-| Framework | JS requests | CSS requests | JS (gzip) | LCP, 4G phone | JS after load (prefetch) | Data requests |
+| Framework | JS requests | CSS requests | JS (gzip) | LCP, 4G phone | Prefetched JS | Data requests |
 | --- | --- | --- | --- | --- | --- | --- |
-| Next.js 16.4.3 | 6.3 | 3.0 | 139 KiB | 505 ms | +2.9 (+6 KiB) | 27.2 |
-| Vinext 1.3.1 | 9.2 | 5.2 | 153 KiB | 452 ms | +4.0 (+6 KiB) | 12.6 |
-| TanStack Start 1.169.4 | 3.9 | 4.2 | 123 KiB | 426 ms | 0 | 0 |
-| React Router 7.18.4 | 6.9 | 4.2 | 116 KiB | 445 ms | 0 | 1.0 |
-| Foldkit 0.169.0 | 1.0 | 1.0 | 159 KiB | 477 ms | 0 | 0 |
+| Next.js 16.4.3 | 6.3 | 3.0 | 139 KiB | 509 ms | +2.9 (+6 KiB) | 27.2 |
+| Vinext 1.3.1 | 9.2 | 5.2 | 153 KiB | 436 ms | +4.0 (+6 KiB) | 12.6 |
+| TanStack Start 1.169.4 | 3.9 | 4.2 | 123 KiB | 428 ms | 0 | 0 |
+| React Router 7.18.4 | 6.9 | 4.2 | 116 KiB | 460 ms | 0 | 1.0 |
+| Astro 7.4.2 | 15.6 | 0 | 73 KiB | 276 ms | 0 | 0 |
+| Foldkit 0.169.0 | 1.0 | 1.0 | 159 KiB | 453 ms | 0 | 0 |
+| Xote 7.1.0 | 1.0 | 1.0 | 70 KiB | 454 ms | 0 | 0 |
 
 Content pages (home, blog, articles, about, a section index) and generated
 widget pages behave differently, so here is the split:
@@ -33,17 +37,25 @@ widget pages behave differently, so here is the split:
 | Vinext | 8 / 4, 152 KiB | 12 / 8, 155 KiB |
 | TanStack Start | 3 / 3, 122 KiB | 6 / 7, 125 KiB |
 | React Router | 6 / 3, 115 KiB | 9 / 7, 118 KiB |
+| Astro | 14 / 0, 73 KiB | 19 / 0, 75 KiB |
 | Foldkit | 1 / 1, 159 KiB | 1 / 1, 159 KiB |
+| Xote | 1 / 1, 70 KiB | 1 / 1, 70 KiB |
 
 Things worth noticing:
 
-- **Foldkit** ships one bundle with every page and all 312 widgets, so its JS
-  grows with the size of the site, not the page. The React frameworks split
-  per route and only load the widgets a page uses.
-- **Next.js** groups a route's client components into one chunk (+1 request
-  on widget pages), but ships the CSS of all widgets on every page (10.8 KiB
-  gzip of CSS, against about 3.5 KiB elsewhere).
-- **Vinext** splits the most: one more JS and CSS file per widget group.
+- **Astro** ships the least JS of the React-based apps and paints first: the
+  HTML has its CSS inlined and nothing blocks rendering, while each island
+  then loads its own small module (hence the most JS requests).
+- **Foldkit and Xote** ship one bundle with every page and all 312 widgets,
+  so their JS grows with the size of the site, not the page. Xote's bundle is
+  less than half of Foldkit's (ReScript and signals, against Effect).
+- **The React frameworks** split per route and only load the widgets a page
+  uses: about 3 KiB more on widget pages.
+- **Next.js** groups a route's client components into one chunk, but ships
+  the CSS of all widgets on every page (10.8 KiB gzip of CSS, against about
+  3.5 KiB in the other React apps).
+- **Vinext** splits the most among the React frameworks: one more JS and CSS
+  file per widget group.
 - **Next.js and vinext** prefetch the routes linked in the viewport after the
   page has loaded: RSC payloads (the data column) and, for widget pages, their
   JS. That doesn't delay the page, so it's reported separately.
@@ -63,7 +75,9 @@ isn't idiomatic.
 | Vinext         | `apps/next` (same!)   | the same `app/` dir, built by Vite | `vinext start`         |
 | TanStack Start | `apps/tanstack-start` | SSR, data via `createServerFn`  | `vite preview`            |
 | React Router 7 | `apps/react-router`   | framework mode, SSR, server loaders | `react-router-serve`  |
-| Foldkit        | `apps/foldkit`        | SSG + hydration, data via Flags | `vite preview` (static)   |
+| Astro          | `apps/astro`          | SSG, React islands (`client:load`) | static files           |
+| Foldkit        | `apps/foldkit`        | SSG + hydration, data via Flags | static files              |
+| Xote (ReScript) | `apps/xote`          | SSG + hydration, signals, data in a JSON script | static files |
 
 ## The fixture
 
@@ -96,6 +110,17 @@ isn't idiomatic.
   the same CSS modules from `@bench/react-ui`, so the markup and styles match.
   Each generated widget is a submodel with its own `init`, `update` and
   `view`.
+- **Xote** reimplements them in ReScript with signals (`apps/xote/src`), with
+  the same markup and CSS modules. Xote is a UI library rather than a
+  framework, so `apps/xote/prerender.mjs` does the static generation: it
+  renders every path with `SSR.renderToStringWithRoot` and embeds the page's
+  data for `Hydration.hydrateById`.
+- **Astro** renders the shared React components to HTML, with every
+  interactive component as a React island using `client:load` (the same
+  components hydrate at load as in the other React apps). Layouts and pages
+  are `.astro` files, since islands are placed from Astro templates; the
+  topic tabs and the blog paginator get small island wrappers that render
+  their own panels.
 
 ## Usage
 
@@ -123,20 +148,28 @@ load uses a fresh browser context, so the cache is cold. The harness waits for
 `networkidle` plus a settle period (default 1s), which lets idle-time work such
 as viewport link prefetching happen.
 
-- **HTTP/2**: every framework's production server is put behind the same small
-  local HTTPS + HTTP/2 proxy (`bench/src/h2proxy.ts`, self-signed certificate).
-  The framework servers only speak HTTP/1.1, where Chromium opens at most 6
-  connections per origin and a page with many parallel requests queues behind
-  itself, which no CDN-served site would. The harness checks that every page
-  was served over `h2`.
-- **Requests per page**: JS and CSS responses that started before the page's
-  `load` event. Requests that start after it (link prefetching, idle work) are
-  recorded separately as "after load". Fetch/XHR requests (Next/vinext RSC
-  prefetches, server-function calls, route manifests) are recorded as `data`.
-  Neither is part of the chart.
-- **JS per page (gzip)**: every JS response body that loaded before the `load`
-  event, gzipped locally at level 6. This puts all servers on equal terms,
-  whether or not they compress their responses themselves.
+- **Servers**: frameworks with a server run their own production server;
+  frameworks whose output is static files (Astro, Foldkit, Xote) are served by
+  `bench/src/static-server.ts`, which resolves `/about` to `about/index.html`
+  like a static host.
+- **HTTP/2 and compression, like a CDN**: every server is put behind the same
+  small local HTTPS + HTTP/2 proxy (`bench/src/h2proxy.ts`, self-signed
+  certificate). The framework servers only speak HTTP/1.1, where Chromium
+  opens at most 6 connections per origin and a page with many parallel
+  requests queues behind itself. The proxy also asks every server for
+  uncompressed responses and gzips all text itself (level 6), because the
+  servers' own defaults differ (brotli, gzip or nothing). The harness checks
+  that every page was served over `h2`, and that its `<h1>` is the one the
+  path should render.
+- **Requests per page**: the JS and CSS the page loads, including code it
+  imports after the `load` event to hydrate (Astro islands). JS and CSS that
+  starts after the `load` event *and* after the page's first fetch/XHR is
+  counted as prefetch instead: that is how Next/vinext prefetch linked routes
+  (the RSC payload first, then the route's chunks). Fetch/XHR requests (RSC
+  prefetches, server-function calls, route manifests) are recorded as
+  `data`. Neither prefetch nor data is part of the chart.
+- **JS per page (gzip)**: every JS response body the page loads (as above),
+  gzipped locally at level 6.
 - **LCP on a 4G phone**: each page is loaded `--phone-runs` times (default 5)
   in a 390×844 mobile viewport. The network is throttled to 150 ms RTT and
   5 Mbit/s and the CPU to 4× slower, the same profile as the vinext 1.3 post.
@@ -172,14 +205,35 @@ per-page breakdown, plus a sample list of every request for the first run.
   the client bundle.
 - **Next/vinext** prefetch links in the viewport. Those RSC requests count as
   `data`, not JS. Any route chunks that prefetching pulls in do count as JS.
-- **Foldkit** has no lazy loading in this port: the comments code and every
-  generated widget are in the main bundle; only their rendering depends on
-  the page.
+- **Foldkit and Xote** have no lazy loading in these ports: the comments code
+  and every generated widget are in one bundle, and links do full page loads.
+  Only what renders depends on the page.
+- **Astro** inlines small stylesheets into the HTML by default
+  (`build.inlineStylesheets: 'auto'`), so it makes no CSS requests. It also
+  hydrates each island separately, which is where its JS request count comes
+  from. Using `client:visible` or `client:idle` for below-the-fold widgets,
+  as most Astro sites would, would load less at first.
+- **Xote 7.1.0**: two workarounds for hydration issues, both commented in
+  `apps/xote/src/Ui.res`: static empty content is an empty array rather than
+  `View.null()`, and conditionals that start out empty are written as an
+  explicit `View.tracked` block.
 - Each framework gets the data a page renders through its own serialization:
   RSC payload, loader data, server-function results or Foldkit Flags. The
   search index (150 entries) is part of that data on every page.
 - LCP runs on localhost with emulated throttling, so it captures round trips,
   bandwidth and CPU, but not real TLS, DNS or CDN behavior.
+
+## Corrections
+
+- **2026-10-27**: Foldkit results published before this date were measured
+  on its home page for every path. `vite preview` serves the root
+  `index.html` for paths without a trailing slash, such as `/about`.
+  Foldkit's JS numbers were unaffected (it ships one bundle everywhere), but
+  its HTML, CSS and LCP numbers were wrong. Static sites are now served by
+  `bench/src/static-server.ts`, and the harness checks every page's `<h1>`.
+- **2026-10-27**: LCP numbers published before this date compared servers
+  with different compression (brotli, gzip or none). The proxy now
+  normalizes compression.
 
 ## License
 

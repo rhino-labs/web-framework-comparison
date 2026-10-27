@@ -39,18 +39,21 @@ const pageCount = `${allPaths().length}-page`
 const hasLcp = results.every(r => r.average.phoneLcpMs !== undefined)
 const subtitle =
   args.subtitle ??
-  `${data.paths?.length ?? ''} pages of a ${pageCount} content site, production build over HTTP/2, cold cache, until the load event` +
+  `${data.paths?.length ?? ''} pages of a ${pageCount} content site, production builds over HTTP/2 + gzip, cold cache, prefetching excluded` +
     (phone && hasLcp ? ` · LCP: ${phone.latencyMs} ms RTT, ${phone.mbps} Mbit/s, ${phone.cpuSlowdown}× CPU throttle` : '')
 
 const reqs = (r: Result) => r.average.jsRequests + r.average.cssRequests
 const byJs = [...results].sort((a, b) => a.average.jsGzipKiB - b.average.jsGzipKiB)
-const highlight = results.find(r => r.id === args.highlight) ?? byJs[0]!
+// Neutral by default; --highlight picks one framework and headlines it.
+const highlight = results.find(r => r.id === args.highlight)
 const heaviest = byJs.at(-1)!
 
 const pct = (a: number, b: number) => Math.round((1 - a / b) * 100)
 const title =
   args.title ??
-  `${highlight.label}: ${pct(highlight.average.jsGzipKiB, heaviest.average.jsGzipKiB)}% less JS than ${heaviest.label}, ${reqs(highlight) < Math.min(...results.filter(r => r !== highlight).map(reqs)) ? 'fewest' : `${fmt(reqs(highlight))}`} requests per page`
+  (highlight
+    ? `${highlight.label}: ${pct(highlight.average.jsGzipKiB, heaviest.average.jsGzipKiB)}% less JS than ${heaviest.label}, ${reqs(highlight) < Math.min(...results.filter(r => r !== highlight).map(reqs)) ? 'fewest' : `${fmt(reqs(highlight))}`} requests per page`
+    : `The same ${pageCount} content site in ${results.length} frameworks`)
 
 function fmt(n: number) {
   return Number.isInteger(Math.round(n * 10) / 10) ? String(Math.round(n)) : n.toFixed(1)

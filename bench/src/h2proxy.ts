@@ -6,12 +6,19 @@
 // origin, so a page with many parallel requests queues behind itself. Real
 // deployments sit behind a CDN speaking HTTP/2 or HTTP/3. Putting every
 // framework behind the same HTTP/2 proxy measures that case and treats all
-// servers alike. Bodies are streamed through untouched.
+// servers alike.
+//
+// Compression is normalized the same way: the proxy asks every server for
+// uncompressed responses and gzips all text itself (level 6, flushed per
+// chunk so streamed HTML still streams). Left alone, some servers send
+// brotli, some gzip and some nothing, which on a throttled phone connection
+// measures the server's defaults rather than the framework.
 
 import { execFileSync } from 'node:child_process'
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs'
 import http from 'node:http'
 import http2 from 'node:http2'
+import zlib from 'node:zlib'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
@@ -33,6 +40,8 @@ const makeCertificate = () => {
   }
 }
 
+const COMPRESSIBLE = /^(text\/|application\/(javascript|json|xml|x-component)|image\/svg)/
+
 let certificate: { key: Buffer; cert: Buffer } | undefined
 
 export type Proxy = { origin: string; close: () => Promise<void> }
@@ -49,6 +58,8 @@ export async function startProxy(upstreamPort: number, port: number): Promise<Pr
       if (!name.startsWith(':') && !HOP_BY_HOP.has(name)) headers[name] = value
     }
     headers.host = `localhost:${upstreamPort}`
+    headers['accept-encoding'] = 'identity'
+    const acceptsGzip = /\bgzip\b/.test(String(req.headers['accept-encoding'] ?? ''))
     const upstream = http.request(
       { host: 'localhost', port: upstreamPort, method: req.method, path: req.url, headers, agent },
       response => {
@@ -57,8 +68,22 @@ export async function startProxy(upstreamPort: number, port: number): Promise<Pr
           if (HOP_BY_HOP.has(name) || value === undefined) continue
           out[name] = name === 'location' && typeof value === 'string' ? value.replace(upstreamOrigin, origin) : value
         }
+        const compress =
+          acceptsGzip &&
+          [undefined, 'identity'].includes(response.headers['content-encoding']) &&
+          COMPRESSIBLE.test(String(response.headers['content-type'] ?? '')) &&
+          req.method !== 'HEAD'
+        if (!compress) {
+          res.writeHead(response.statusCode ?? 502, out)
+          response.pipe(res)
+          return
+        }
+        delete out['content-length']
+        delete out['content-encoding']
+        out['content-encoding'] = 'gzip'
+        out.vary = out.vary ? `${out.vary}, Accept-Encoding` : 'Accept-Encoding'
         res.writeHead(response.statusCode ?? 502, out)
-        response.pipe(res)
+        response.pipe(zlib.createGzip({ level: 6, flush: zlib.constants.Z_SYNC_FLUSH })).pipe(res)
       },
     )
     upstream.on('error', () => {
