@@ -1,6 +1,6 @@
 // Serves a prerendered site the way a static host does: /about resolves to
 // about/index.html (or about.html), anything else is a 404. Used for the
-// frameworks whose production output is plain files (Foldkit, Xote).
+// frameworks whose production output is plain files (Astro, Effect UI, Xote).
 //
 // `vite preview` isn't used for these: with its default SPA fallback,
 // /about (no trailing slash) serves the root index.html instead.

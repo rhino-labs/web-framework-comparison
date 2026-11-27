@@ -57,7 +57,7 @@ type faqItem = {q: string, a: string}
 @module("@bench/content") external headingsOf: post => array<heading> = "headingsOf"
 
 /** Everything one page renders, embedded in the HTML for hydration (the
- same data the React frameworks serialize, or Foldkit passes in Flags). */
+ same data the React frameworks serialize, or Effect UI ships in its page state). */
 type page =
   | Home(homeData)
   | Blog(blogData)

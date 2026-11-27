@@ -37,6 +37,22 @@ export type SearchItem = typeof SearchItem.Type
 export const PageLink = Schema.Struct({ title: Schema.String, href: Schema.String })
 export type PageLink = typeof PageLink.Type
 
+export const HomeData = Schema.Struct({
+  latest: Schema.Array(PostSummary),
+  byTopic: Schema.Array(Schema.Array(PostSummary)),
+})
+export type HomeData = typeof HomeData.Type
+
+export const BlogData = Schema.Struct({ posts: Schema.Array(PostSummary) })
+export type BlogData = typeof BlogData.Type
+
+export const PostData = Schema.Struct({
+  post: Post,
+  related: Schema.Array(PostSummary),
+  comments: Schema.Array(Comment),
+})
+export type PostData = typeof PostData.Type
+
 export const SectionData = Schema.Struct({
   section: Schema.Struct({ slug: Schema.String, title: Schema.String, tagline: Schema.String }),
   pages: Schema.Array(Schema.Struct({ ...PageLink.fields, tagline: Schema.String })),
@@ -52,3 +68,7 @@ export const FeatureData = Schema.Struct({
   siblings: Schema.Array(PageLink),
 })
 export type FeatureData = typeof FeatureData.Type
+
+export class ContentNotFound extends Schema.TaggedError<ContentNotFound>()('ContentNotFound', {
+  path: Schema.String,
+}) {}

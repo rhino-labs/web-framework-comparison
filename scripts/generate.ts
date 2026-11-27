@@ -5,7 +5,8 @@
 //   - route files for Next.js/vinext, TanStack Start and React Router
 //   - Astro pages, with each widget as a client:load island
 //   - one Xote (ReScript) component per widget, and a lookup per page
-//   - one Foldkit view module per widget (same markup, same CSS modules)
+//   - one Effect UI component per widget (same markup, same CSS modules),
+//     and one lazily loaded page component per generated page
 //
 // Output directories are gitignored and rebuilt from scratch on every run.
 // Resize the fixture with `scale` in packages/content/src/index.ts.
@@ -25,7 +26,7 @@ const dirs = {
   next: 'apps/next/app/(generated)',
   tanstack: 'apps/tanstack-start/src/routes/(generated)',
   reactRouter: 'apps/react-router/app/generated',
-  foldkit: 'apps/foldkit/src/generated',
+  effectUi: 'apps/effect-ui/src/generated',
   xote: 'apps/xote/src/generated',
 }
 
@@ -51,7 +52,7 @@ const specById = new Map(widgetSpecs.map(w => [w.id, w]))
 
 // WIDGETS
 //
-// Each kind is written twice, once per UI model, with identical markup and
+// Each kind is written once per UI model, with identical markup and
 // class names. Constants are baked in per widget, so every widget is its own
 // code, as in a real site.
 
@@ -59,7 +60,7 @@ type KindTemplate = {
   constants: string
   css: string
   react: { state: string; body: string }
-  foldkit: { init: string; update: string; body: string }
+  effectUi: { model: string; init: string; messages: string; update: string; prelude?: string; body: string }
 }
 
 const labels = (w: WidgetSpec) => w.items.map(i => i.label)
@@ -77,21 +78,18 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
       </div>
       <p className={w.note}>{\`Across the page: \${Math.round(value * FACTOR)} \${UNIT}\`}</p>`,
     },
-    foldkit: {
-      init: `{ ...blank, value: ${w.start} }`,
-      update: `case 'Increment':
-      return { ...state, value: Math.min(MAX, state.value + STEP) }
-    case 'Decrement':
-      return { ...state, value: Math.max(MIN, state.value - STEP) }`,
-      body: `h.div(
-      [h.Class(w.row)],
-      [
-        h.button([h.Class(b.button), h.AriaLabel('Decrease'), h.OnClick(send(widgetMsg('Decrement')))], ['−']),
-        h.span([h.Class(s.value)], [\`\${state.value} \${UNIT}\`]),
-        h.button([h.Class(b.button), h.AriaLabel('Increase'), h.OnClick(send(widgetMsg('Increment')))], ['+']),
-      ],
-    ),
-    h.p([h.Class(w.note)], [\`Across the page: \${Math.round(state.value * FACTOR)} \${UNIT}\`]),`,
+    effectUi: {
+      model: `{ value: Schema.Number }`,
+      init: `{ value: ${w.start} }`,
+      messages: `ClickedDecrease: {}, ClickedIncrease: {}`,
+      update: `ClickedDecrease: $ => $.evolve({ value: value => Math.max(MIN, value - STEP) }),
+    ClickedIncrease: $ => $.evolve({ value: value => Math.min(MAX, value + STEP) }),`,
+      body: `h.div.class(w.row).children(
+        h.button.class(b.button).attr('aria-label', 'Decrease').on('click', Message.ClickedDecrease()).children('−'),
+        h.span.class(s.value).children(\`\${model.value} \${UNIT}\`),
+        h.button.class(b.button).attr('aria-label', 'Increase').on('click', Message.ClickedIncrease()).children('+'),
+      ),
+      h.p.class(w.note).children(\`Across the page: \${Math.round(model.value * FACTOR)} \${UNIT}\`),`,
     },
   }),
 
@@ -113,26 +111,24 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
       </ul>
       <p className={w.note}>{\`\${on.filter(Boolean).length} of \${ITEMS.length} enabled\`}</p>`,
     },
-    foldkit: {
-      init: `{ ...blank, flags: ${js(w.items.map((_, i) => i % 2 === 0))} }`,
-      update: `case 'Toggle':
-      return { ...state, flags: state.flags.map((v, j) => (j === msg.index ? !v : v)) }`,
-      body: `h.ul(
-      [h.Class(w.list)],
-      ITEMS.map((label, index) =>
-        h.li(
-          [h.Class(w.item)],
-          [
-            h.span([], [label]),
-            h.button(
-              [h.Class(s.switch), h.Role('switch'), h.AriaChecked(state.flags[index] === true), h.OnClick(send(widgetMsg('Toggle', { index })))],
-              [state.flags[index] ? 'On' : 'Off'],
-            ),
-          ],
+    effectUi: {
+      model: `{ on: Schema.Array(Schema.Boolean) }`,
+      init: `{ on: ${js(w.items.map((_, i) => i % 2 === 0))} }`,
+      messages: `ClickedSwitch: { index: Schema.Number }`,
+      update: `ClickedSwitch: ($, { index }) => $.evolve({ on: on => on.map((value, i) => (i === index ? !value : value)) }),`,
+      body: `h.ul.class(w.list).children(
+        ITEMS.map((label, index) =>
+          h.li.class(w.item).children(
+            h.span(label),
+            h.button
+              .class(s.switch)
+              .attrs({ role: 'switch', 'aria-checked': String(model.on[index] === true) })
+              .on('click', Message.ClickedSwitch({ index }))
+              .children(model.on[index] ? 'On' : 'Off'),
+          ),
         ),
       ),
-    ),
-    h.p([h.Class(w.note)], [\`\${state.flags.filter(Boolean).length} of \${ITEMS.length} enabled\`]),`,
+      h.p.class(w.note).children(\`\${model.on.filter(Boolean).length} of \${ITEMS.length} enabled\`),`,
     },
   }),
 
@@ -154,25 +150,23 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
         ))}
       </div>`,
     },
-    foldkit: {
-      init: `{ ...blank, index: 0 }`,
-      update: `case 'Select':
-      return { ...state, index: state.index === msg.index ? -1 : msg.index }`,
-      body: `h.div(
-      [h.Class(w.list)],
-      ITEMS.map((item, index) =>
-        h.div(
-          [h.Class(s.entry)],
-          [
-            h.button(
-              [h.Class(s.trigger), h.AriaExpanded(state.index === index), h.OnClick(send(widgetMsg('Select', { index })))],
-              [item.label],
-            ),
-            state.index === index ? h.p([h.Class(w.panel)], [item.detail]) : h.empty,
-          ],
+    effectUi: {
+      model: `{ open: Schema.Number }`,
+      init: `{ open: 0 }`,
+      messages: `ClickedEntry: { index: Schema.Number }`,
+      update: `ClickedEntry: ($, { index }) => $.evolve({ open: open => (open === index ? -1 : index) }),`,
+      body: `h.div.class(w.list).children(
+        ITEMS.map((item, index) =>
+          h.div.class(s.entry).children(
+            h.button
+              .class(s.trigger)
+              .attr('aria-expanded', String(model.open === index))
+              .on('click', Message.ClickedEntry({ index }))
+              .children(item.label),
+            model.open === index && h.p.class(w.panel).children(item.detail),
+          ),
         ),
-      ),
-    ),`,
+      ),`,
     },
   }),
 
@@ -192,20 +186,21 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
       </div>
       <p className={w.panel} role="tabpanel">{ITEMS[selected]?.detail ?? ''}</p>`,
     },
-    foldkit: {
-      init: `blank`,
-      update: `case 'Select':
-      return { ...state, index: msg.index }`,
-      body: `h.div(
-      [h.Class(s.segments), h.Role('tablist')],
-      ITEMS.map((item, index) =>
-        h.button(
-          [h.Role('tab'), h.AriaSelected(state.index === index), h.Class(s.segment), h.OnClick(send(widgetMsg('Select', { index })))],
-          [item.label],
+    effectUi: {
+      model: `{ selected: Schema.Number }`,
+      init: `{ selected: 0 }`,
+      messages: `ClickedSegment: { index: Schema.Number }`,
+      update: `ClickedSegment: ($, { index }) => $.evolve({ selected: index }),`,
+      body: `h.div.class(s.segments).attr('role', 'tablist').children(
+        ITEMS.map((item, index) =>
+          h.button
+            .class(s.segment)
+            .attrs({ role: 'tab', 'aria-selected': String(model.selected === index) })
+            .on('click', Message.ClickedSegment({ index }))
+            .children(item.label),
         ),
       ),
-    ),
-    h.p([h.Class(w.panel), h.Role('tabpanel')], [ITEMS[state.index]?.detail ?? '']),`,
+      h.p.class(w.panel).attr('role', 'tabpanel').children(ITEMS[model.selected]?.detail ?? ''),`,
     },
   }),
 
@@ -224,25 +219,21 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
       </div>
       <p className={w.note}>{rating ? \`You rated this \${rating} of 5\` : 'Not rated yet'}</p>`,
     },
-    foldkit: {
-      init: `blank`,
-      update: `case 'SetValue':
-      return { ...state, value: msg.value }`,
-      body: `h.div(
-      [h.Class(w.row)],
-      STARS.map(value =>
-        h.button(
-          [
-            h.Class(s.star),
-            h.AriaLabel(\`\${value} of 5\`),
-            h.AriaPressed(value <= state.value ? 'true' : 'false'),
-            h.OnClick(send(widgetMsg('SetValue', { value }))),
-          ],
-          [value <= state.value ? '★' : '☆'],
+    effectUi: {
+      model: `{ rating: Schema.Number }`,
+      init: `{ rating: 0 }`,
+      messages: `ClickedStar: { value: Schema.Number }`,
+      update: `ClickedStar: ($, { value }) => $.evolve({ rating: value }),`,
+      body: `h.div.class(w.row).children(
+        STARS.map(value =>
+          h.button
+            .class(s.star)
+            .attrs({ 'aria-label': \`\${value} of 5\`, 'aria-pressed': String(value <= model.rating) })
+            .on('click', Message.ClickedStar({ value }))
+            .children(value <= model.rating ? '★' : '☆'),
         ),
       ),
-    ),
-    h.p([h.Class(w.note)], [state.value ? \`You rated this \${state.value} of 5\` : 'Not rated yet']),`,
+      h.p.class(w.note).children(model.rating ? \`You rated this \${model.rating} of 5\` : 'Not rated yet'),`,
     },
   }),
 
@@ -265,28 +256,27 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
       </ul>
       <p className={w.note}>{vote >= 0 ? \`\${TOTAL + 1} votes, including yours\` : \`\${TOTAL} votes so far\`}</p>`,
     },
-    foldkit: {
-      init: `{ ...blank, index: -1 }`,
-      update: `case 'Select':
-      return { ...state, index: msg.index }`,
-      body: `h.ul(
-      [h.Class(w.list)],
-      OPTIONS.map((label, index) =>
-        h.li(
-          [h.Class(w.item)],
-          [
-            h.button(
-              [h.Class(s.option), h.AriaPressed(state.index === index ? 'true' : 'false'), h.OnClick(send(widgetMsg('Select', { index })))],
-              [label],
-            ),
-            state.index >= 0
-              ? h.span([h.Class(s.share)], [\`\${Math.round(((VOTES[index]! + (state.index === index ? 1 : 0)) * 100) / (TOTAL + 1))}%\`])
-              : h.empty,
-          ],
+    effectUi: {
+      model: `{ vote: Schema.Number }`,
+      init: `{ vote: -1 }`,
+      messages: `ClickedOption: { index: Schema.Number }`,
+      update: `ClickedOption: ($, { index }) => $.evolve({ vote: index }),`,
+      body: `h.ul.class(w.list).children(
+        OPTIONS.map((label, index) =>
+          h.li.class(w.item).children(
+            h.button
+              .class(s.option)
+              .attr('aria-pressed', String(model.vote === index))
+              .on('click', Message.ClickedOption({ index }))
+              .children(label),
+            model.vote >= 0 &&
+              h.span
+                .class(s.share)
+                .children(\`\${Math.round(((VOTES[index]! + (model.vote === index ? 1 : 0)) * 100) / (TOTAL + 1))}%\`),
+          ),
         ),
       ),
-    ),
-    h.p([h.Class(w.note)], [state.index >= 0 ? \`\${TOTAL + 1} votes, including yours\` : \`\${TOTAL} votes so far\`]),`,
+      h.p.class(w.note).children(model.vote >= 0 ? \`\${TOTAL + 1} votes, including yours\` : \`\${TOTAL} votes so far\`),`,
     },
   }),
 
@@ -303,27 +293,21 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
       </label>
       <p className={w.note}>{\`Estimated cost: \${(value * FACTOR).toFixed(1)} \${UNIT}\`}</p>`,
     },
-    foldkit: {
-      init: `{ ...blank, value: ${w.start} }`,
-      update: `case 'SetValue':
-      return { ...state, value: Math.min(MAX, Math.max(MIN, msg.value)) }`,
-      body: `h.label(
-      [h.Class(w.row)],
-      [
-        h.span([], [LABEL]),
-        h.input([
-          h.Class(s.range),
-          h.Type('range'),
-          h.Min(String(MIN)),
-          h.Max(String(MAX)),
-          h.Step(String(STEP)),
-          h.Value(String(state.value)),
-          h.OnInput(value => send(widgetMsg('SetValue', { value: Number(value) }))),
-        ]),
-        h.span([h.Class(s.value)], [\`\${state.value} \${UNIT}\`]),
-      ],
-    ),
-    h.p([h.Class(w.note)], [\`Estimated cost: \${(state.value * FACTOR).toFixed(1)} \${UNIT}\`]),`,
+    effectUi: {
+      model: `{ value: Schema.Number }`,
+      init: `{ value: ${w.start} }`,
+      messages: `UpdatedRange: { value: Schema.Number }`,
+      update: `UpdatedRange: ($, { value }) => $.evolve({ value: Math.min(MAX, Math.max(MIN, value)) }),`,
+      body: `h.label.class(w.row).children(
+        h.span(LABEL),
+        h.input
+          .class(s.range)
+          .attrs({ type: 'range', min: String(MIN), max: String(MAX), step: String(STEP) })
+          .value(String(model.value))
+          .on('input', ({ value }) => Message.UpdatedRange({ value: Number(value) })),
+        h.span.class(s.value).children(\`\${model.value} \${UNIT}\`),
+      ),
+      h.p.class(w.note).children(\`Estimated cost: \${(model.value * FACTOR).toFixed(1)} \${UNIT}\`),`,
     },
   }),
 
@@ -345,20 +329,20 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
       </ul>
       <p className={w.note}>{\`\${matches.length} of \${ITEMS.length} shown\`}</p>`,
     },
-    foldkit: {
-      init: `blank`,
-      update: `case 'SetText':
-      return { ...state, text: msg.text }`,
-      body: `h.input([
-      h.Class(s.search),
-      h.Type('search'),
-      h.AriaLabel('Filter'),
-      h.Placeholder(\`Filter \${ITEMS.length} entries…\`),
-      h.Value(state.text),
-      h.OnInput(text => send(widgetMsg('SetText', { text }))),
-    ]),
-    h.ul([h.Class(\`\${w.list} \${s.results}\`)], matches(state).map(item => h.li([h.Class(s.result)], [item]))),
-    h.p([h.Class(w.note)], [\`\${matches(state).length} of \${ITEMS.length} shown\`]),`,
+    effectUi: {
+      model: `{ query: Schema.String }`,
+      init: `{ query: '' }`,
+      messages: `UpdatedQuery: { value: Schema.String }`,
+      update: `UpdatedQuery: ($, { value }) => $.evolve({ query: value }),`,
+      prelude: `const q = model.query.trim().toLowerCase()
+    const matches = ITEMS.filter(item => item.toLowerCase().includes(q))`,
+      body: `h.input
+        .class(s.search)
+        .attrs({ type: 'search', 'aria-label': 'Filter', placeholder: \`Filter \${ITEMS.length} entries…\` })
+        .value(model.query)
+        .on('input', ({ value }) => Message.UpdatedQuery({ value })),
+      h.ul.class(w.list, s.results).children(matches.map(item => h.li.class(s.result).children(item))),
+      h.p.class(w.note).children(\`\${matches.length} of \${ITEMS.length} shown\`),`,
     },
   }),
 
@@ -379,27 +363,21 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
         <button className={b.button} aria-label="Next" onClick={() => setIndex((index + 1) % SLIDES.length)}>→</button>
       </div>`,
     },
-    foldkit: {
-      init: `blank`,
-      update: `case 'Next':
-      return { ...state, index: (state.index + 1) % SLIDES.length }
-    case 'Previous':
-      return { ...state, index: (state.index + SLIDES.length - 1) % SLIDES.length }`,
-      body: `h.div(
-      [h.Class(s.slide)],
-      [
-        h.p([h.Class(s.slideTitle)], [SLIDES[state.index]?.label ?? '']),
-        h.p([h.Class(w.panel)], [SLIDES[state.index]?.detail ?? '']),
-      ],
-    ),
-    h.div(
-      [h.Class(w.row)],
-      [
-        h.button([h.Class(b.button), h.AriaLabel('Previous'), h.OnClick(send(widgetMsg('Previous')))], ['←']),
-        h.span([h.Class(s.count)], [\`\${state.index + 1} / \${SLIDES.length}\`]),
-        h.button([h.Class(b.button), h.AriaLabel('Next'), h.OnClick(send(widgetMsg('Next')))], ['→']),
-      ],
-    ),`,
+    effectUi: {
+      model: `{ index: Schema.Number }`,
+      init: `{ index: 0 }`,
+      messages: `ClickedPrevious: {}, ClickedNext: {}`,
+      update: `ClickedPrevious: $ => $.evolve({ index: index => (index + SLIDES.length - 1) % SLIDES.length }),
+    ClickedNext: $ => $.evolve({ index: index => (index + 1) % SLIDES.length }),`,
+      body: `h.div.class(s.slide).children(
+        h.p.class(s.slideTitle).children(SLIDES[model.index]?.label ?? ''),
+        h.p.class(w.panel).children(SLIDES[model.index]?.detail ?? ''),
+      ),
+      h.div.class(w.row).children(
+        h.button.class(b.button).attr('aria-label', 'Previous').on('click', Message.ClickedPrevious()).children('←'),
+        h.span.class(s.count).children(\`\${model.index + 1} / \${SLIDES.length}\`),
+        h.button.class(b.button).attr('aria-label', 'Next').on('click', Message.ClickedNext()).children('→'),
+      ),`,
     },
   }),
 
@@ -427,40 +405,31 @@ const templates: Record<WidgetSpec['kind'], (w: WidgetSpec) => KindTemplate> = {
       </div>
       <p className={w.note}>{\`\${count} of \${ITEMS.length} done\`}</p>`,
     },
-    foldkit: {
-      init: `{ ...blank, flags: ${js(w.items.map((_, i) => i === 0))} }`,
-      update: `case 'Toggle':
-      return { ...state, flags: state.flags.map((v, j) => (j === msg.index ? !v : v)) }`,
-      body: `h.ul(
-      [h.Class(w.list)],
-      ITEMS.map((label, index) =>
-        h.li(
-          [],
-          [
-            h.label(
-              [h.Class(s.check)],
-              [
-                h.input([h.Type('checkbox'), h.Checked(state.flags[index] === true), h.OnChange(() => send(widgetMsg('Toggle', { index })))]),
+    effectUi: {
+      model: `{ done: Schema.Array(Schema.Boolean) }`,
+      init: `{ done: ${js(w.items.map((_, i) => i === 0))} }`,
+      messages: `ToggledItem: { index: Schema.Number }`,
+      update: `ToggledItem: ($, { index }) => $.evolve({ done: done => done.map((value, i) => (i === index ? !value : value)) }),`,
+      prelude: `const count = model.done.filter(Boolean).length`,
+      body: `h.ul.class(w.list).children(
+        ITEMS.map((label, index) =>
+          h.li(
+            h.label
+              .class(s.check)
+              .children(
+                h.input
+                  .attr('type', 'checkbox')
+                  .checked(model.done[index] === true)
+                  .on('change', Message.ToggledItem({ index })),
                 label,
-              ],
-            ),
-          ],
+              ),
+          ),
         ),
       ),
-    ),
-    h.div([h.Class(s.track)], [h.div([h.Class(s.bar), h.Style({ width: \`\${Math.round((done(state) * 100) / ITEMS.length)}%\` })], [])]),
-    h.p([h.Class(w.note)], [\`\${done(state)} of \${ITEMS.length} done\`]),`,
+      h.div.class(s.track).children(h.div.class(s.bar).style({ width: \`\${Math.round((count * 100) / ITEMS.length)}%\` })),
+      h.p.class(w.note).children(\`\${count} of \${ITEMS.length} done\`),`,
     },
   }),
-}
-
-// Small per-kind helpers the Foldkit views share with their update.
-const foldkitHelpers: Partial<Record<WidgetSpec['kind'], string>> = {
-  Filter: `const matches = (state: WidgetState): ReadonlyArray<string> => {
-  const q = state.text.trim().toLowerCase()
-  return ITEMS.filter(item => item.toLowerCase().includes(q))
-}`,
-  Checklist: `const done = (state: WidgetState): number => state.flags.filter(Boolean).length`,
 }
 
 const widgetCss = (w: WidgetSpec, t: KindTemplate) =>
@@ -486,39 +455,70 @@ export default function ${w.component}() {
 }
 `
 
-// CSS module classes are typed string | undefined under noUncheckedIndexedAccess.
-const withCx = (code: string) => code.replace(/h\.Class\((\w+\.\w+)\)/g, 'h.Class(cx($1))')
+// Each widget is an Effect UI component with its own Model and messages.
+const effectUiWidget = (w: WidgetSpec, t: KindTemplate) => `${HEADER}
+import { UiSchema } from '@effect/ui'
+import { Html } from '@effect/ui/html'
+import { Schema } from 'effect'
 
-const foldkitWidget = (w: WidgetSpec, t: KindTemplate) => withCx(`${HEADER}
-import { type Html, type HtmlBuilder } from 'foldkit/html'
-
-${t.foldkit.body.includes('b.button') ? "import b from '@bench/react-ui/Button.module.css'\n" : ''}import w from '@bench/react-ui/Widget.module.css'
+${t.effectUi.body.includes('b.button') ? "import b from '@bench/react-ui/Button.module.css'\n" : ''}import w from '@bench/react-ui/Widget.module.css'
 import s from '@bench/react-ui/generated/widgets/${w.component}.module.css'
 
-import type { Message } from '../../main'
-import { type WidgetMsg, type WidgetState, blank, cx, widgetMsg } from '../../widget'
-
 ${t.constants}
-${foldkitHelpers[w.kind] ? '\n' + foldkitHelpers[w.kind] + '\n' : ''}
-export const init: WidgetState = ${t.foldkit.init}
 
-export const update = (state: WidgetState, msg: WidgetMsg): WidgetState => {
-  switch (msg.action) {
-    ${t.foldkit.update}
-    default:
-      return state
-  }
+const Message = UiSchema.TaggedEnum({ ${t.effectUi.messages} })
+
+export const ${w.component} = Html.component({
+  name: ${js(w.component)},
+  model: Schema.Struct(${t.effectUi.model}),
+  message: Message,
+}).make({
+  init: () => (${t.effectUi.init}),
+  update: {
+    ${t.effectUi.update}
+  },
+  view: (h, model) => {
+    ${t.effectUi.prelude ?? ''}
+    return h.section.class(w.widget, s.root).attr('aria-label', ${js(w.title)}).children(
+      h.h3.class(w.title).children(${js(w.title)}),
+      ${t.effectUi.body}
+    )
+  },
+})
+`
+
+// A generated page is a component of its own, so \`Component.lazy\` can load
+// it, with its widgets, from its own chunk.
+const effectUiPage = (page: FeaturePage) => {
+  const widgets = page.widgets.map(id => specById.get(id)!)
+  return `${HEADER}
+import { Component } from '@effect/ui'
+import { Html } from '@effect/ui/html'
+import { Schema } from 'effect'
+
+import { GetFeature } from '#queries/GetFeature'
+
+import { FeatureView, featureHead, featureLayer } from '../../pages/FeatureView.ts'
+${widgets.map(w => `import { ${w.component} } from '../widgets/${w.component}.ts'`).join('\n')}
+
+export const ${pageComponent(page)}Page = Html.component({
+  name: ${js(`${pageComponent(page)}Page`)},
+  model: Schema.Struct({}),
+  message: Schema.Never,
+  queries: { feature: { query: GetFeature, args: () => ({ section: ${js(page.section)}, slug: ${js(page.slug)} }) } },
+})
+  .make({
+    init: () => ({}),
+    update: $ => $.model,
+    head: ({ queries }) => featureHead(queries.feature),
+    view: h =>
+      FeatureView(h, h.queries.feature, data => [
+${widgets.map((w, i) => `        ${w.component}(h, {}),\n        h.p(data.paragraphs[${i + 1}] ?? ''),`).join('\n')}
+      ]),
+  })
+  .pipe(Component.provide(featureLayer))
+`
 }
-
-export const view = (state: WidgetState, h: HtmlBuilder<Message>, send: (msg: WidgetMsg) => Message): Html =>
-  h.section(
-    [h.Class(\`\${w.widget} \${s.root}\`), h.AriaLabel(${js(w.title)})],
-    [
-    h.h3([h.Class(w.title)], [${js(w.title)}]),
-    ${t.foldkit.body}
-    ],
-  )
-`)
 
 // XOTE WIDGETS
 //
@@ -931,12 +931,13 @@ for (const w of widgetSpecs) {
   const t = templates[w.kind](w)
   write(`${dirs.reactWidgets}/${w.component}.tsx`, reactWidget(w, t))
   write(`${dirs.reactWidgets}/${w.component}.module.css`, widgetCss(w, t))
-  write(`${dirs.foldkit}/widgets/${w.id}.ts`, foldkitWidget(w, t))
+  write(`${dirs.effectUi}/widgets/${w.component}.ts`, effectUiWidget(w, t))
   write(`${dirs.xote}/${w.component}.res`, xoteWidget(w, xoteTemplates[w.kind](w)))
 }
 
 for (const page of featurePages) {
   write(`${dirs.reactPages}/${pageComponent(page)}.tsx`, reactPage(page))
+  write(`${dirs.effectUi}/pages/${pageComponent(page)}Page.ts`, effectUiPage(page))
   write(`${dirs.next}/${page.section}/${page.slug}/page.tsx`, nextFeatureRoute(page))
   write(`${dirs.tanstack}/${page.section}/${page.slug}.tsx`, tanstackFeatureRoute(page))
   write(`${dirs.reactRouter}/${page.section}.${page.slug}.tsx`, reactRouterFeatureRoute(page))
@@ -963,18 +964,43 @@ ${featurePages.map(p => `  route(${js(`${p.section}/${p.slug}`)}, ${js(`generate
 )
 
 write(
-  `${dirs.foldkit}/widgets.ts`,
+  `${dirs.effectUi}/FeaturePage.ts`,
   `${HEADER}
-import type { WidgetModule } from '../widget'
-${widgetSpecs.map(w => `import * as ${w.id} from './widgets/${w.id}'`).join('\n')}
+import { Component } from '@effect/ui'
+import type { Html } from '@effect/ui/html'
 
-export const widgets: Readonly<Record<string, WidgetModule>> = {
-${widgetSpecs.map(w => `  ${w.id},`).join('\n')}
+import { NotFound, PageFallback } from '#components/views'
+
+// Each \`import()\` is the only reference to its page's module, so the page
+// and its widgets are a chunk of their own.
+${featurePages.map(p => `const ${pageComponent(p)}Page = Component.lazy(${js(`${pageComponent(p)}Page`)}, () => import('./pages/${pageComponent(p)}Page.ts').then(module => module.${pageComponent(p)}Page))`).join('\n')}
+
+/** The generated page at \`href\`, loaded on its first visit. */
+export const FeaturePage = <M>(h: Html.H<M>, href: string) => {
+  switch (href) {
+${featurePages.map(p => `    case ${js(hrefOf(p))}:\n      return ${pageComponent(p)}Page(h, { key: href, fallback: PageFallback(h) })`).join('\n')}
+    default:
+      return NotFound(h)
+  }
 }
 
-/** Widget ids per generated page, in render order. */
-export const pageWidgets: Readonly<Record<string, ReadonlyArray<string>>> = {
-${featurePages.map(p => `  ${js(hrefOf(p))}: ${js(p.widgets)},`).join('\n')}
+/** Starts loading the page at \`href\`, so it can hydrate without its fallback. */
+export const preloadFeaturePage = (href: string): Promise<unknown> => {
+  switch (href) {
+${featurePages.map(p => `    case ${js(hrefOf(p))}:\n      return ${pageComponent(p)}Page.preload()`).join('\n')}
+    default:
+      return Promise.resolve()
+  }
+}
+`,
+)
+
+write(
+  `${dirs.effectUi}/modules.ts`,
+  `${HEADER}
+/** The module of each generated page, as the Vite manifest names it. */
+export const featureModules: Readonly<Record<string, string>> = {
+${featurePages.map(p => `  ${js(hrefOf(p))}: ${js(`src/generated/pages/${pageComponent(p)}Page.ts`)},`).join('\n')}
 }
 `,
 )

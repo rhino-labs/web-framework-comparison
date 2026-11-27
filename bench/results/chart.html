@@ -3,9 +3,9 @@
 <style>
   :root { --hi-js:#2563eb; --hi-css:#93c5fd; --lo-js:#9ca3af; --lo-css:#d1d5db; --text:#111827; --muted:#6b7280; }
   body { margin:0; background:#f3f4f6; font:15px/1.4 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color:var(--text); }
-  .card { width:1040px; box-sizing:border-box; margin:0; padding:28px 24px 24px; background:#fafafa; border:1px solid #e5e7eb; border-radius:14px; }
+  .card { width:1300px; box-sizing:border-box; margin:0; padding:28px 24px 24px; background:#fafafa; border:1px solid #e5e7eb; border-radius:14px; }
   h1 { font-size:19px; font-weight:600; margin:0 0 26px; letter-spacing:-0.01em; }
-  .grid { display:grid; grid-template-columns:auto 1fr 1fr 1fr; column-gap:24px; row-gap:12px; align-items:center; }
+  .grid { display:grid; grid-template-columns:auto 1fr 1fr 1fr 1fr; column-gap:24px; row-gap:12px; align-items:center; }
   .head { font-weight:500; font-size:14px; display:flex; justify-content:space-between; align-items:center; gap:16px; padding-right:12px; }
   .legend { display:flex; gap:12px; color:var(--muted); font-weight:400; }
   .legend i { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px; vertical-align:-1px; }
@@ -32,98 +32,127 @@
     <div class="head">Requests per page <span class="legend"><span><i style="background:var(--hi-js)"></i>JS</span><span><i style="background:var(--hi-css)"></i>CSS</span></span></div>
     <div class="head">JS per page (gzip)</div>
     <div class="head">LCP on 4G phone</div>
+    <div class="head">INP while loading</div>
     
-      <div class="label ">Next.js 16.4.3</div>
+      <div class="label ">Next.js 16.4.6</div>
       <div class="track">
-        <div class="bar " style="width:44.71153846153847%"><div class="seg js" style="flex:6.3"><span>6.3</span></div><div class="seg css" style="flex:3"><span>3</span></div></div>
+        <div class="bar " style="width:42.01807228915663%"><div class="seg js" style="flex:6.3"><span>6.3</span></div><div class="seg css" style="flex:3"><span>3</span></div></div>
         <div class="value ">9.3</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:65.47619266561225%"><div class="seg js" style="flex:1"></div></div>
+        <div class="bar " style="width:66.34743628087094%"><div class="seg js" style="flex:1"></div></div>
         <div class="value ">139 KiB</div>
       </div>
       <div class="track">
         <div class="bar " style="width:70%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">510 ms</div>
+        <div class="value ">490 ms</div>
       </div>
-      <div class="label ">Vinext 1.3.1</div>
       <div class="track">
-        <div class="bar " style="width:69.23076923076923%"><div class="seg js" style="flex:9.2"><span>9.2</span></div><div class="seg css" style="flex:5.2"><span>5.2</span></div></div>
+        <div class="bar " style="width:70%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">198 ms</div>
+      </div>
+      <div class="label ">Vinext 1.4.7</div>
+      <div class="track">
+        <div class="bar " style="width:65.0602409638554%"><div class="seg js" style="flex:9.2"><span>9.2</span></div><div class="seg css" style="flex:5.2"><span>5.2</span></div></div>
         <div class="value ">14.4</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:72.03429028579836%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">153 KiB</div>
+        <div class="bar " style="width:75%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">157 KiB</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:60.94117647058824%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">444 ms</div>
-      </div>
-      <div class="label ">TanStack Start 1.169.4</div>
-      <div class="track">
-        <div class="bar " style="width:38.94230769230769%"><div class="seg js" style="flex:3.9"><span>3.9</span></div><div class="seg css" style="flex:4.2"><span>4.2</span></div></div>
-        <div class="value ">8.1</div>
+        <div class="bar " style="width:59.371428571428574%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">416 ms</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:58.068148379740315%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">123 KiB</div>
+        <div class="bar " style="width:6.234817813765183%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">18 ms</div>
+      </div>
+      <div class="label ">TanStack Start 1.169.7</div>
+      <div class="track">
+        <div class="bar " style="width:27.560240963855417%"><div class="seg js" style="flex:2.9"><span>2.9</span></div><div class="seg css" style="flex:3.2"><span>3.2</span></div></div>
+        <div class="value ">6.1</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:59.129411764705885%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">431 ms</div>
+        <div class="bar " style="width:58.39680737488567%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">122 KiB</div>
       </div>
-      <div class="label ">React Router 8.5.0</div>
       <div class="track">
-        <div class="bar " style="width:53.36538461538463%"><div class="seg js" style="flex:6.9"><span>6.9</span></div><div class="seg css" style="flex:4.2"><span>4.2</span></div></div>
+        <div class="bar " style="width:58.34285714285714%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">408 ms</div>
+      </div>
+      <div class="track">
+        <div class="bar " style="width:43.64372469635627%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">123 ms</div>
+      </div>
+      <div class="label ">React Router 8.5.3</div>
+      <div class="track">
+        <div class="bar " style="width:50.15060240963855%"><div class="seg js" style="flex:6.9"><span>6.9</span></div><div class="seg css" style="flex:4.2"><span>4.2</span></div></div>
         <div class="value ">11.1</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:56.27013830139405%"><div class="seg js" style="flex:1"></div></div>
+        <div class="bar " style="width:57.45116333150735%"><div class="seg js" style="flex:1"></div></div>
         <div class="value ">120 KiB</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:62.478431372549025%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">455 ms</div>
-      </div>
-      <div class="label ">Astro 7.4.2</div>
-      <div class="track">
-        <div class="bar " style="width:75%"><div class="seg js" style="flex:15.6"><span>15.6</span></div><div class="seg css" style="flex:0"></div></div>
-        <div class="value ">15.6</div>
+        <div class="bar " style="width:62.114285714285714%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">435 ms</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:34.48504800088278%"><div class="seg js" style="flex:1"></div></div>
+        <div class="bar " style="width:54.412955465587046%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">154 ms</div>
+      </div>
+      <div class="label ">Astro 7.4.13</div>
+      <div class="track">
+        <div class="bar " style="width:75%"><div class="seg js" style="flex:16.6"><span>16.6</span></div><div class="seg css" style="flex:0"></div></div>
+        <div class="value ">16.6</div>
+      </div>
+      <div class="track">
+        <div class="bar " style="width:35.00463852751001%"><div class="seg js" style="flex:1"></div></div>
         <div class="value ">73 KiB</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:38.65098039215687%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">282 ms</div>
+        <div class="bar " style="width:36.4%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">255 ms</div>
       </div>
-      <div class="label ">Foldkit 0.169.0</div>
       <div class="track">
-        <div class="bar " style="width:9.615384615384617%"><div class="seg js" style="flex:1"></div><div class="seg css" style="flex:1"></div></div>
+        <div class="bar " style="width:5.101214574898786%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">14 ms</div>
+      </div>
+      <div class="label ">Effect UI 33dbab6</div>
+      <div class="track">
+        <div class="bar " style="width:19.87951807228916%"><div class="seg js" style="flex:2.2"><span>2.2</span></div><div class="seg css" style="flex:2.2"><span>2.2</span></div></div>
+        <div class="value ">4.4</div>
+      </div>
+      <div class="track">
+        <div class="bar " style="width:69.21915736733096%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">145 KiB</div>
+      </div>
+      <div class="track">
+        <div class="bar " style="width:58.05714285714286%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">406 ms</div>
+      </div>
+      <div class="track">
+        <div class="bar " style="width:51.012145748987855%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">144 ms</div>
+      </div>
+      <div class="label ">Xote 7.2.0</div>
+      <div class="track">
+        <div class="bar " style="width:9.036144578313252%"><div class="seg js" style="flex:1"></div><div class="seg css" style="flex:1"></div></div>
         <div class="value ">2</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:75%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">159 KiB</div>
+        <div class="bar " style="width:35.12052399194413%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">74 KiB</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:61.16078431372549%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">446 ms</div>
-      </div>
-      <div class="label ">Xote 7.1.0</div>
-      <div class="track">
-        <div class="bar " style="width:9.615384615384617%"><div class="seg js" style="flex:1"></div><div class="seg css" style="flex:1"></div></div>
-        <div class="value ">2</div>
+        <div class="bar " style="width:61.542857142857144%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">431 ms</div>
       </div>
       <div class="track">
-        <div class="bar " style="width:33.01991760768014%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">70 KiB</div>
-      </div>
-      <div class="track">
-        <div class="bar " style="width:61.81960784313725%"><div class="seg js" style="flex:1"></div></div>
-        <div class="value ">450 ms</div>
+        <div class="bar " style="width:53.279352226720654%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ">150 ms</div>
       </div>
   </div>
-  <div class="foot">10 pages of a 153-page content site, production builds over HTTP/2 + gzip, cold cache, prefetching excluded · LCP: 150 ms RTT, 5 Mbit/s, 4× CPU throttle</div>
+  <div class="foot">10 pages of a 153-page content site, production builds over HTTP/2 + gzip, cold cache, prefetching excluded · LCP and INP: 150 ms RTT, 5 Mbit/s, 4× CPU throttle</div>
 </div></body></html>

@@ -1,7 +1,7 @@
 // Writes one HTML file per path: the server-rendered app, the page data the
 // client hydrates from, and the client bundle from the Vite manifest.
 // Xote is a UI library rather than a framework, so this static-site step is
-// ours (Foldkit's Vite plugin does the equivalent for Foldkit).
+// ours (apps/effect-ui/prerender.mjs does the equivalent for Effect UI).
 
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'

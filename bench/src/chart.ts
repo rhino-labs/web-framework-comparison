@@ -1,6 +1,6 @@
 // Renders bench/results/latest.json as a chart card (HTML + 2x PNG).
 //
-//   node bench/src/chart.ts [--highlight foldkit] [--title "..."] [--subtitle "..."]
+//   node bench/src/chart.ts [--highlight effect-ui] [--title "..."] [--subtitle "..."]
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
@@ -17,7 +17,7 @@ type Result = {
   id: string
   label: string
   version: string
-  average: { jsRequests: number; cssRequests: number; jsGzipKiB: number; phoneLcpMs?: number }
+  average: { jsRequests: number; cssRequests: number; jsGzipKiB: number; phoneLcpMs?: number; phoneInpLoadMs?: number }
 }
 const data = JSON.parse(readFileSync(join(resultsDir, 'latest.json'), 'utf8')) as {
   results: Result[]
@@ -37,10 +37,11 @@ const { values: args } = parseArgs({
 const phone = data.phoneProfile
 const pageCount = `${allPaths().length}-page`
 const hasLcp = results.every(r => r.average.phoneLcpMs !== undefined)
+const hasInp = hasLcp && results.every(r => r.average.phoneInpLoadMs !== undefined)
 const subtitle =
   args.subtitle ??
   `${data.paths?.length ?? ''} pages of a ${pageCount} content site, production builds over HTTP/2 + gzip, cold cache, prefetching excluded` +
-    (phone && hasLcp ? ` · LCP: ${phone.latencyMs} ms RTT, ${phone.mbps} Mbit/s, ${phone.cpuSlowdown}× CPU throttle` : '')
+    (phone && hasLcp ? ` · ${hasInp ? 'LCP and INP' : 'LCP'}: ${phone.latencyMs} ms RTT, ${phone.mbps} Mbit/s, ${phone.cpuSlowdown}× CPU throttle` : '')
 
 const reqs = (r: Result) => r.average.jsRequests + r.average.cssRequests
 const byJs = [...results].sort((a, b) => a.average.jsGzipKiB - b.average.jsGzipKiB)
@@ -63,6 +64,7 @@ const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
 const maxReqs = Math.max(...results.map(reqs))
 const maxJs = Math.max(...results.map(r => r.average.jsGzipKiB))
 const maxLcp = Math.max(...results.map(r => r.average.phoneLcpMs ?? 0))
+const maxInp = Math.max(...results.map(r => r.average.phoneInpLoadMs ?? 0))
 
 const rows = results
   .map(r => {
@@ -92,6 +94,14 @@ const rows = results
         <div class="value ${hi ? 'hi' : ''}">${Math.round(r.average.phoneLcpMs!)} ms</div>
       </div>`
           : ''
+      }${
+        hasInp
+          ? `
+      <div class="track">
+        <div class="bar ${hi ? 'hi' : ''}" style="width:${(r.average.phoneInpLoadMs! / maxInp) * 70}%"><div class="seg js" style="flex:1"></div></div>
+        <div class="value ${hi ? 'hi' : ''}">${Math.round(r.average.phoneInpLoadMs!)} ms</div>
+      </div>`
+          : ''
       }`
   })
   .join('')
@@ -101,9 +111,9 @@ const html = `<!doctype html>
 <style>
   :root { --hi-js:#2563eb; --hi-css:#93c5fd; --lo-js:#9ca3af; --lo-css:#d1d5db; --text:#111827; --muted:#6b7280; }
   body { margin:0; background:#f3f4f6; font:15px/1.4 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color:var(--text); }
-  .card { width:${hasLcp ? 1040 : 760}px; box-sizing:border-box; margin:0; padding:28px 24px 24px; background:#fafafa; border:1px solid #e5e7eb; border-radius:14px; }
+  .card { width:${hasInp ? 1300 : hasLcp ? 1040 : 760}px; box-sizing:border-box; margin:0; padding:28px 24px 24px; background:#fafafa; border:1px solid #e5e7eb; border-radius:14px; }
   h1 { font-size:19px; font-weight:600; margin:0 0 26px; letter-spacing:-0.01em; }
-  .grid { display:grid; grid-template-columns:auto ${hasLcp ? '1fr 1fr 1fr' : '1fr 1fr'}; column-gap:24px; row-gap:12px; align-items:center; }
+  .grid { display:grid; grid-template-columns:auto ${hasInp ? '1fr 1fr 1fr 1fr' : hasLcp ? '1fr 1fr 1fr' : '1fr 1fr'}; column-gap:24px; row-gap:12px; align-items:center; }
   .head { font-weight:500; font-size:14px; display:flex; justify-content:space-between; align-items:center; gap:16px; padding-right:12px; }
   .legend { display:flex; gap:12px; color:var(--muted); font-weight:400; }
   .legend i { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px; vertical-align:-1px; }
@@ -130,6 +140,7 @@ const html = `<!doctype html>
     <div class="head">Requests per page <span class="legend"><span><i style="background:var(--hi-js)"></i>JS</span><span><i style="background:var(--hi-css)"></i>CSS</span></span></div>
     <div class="head">JS per page (gzip)</div>
     ${hasLcp ? '<div class="head">LCP on 4G phone</div>' : ''}
+    ${hasInp ? '<div class="head">INP while loading</div>' : ''}
     ${rows}
   </div>
   <div class="foot">${esc(subtitle)}</div>
@@ -138,7 +149,7 @@ const html = `<!doctype html>
 writeFileSync(join(resultsDir, 'chart.html'), html)
 
 const browser = await chromium.launch()
-const page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1100, height: 600 } })
+const page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1400, height: 600 } })
 await page.setContent(html)
 await page.locator('#card').screenshot({ path: join(resultsDir, 'chart.png'), omitBackground: true })
 await browser.close()

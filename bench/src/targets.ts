@@ -6,6 +6,8 @@ export type Target = {
   label: string
   /** package whose installed version is shown next to the label */
   versionOf: string
+  /** shown instead, for a package installed from a snapshot with no release version */
+  version?: string
   /** app directory, relative to the repo root */
   cwd: string
   /** production server command; {port} is substituted */
@@ -57,10 +59,13 @@ export const targets: Target[] = [
     port: 4106,
   },
   {
-    id: 'foldkit',
-    label: 'Foldkit',
-    versionOf: 'foldkit',
-    cwd: 'apps/foldkit',
+    id: 'effect-ui',
+    label: 'Effect UI',
+    versionOf: '@effect/ui',
+    // not on npm yet: installed from the pkg.pr.new snapshot of this commit
+    // (see apps/effect-ui/package.json), whose own version is 0.0.0
+    version: '33dbab6',
+    cwd: 'apps/effect-ui',
     // prerendered files; see bench/src/static-server.ts
     start: 'node ../../bench/src/static-server.ts dist/client {port}',
     port: 4104,

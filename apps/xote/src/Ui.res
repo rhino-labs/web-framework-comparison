@@ -526,7 +526,7 @@ module ReadingProgress = {
 }
 
 // Comments render once the section scrolls into view. Xote has no lazy
-// component loading here, so their code is in the main bundle (as in Foldkit).
+// component loading here, so their code is in the main bundle.
 module Comments = {
   @xote.component
   let make = (~comments: array<comment>) => {

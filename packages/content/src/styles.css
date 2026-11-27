@@ -1,5 +1,5 @@
 /* Global tokens and reset only. Component styles live in CSS modules in
-   packages/react-ui/src (shared by every framework, including Foldkit). */
+   packages/react-ui/src (shared by every framework, including the non-React ones). */
 :root {
   --bg: #fafaf9;
   --fg: #1c1917;
