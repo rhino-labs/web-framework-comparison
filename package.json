@@ -7,7 +7,9 @@
     "generate": "node scripts/generate.ts",
     "build": "pnpm generate && pnpm --filter \"./apps/*\" run build:all",
     "bench": "node bench/src/run.ts",
-    "chart": "node bench/src/chart.ts",
+    "chart": "node bench/src/chart.ts && node bench/src/timeseries.ts",
+    "monthly": "node scripts/monthly.ts",
+    "test": "node --test bench/src/history.test.ts",
     "all": "pnpm build && pnpm bench && pnpm chart"
   }
 }

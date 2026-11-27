@@ -10,6 +10,34 @@ weight, and LCP and INP on a throttled 4G phone.
 
 ![chart](bench/results/chart.png?v=2026-11-26)
 
+The bars are a single run. The chart below is every committed run of that
+measurement, so a line moving up is a framework getting heavier or slower and
+a line moving down is it getting lighter or faster. Each point is one run and
+the version that was measured. The table lists those versions, and
+[`bench/results/history.json`](bench/results/history.json) has the summary
+metrics. A line starts when a framework joins the comparison and stops when
+it leaves. Requests are JS plus CSS with prefetching excluded, the same total
+the bars print. A metric recorded only once is a dot. INP while loading
+was added in the latest run, so that panel has one point per framework. Ticks are runs, equally spaced, so the three runs from
+the night of 2026-10-27 sit as far apart as a later month. One earlier run,
+2026-10-26, is kept in the history file and left off the chart. The fixture
+was still six content pages, responses were not re-gzipped to one level, and
+Foldkit served its home page for every path (see [Corrections](#corrections)).
+
+<!-- history:start -->
+![Each framework across committed runs](bench/results/history.png?v=2026-11-27)
+
+| Run (UTC) | Next.js | Vinext | TanStack Start | React Router | Astro | Effect UI | Xote | Foldkit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-10-26 04:14 · not plotted | 16.4.3 | 1.3.1 | 1.169.4 | 7.18.4 | — | — | — | 0.169.0 |
+| 2026-10-27 00:18 | 16.4.3 | 1.3.1 | 1.169.4 | 7.18.4 | — | — | — | 0.169.0 |
+| 2026-10-27 01:25 | 16.4.3 | 1.3.1 | 1.169.4 | 7.18.4 | 7.4.2 | — | 7.1.0 | 0.169.0 |
+| 2026-10-27 02:10 | 16.4.3 | 1.3.1 | 1.169.4 | 8.5.0 | 7.4.2 | — | 7.1.0 | 0.169.0 |
+| 2026-11-27 01:12 | 16.4.6 | 1.4.7 | 1.169.7 | 8.5.3 | 7.4.13 | 33dbab6 | 7.2.0 | — |
+
+Vector copy: [`bench/results/history.svg`](bench/results/history.svg).
+<!-- history:end -->
+
 ## Latest results
 
 Run on 2026-11-26 (darwin, Node v24.21.0, Chromium 156.0.8078.4), every
@@ -19,6 +47,7 @@ Requests and weight are the mean of 3 cold loads and exclude prefetching
 15 cold loads per page on the throttled phone, 150 per framework, taken in
 rounds that alternate between the frameworks.
 
+<!-- results-table:start -->
 | Framework | JS requests | CSS requests | JS (gzip) | LCP | INP while loading | INP after load | Prefetched JS | Data requests |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Next.js 16.4.6 | 6.3 | 3.0 | 139 KiB | 490 ms | 198 ms | 32 ms | +2.9 (+6 KiB) | 27.2 |
@@ -28,6 +57,7 @@ rounds that alternate between the frameworks.
 | Astro 7.4.13 | 16.6 | 0 | 73 KiB | 255 ms | 14 ms | 32 ms | 0 | 0 |
 | Effect UI 33dbab6 | 2.2 | 2.2 | 145 KiB | 406 ms | 144 ms | 33 ms | 0 | 0 |
 | Xote 7.2.0 | 1.0 | 1.0 | 74 KiB | 431 ms | 150 ms | 32 ms | 0 | 0 |
+<!-- results-table:end -->
 
 Run-to-run spread is small: the interquartile range per page is 5 to 7 ms
 for LCP and 4 to 9 ms for INP while loading, so differences of 20 ms or more
@@ -36,6 +66,7 @@ between frameworks are not noise.
 Content pages (home, blog, articles, about, a section index) and generated
 widget pages behave differently, so here is the split:
 
+<!-- split-table:start -->
 | Framework | Content pages: JS / CSS requests, JS gzip | Widget pages: JS / CSS requests, JS gzip |
 | --- | --- | --- |
 | Next.js | 6 / 3, 138 KiB | 7 / 3, 141 KiB |
@@ -45,6 +76,7 @@ widget pages behave differently, so here is the split:
 | Astro | 15 / 0, 73 KiB | 20 / 0, 75 KiB |
 | Effect UI | 1 / 1, 144 KiB | 5 / 5, 148 KiB |
 | Xote | 1 / 1, 74 KiB | 1 / 1, 74 KiB |
+<!-- split-table:end -->
 
 Things worth noticing:
 
@@ -165,8 +197,26 @@ corepack enable          # or: npx pnpm@10 ...
 pnpm install
 pnpm build               # generates the fixture, then builds every app (Next.js and vinext both build apps/next)
 pnpm bench               # starts each prod server, measures, writes bench/results/latest.json
-pnpm chart               # renders bench/results/chart.{html,png}
+pnpm chart               # renders the bar chart and the time-series chart
+pnpm monthly             # bump versions, bench, append history, redraw both charts
 ```
+
+`pnpm monthly` is the once-a-month update. It moves every framework to its
+latest release, and the tooling that framework needs to build to the latest
+release of the major already in the repo, then installs and builds. A
+framework that fails to build stays on the version already in the repo. The script prints that and records it on the new history entry. It
+then runs `pnpm bench` with the usual defaults, appends the run to
+`bench/results/history.json` with the date and the exact version of each
+framework, and redraws both charts. It also refreshes the results tables and
+the version table in this file. Read the commentary under "Things worth
+noticing" again before opening the PR. The script refreshes the numbers.
+
+Effect UI is not published on npm. The command points `@effect/ui` at the
+latest commit on `Effect-TS/ui` through pkg.pr.new and updates the short sha
+in `bench/src/targets.ts`. Dates it writes are the UTC date of the benchmark
+timestamp.
+
+`pnpm monthly -- --dry-run` prints the versions it would install, then stops.
 
 Options:
 
