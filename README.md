@@ -8,7 +8,7 @@ set of interactive widgets (312 client components in total). A Playwright
 harness measures each production build: JS and CSS requests per page, JS
 weight, and LCP and INP on a throttled 4G phone.
 
-![chart](bench/results/chart.png)
+![chart](bench/results/chart.png?v=2026-11-26)
 
 ## Latest results
 
