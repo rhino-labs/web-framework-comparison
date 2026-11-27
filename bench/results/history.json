@@ -1,0 +1,884 @@
+{
+  "version": 1,
+  "description": "One entry per benchmark run. `plot: false` keeps a run that used a different fixture or protocol out of the chart. Metric names match bench/results/latest.json; runs that said jsRequestsAfterLoad are stored as jsRequestsPrefetch.",
+  "runs": [
+    {
+      "recordedAt": "2026-10-26T04:14:36.193Z",
+      "date": "2026-10-26",
+      "source": "git:29d444d",
+      "plot": false,
+      "runsPerPage": 3,
+      "phoneRunsPerPage": 5,
+      "protocol": null,
+      "paths": [
+        "/",
+        "/blog",
+        "/about",
+        "/blog/shipping-less-javascript",
+        "/blog/prefetching-done-right",
+        "/blog/typed-routing"
+      ],
+      "environment": {
+        "node": "v24.21.0",
+        "chromium": "156.0.8078.4",
+        "platform": "darwin"
+      },
+      "frameworks": [
+        {
+          "id": "next",
+          "label": "Next.js",
+          "version": "16.4.3",
+          "metrics": {
+            "jsRequests": 6,
+            "cssRequests": 3,
+            "dataRequests": 8.888888888888888,
+            "totalRequests": 18.88888888888889,
+            "jsGzipKiB": 138.3896484375,
+            "jsRawKiB": 464.6298828125,
+            "cssGzipKiB": 2.873046875,
+            "htmlGzipKiB": 6.691569010416667,
+            "phoneLcpMs": 433.3333333333333,
+            "phoneFcpMs": 433.3333333333333,
+            "phoneLoadMs": 688.4999999900659
+          }
+        },
+        {
+          "id": "vinext",
+          "label": "Vinext",
+          "version": "1.3.1",
+          "metrics": {
+            "jsRequests": 7,
+            "cssRequests": 2,
+            "dataRequests": 4.5,
+            "totalRequests": 14.5,
+            "jsGzipKiB": 150.6435546875,
+            "jsRawKiB": 490.3369140625,
+            "cssGzipKiB": 2.82421875,
+            "htmlGzipKiB": 8.021647135416666,
+            "phoneLcpMs": 446.6666666666667,
+            "phoneFcpMs": 446.6666666666667,
+            "phoneLoadMs": 1219.9833333392937
+          }
+        },
+        {
+          "id": "tanstack-start",
+          "label": "TanStack Start",
+          "version": "1.169.4",
+          "metrics": {
+            "jsRequests": 3,
+            "cssRequests": 3,
+            "dataRequests": 0,
+            "totalRequests": 7,
+            "jsGzipKiB": 115.9931640625,
+            "jsRawKiB": 358.3009440104167,
+            "cssGzipKiB": 2.8505859375,
+            "htmlGzipKiB": 4.561252170138888,
+            "phoneLcpMs": 425.3333333333333,
+            "phoneFcpMs": 425.3333333333333,
+            "phoneLoadMs": 629.9500000079473
+          }
+        },
+        {
+          "id": "react-router",
+          "label": "React Router",
+          "version": "7.18.4",
+          "metrics": {
+            "jsRequests": 5,
+            "cssRequests": 2,
+            "dataRequests": 1,
+            "totalRequests": 9,
+            "jsGzipKiB": 114.35693359375,
+            "jsRawKiB": 358.0724283854167,
+            "cssGzipKiB": 2.6396484375,
+            "htmlGzipKiB": 4.894694010416667,
+            "phoneLcpMs": 442.6666666666667,
+            "phoneFcpMs": 442.6666666666667,
+            "phoneLoadMs": 521.5
+          }
+        },
+        {
+          "id": "foldkit",
+          "label": "Foldkit",
+          "version": "0.169.0",
+          "metrics": {
+            "jsRequests": 1,
+            "cssRequests": 1,
+            "dataRequests": 0,
+            "totalRequests": 3,
+            "jsGzipKiB": 104.47265625,
+            "jsRawKiB": 320.720703125,
+            "cssGzipKiB": 2.5390625,
+            "htmlGzipKiB": 3.9423828125,
+            "phoneLcpMs": 462,
+            "phoneFcpMs": 414,
+            "phoneLoadMs": 685.2333333293597
+          }
+        }
+      ],
+      "phoneProfile": {
+        "latencyMs": 150,
+        "mbps": 5,
+        "cpuSlowdown": 4,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "note": "6 content pages only, no HTTP/2 proxy, and responses were not re-gzipped to one level. Foldkit answered the home page for every path. Not plotted; see Corrections in the README."
+    },
+    {
+      "recordedAt": "2026-10-27T00:18:11.011Z",
+      "date": "2026-10-27",
+      "source": "git:dc09d4d",
+      "plot": true,
+      "runsPerPage": 3,
+      "phoneRunsPerPage": 5,
+      "protocol": "h2 (local TLS proxy)",
+      "paths": [
+        "/",
+        "/blog",
+        "/about",
+        "/blog/shipping-less-javascript",
+        "/blog/prefetching-done-right",
+        "/blog/typed-routing",
+        "/docs",
+        "/docs/token-runtime-runtime",
+        "/tools/hydrate-effect-route",
+        "/learn/prefetch-dynamic-payload"
+      ],
+      "environment": {
+        "node": "v24.21.0",
+        "chromium": "156.0.8078.4",
+        "platform": "darwin"
+      },
+      "frameworks": [
+        {
+          "id": "next",
+          "label": "Next.js",
+          "version": "16.4.3",
+          "metrics": {
+            "jsRequests": 6.3,
+            "cssRequests": 3,
+            "dataRequests": 27.166666666666668,
+            "totalRequests": 10.3,
+            "jsGzipKiB": 139.07041015625,
+            "jsRawKiB": 467.16396484375,
+            "cssGzipKiB": 10.845703125,
+            "htmlGzipKiB": 10.41630859375,
+            "phoneLcpMs": 505.2,
+            "phoneFcpMs": 505.2,
+            "phoneLoadMs": 683.9100000083447,
+            "jsRequestsPrefetch": 2.9,
+            "cssRequestsPrefetch": 0,
+            "jsGzipPrefetchKiB": 6.31591796875
+          }
+        },
+        {
+          "id": "vinext",
+          "label": "Vinext",
+          "version": "1.3.1",
+          "metrics": {
+            "jsRequests": 9.2,
+            "cssRequests": 5.2,
+            "dataRequests": 12.6,
+            "totalRequests": 15.4,
+            "jsGzipKiB": 153.0009765625,
+            "jsRawKiB": 507.65615234375,
+            "cssGzipKiB": 3.8841796875,
+            "htmlGzipKiB": 12.09267578125,
+            "phoneLcpMs": 452.4,
+            "phoneFcpMs": 452.4,
+            "phoneLoadMs": 1264.1999999821187,
+            "jsRequestsPrefetch": 4,
+            "cssRequestsPrefetch": 4,
+            "jsGzipPrefetchKiB": 5.83671875
+          }
+        },
+        {
+          "id": "tanstack-start",
+          "label": "TanStack Start",
+          "version": "1.169.4",
+          "metrics": {
+            "jsRequests": 3.9,
+            "cssRequests": 4.2,
+            "dataRequests": 0,
+            "totalRequests": 9.1,
+            "jsGzipKiB": 123.33583984375,
+            "jsRawKiB": 391.8869140625,
+            "cssGzipKiB": 3.4994140625,
+            "htmlGzipKiB": 8.368391927083334,
+            "phoneLcpMs": 426,
+            "phoneFcpMs": 426,
+            "phoneLoadMs": 633.2199999988079,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "jsGzipPrefetchKiB": 0
+          }
+        },
+        {
+          "id": "react-router",
+          "label": "React Router",
+          "version": "7.18.4",
+          "metrics": {
+            "jsRequests": 6.9,
+            "cssRequests": 4.2,
+            "dataRequests": 1,
+            "totalRequests": 12.1,
+            "jsGzipKiB": 115.82587890625,
+            "jsRawKiB": 361.44951171875,
+            "cssGzipKiB": 3.656640625,
+            "htmlGzipKiB": 9.36875,
+            "phoneLcpMs": 445.2,
+            "phoneFcpMs": 445.2,
+            "phoneLoadMs": 514.1400000095367,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "jsGzipPrefetchKiB": 0
+          }
+        },
+        {
+          "id": "foldkit",
+          "label": "Foldkit",
+          "version": "0.169.0",
+          "metrics": {
+            "jsRequests": 1,
+            "cssRequests": 1,
+            "dataRequests": 0,
+            "totalRequests": 3,
+            "jsGzipKiB": 159.2978515625,
+            "jsRawKiB": 678.34375,
+            "cssGzipKiB": 10.388671875,
+            "htmlGzipKiB": 6.0947265625,
+            "phoneLcpMs": 476.8,
+            "phoneFcpMs": 439.2,
+            "phoneLoadMs": 791.4,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "jsGzipPrefetchKiB": 0
+          }
+        }
+      ],
+      "phoneProfile": {
+        "latencyMs": 150,
+        "mbps": 5,
+        "cpuSlowdown": 4,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "note": "First run of the 153-page fixture over the HTTP/2 + gzip proxy. 5 phone loads per page."
+    },
+    {
+      "recordedAt": "2026-10-27T01:25:09.770Z",
+      "date": "2026-10-27",
+      "source": "git:e5e82ec",
+      "plot": true,
+      "runsPerPage": 3,
+      "phoneRunsPerPage": 5,
+      "protocol": "h2 (local TLS proxy)",
+      "paths": [
+        "/",
+        "/blog",
+        "/about",
+        "/blog/shipping-less-javascript",
+        "/blog/prefetching-done-right",
+        "/blog/typed-routing",
+        "/docs",
+        "/docs/token-runtime-runtime",
+        "/tools/hydrate-effect-route",
+        "/learn/prefetch-dynamic-payload"
+      ],
+      "environment": {
+        "node": "v24.21.0",
+        "chromium": "156.0.8078.4",
+        "platform": "darwin"
+      },
+      "frameworks": [
+        {
+          "id": "next",
+          "label": "Next.js",
+          "version": "16.4.3",
+          "metrics": {
+            "jsRequests": 6.3,
+            "cssRequests": 3,
+            "jsRequestsPrefetch": 2.9,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 27.166666666666668,
+            "totalRequests": 12.3,
+            "jsGzipKiB": 139.07041015625,
+            "jsRawKiB": 467.16396484375,
+            "jsGzipPrefetchKiB": 6.31591796875,
+            "cssGzipKiB": 10.845703125,
+            "htmlGzipKiB": 10.41669921875,
+            "phoneLcpMs": 508.8,
+            "phoneFcpMs": 508.8,
+            "phoneLoadMs": 688.8700000047684
+          }
+        },
+        {
+          "id": "vinext",
+          "label": "Vinext",
+          "version": "1.3.1",
+          "metrics": {
+            "jsRequests": 9.2,
+            "cssRequests": 5.2,
+            "jsRequestsPrefetch": 4,
+            "cssRequestsPrefetch": 4,
+            "dataRequests": 12.6,
+            "totalRequests": 16.866666666666667,
+            "jsGzipKiB": 153.0087890625,
+            "jsRawKiB": 507.65615234375,
+            "jsGzipPrefetchKiB": 5.84130859375,
+            "cssGzipKiB": 3.8841796875,
+            "htmlGzipKiB": 12.100390625,
+            "phoneLcpMs": 435.6,
+            "phoneFcpMs": 435.6,
+            "phoneLoadMs": 773.7000000119209
+          }
+        },
+        {
+          "id": "tanstack-start",
+          "label": "TanStack Start",
+          "version": "1.169.4",
+          "metrics": {
+            "jsRequests": 3.9,
+            "cssRequests": 4.2,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 9.1,
+            "jsGzipKiB": 123.33583984375,
+            "jsRawKiB": 391.8869140625,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 3.4994140625,
+            "htmlGzipKiB": 8.368326822916668,
+            "phoneLcpMs": 428.4,
+            "phoneFcpMs": 428.4,
+            "phoneLoadMs": 634.7400000035763
+          }
+        },
+        {
+          "id": "react-router",
+          "label": "React Router",
+          "version": "7.18.4",
+          "metrics": {
+            "jsRequests": 6.9,
+            "cssRequests": 4.2,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 1,
+            "totalRequests": 13.1,
+            "jsGzipKiB": 115.82587890625,
+            "jsRawKiB": 361.44951171875,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 3.656640625,
+            "htmlGzipKiB": 9.36875,
+            "phoneLcpMs": 459.6,
+            "phoneFcpMs": 459.6,
+            "phoneLoadMs": 517.7699999809265
+          }
+        },
+        {
+          "id": "astro",
+          "label": "Astro",
+          "version": "7.4.2",
+          "metrics": {
+            "jsRequests": 15.6,
+            "cssRequests": 0,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 16.6,
+            "jsGzipKiB": 73.245703125,
+            "jsRawKiB": 225.94365234375,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 0,
+            "htmlGzipKiB": 11.64892578125,
+            "phoneLcpMs": 276,
+            "phoneFcpMs": 234.8,
+            "phoneLoadMs": 237.2099999845028
+          }
+        },
+        {
+          "id": "foldkit",
+          "label": "Foldkit",
+          "version": "0.169.0",
+          "metrics": {
+            "jsRequests": 1,
+            "cssRequests": 1,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 3,
+            "jsGzipKiB": 159.298828125,
+            "jsRawKiB": 678.34375,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 10.388671875,
+            "htmlGzipKiB": 7.75625,
+            "phoneLcpMs": 453.2,
+            "phoneFcpMs": 453.2,
+            "phoneLoadMs": 820.7800000011921
+          }
+        },
+        {
+          "id": "xote",
+          "label": "Xote",
+          "version": "7.1.0",
+          "metrics": {
+            "jsRequests": 1,
+            "cssRequests": 1,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 3,
+            "jsGzipKiB": 70.1337890625,
+            "jsRawKiB": 426.3134765625,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 10.40625,
+            "htmlGzipKiB": 6.9869140625,
+            "phoneLcpMs": 453.6,
+            "phoneFcpMs": 453.6,
+            "phoneLoadMs": 520.080000013113
+          }
+        }
+      ],
+      "phoneProfile": {
+        "latencyMs": 150,
+        "mbps": 5,
+        "cpuSlowdown": 4,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "note": "Astro 7.4.2 and Xote 7.1.0 joined. The other frameworks are the same versions as the previous run, measured again."
+    },
+    {
+      "recordedAt": "2026-10-27T02:10:15.374Z",
+      "date": "2026-10-27",
+      "source": "git:f1302ff",
+      "plot": true,
+      "runsPerPage": 3,
+      "phoneRunsPerPage": 5,
+      "protocol": "h2 (local TLS proxy)",
+      "paths": [
+        "/",
+        "/blog",
+        "/about",
+        "/blog/shipping-less-javascript",
+        "/blog/prefetching-done-right",
+        "/blog/typed-routing",
+        "/docs",
+        "/docs/token-runtime-runtime",
+        "/tools/hydrate-effect-route",
+        "/learn/prefetch-dynamic-payload"
+      ],
+      "environment": {
+        "node": "v24.21.0",
+        "chromium": "156.0.8078.4",
+        "platform": "darwin"
+      },
+      "frameworks": [
+        {
+          "id": "next",
+          "label": "Next.js",
+          "version": "16.4.3",
+          "metrics": {
+            "jsRequests": 6.3,
+            "cssRequests": 3,
+            "jsRequestsPrefetch": 2.9,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 27.166666666666668,
+            "totalRequests": 11.933333333333334,
+            "jsGzipKiB": 139.07041015625,
+            "jsRawKiB": 467.16396484375,
+            "jsGzipPrefetchKiB": 6.31591796875,
+            "cssGzipKiB": 10.845703125,
+            "htmlGzipKiB": 10.4150390625,
+            "phoneLcpMs": 510,
+            "phoneFcpMs": 510,
+            "phoneLoadMs": 694.330000001192
+          }
+        },
+        {
+          "id": "vinext",
+          "label": "Vinext",
+          "version": "1.3.1",
+          "metrics": {
+            "jsRequests": 9.2,
+            "cssRequests": 5.2,
+            "jsRequestsPrefetch": 4,
+            "cssRequestsPrefetch": 4,
+            "dataRequests": 12.6,
+            "totalRequests": 16.666666666666668,
+            "jsGzipKiB": 152.99970703125,
+            "jsRawKiB": 507.65615234375,
+            "jsGzipPrefetchKiB": 5.839453125,
+            "cssGzipKiB": 3.8841796875,
+            "htmlGzipKiB": 12.0912109375,
+            "phoneLcpMs": 444,
+            "phoneFcpMs": 444,
+            "phoneLoadMs": 770.1500000178814
+          }
+        },
+        {
+          "id": "tanstack-start",
+          "label": "TanStack Start",
+          "version": "1.169.4",
+          "metrics": {
+            "jsRequests": 3.9,
+            "cssRequests": 4.2,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 9.1,
+            "jsGzipKiB": 123.33583984375,
+            "jsRawKiB": 391.8869140625,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 3.4994140625,
+            "htmlGzipKiB": 8.368359374999999,
+            "phoneLcpMs": 430.8,
+            "phoneFcpMs": 430.8,
+            "phoneLoadMs": 636.0799999952317
+          }
+        },
+        {
+          "id": "react-router",
+          "label": "React Router",
+          "version": "8.5.0",
+          "metrics": {
+            "jsRequests": 6.9,
+            "cssRequests": 4.2,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 1,
+            "totalRequests": 13.1,
+            "jsGzipKiB": 119.51689453125,
+            "jsRawKiB": 373.01279296875,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 3.656640625,
+            "htmlGzipKiB": 9.31923828125,
+            "phoneLcpMs": 455.2,
+            "phoneFcpMs": 455.2,
+            "phoneLoadMs": 505.5
+          }
+        },
+        {
+          "id": "astro",
+          "label": "Astro",
+          "version": "7.4.2",
+          "metrics": {
+            "jsRequests": 15.6,
+            "cssRequests": 0,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 16.6,
+            "jsGzipKiB": 73.245703125,
+            "jsRawKiB": 225.94365234375,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 0,
+            "htmlGzipKiB": 11.64892578125,
+            "phoneLcpMs": 281.6,
+            "phoneFcpMs": 226.4,
+            "phoneLoadMs": 261.3599999964237
+          }
+        },
+        {
+          "id": "foldkit",
+          "label": "Foldkit",
+          "version": "0.169.0",
+          "metrics": {
+            "jsRequests": 1,
+            "cssRequests": 1,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 3,
+            "jsGzipKiB": 159.298828125,
+            "jsRawKiB": 678.34375,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 10.388671875,
+            "htmlGzipKiB": 7.75546875,
+            "phoneLcpMs": 445.6,
+            "phoneFcpMs": 445.6,
+            "phoneLoadMs": 818.2999999880791
+          }
+        },
+        {
+          "id": "xote",
+          "label": "Xote",
+          "version": "7.1.0",
+          "metrics": {
+            "jsRequests": 1,
+            "cssRequests": 1,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 3,
+            "jsGzipKiB": 70.1337890625,
+            "jsRawKiB": 426.3134765625,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 10.40625,
+            "htmlGzipKiB": 6.9869140625,
+            "phoneLcpMs": 450.4,
+            "phoneFcpMs": 450.4,
+            "phoneLoadMs": 514.7300000011921
+          }
+        }
+      ],
+      "phoneProfile": {
+        "latencyMs": 150,
+        "mbps": 5,
+        "cpuSlowdown": 4,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "note": "React Router updated from 7.18.4 to 8.5.0. The other frameworks are the same versions as the previous run."
+    },
+    {
+      "recordedAt": "2026-11-27T01:12:22.483Z",
+      "date": "2026-11-27",
+      "source": "git:4c34a68",
+      "plot": true,
+      "runsPerPage": 3,
+      "phoneRunsPerPage": 15,
+      "protocol": "h2 (local TLS proxy)",
+      "paths": [
+        "/",
+        "/blog",
+        "/about",
+        "/blog/shipping-less-javascript",
+        "/blog/prefetching-done-right",
+        "/blog/typed-routing",
+        "/docs",
+        "/docs/token-runtime-runtime",
+        "/tools/hydrate-effect-route",
+        "/learn/prefetch-dynamic-payload"
+      ],
+      "environment": {
+        "node": "v24.21.0",
+        "chromium": "156.0.8078.4",
+        "platform": "darwin"
+      },
+      "frameworks": [
+        {
+          "id": "next",
+          "label": "Next.js",
+          "version": "16.4.6",
+          "metrics": {
+            "jsRequests": 6.3,
+            "cssRequests": 3,
+            "jsRequestsPrefetch": 2.9,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 27.2,
+            "totalRequests": 12.333333333333332,
+            "jsGzipKiB": 138.93818359375,
+            "jsRawKiB": 468.49365234375,
+            "jsGzipPrefetchKiB": 6.3525390625,
+            "cssGzipKiB": 10.845703125,
+            "htmlGzipKiB": 10.4158203125,
+            "phoneLcpMs": 490,
+            "phoneLcpIqrMs": 6,
+            "phoneFcpMs": 490,
+            "phoneLoadMs": 666.0199999570847,
+            "phoneInpMs": 32,
+            "phoneInpIqrMs": 0,
+            "phoneInpWorstPageMs": 32,
+            "interactionsPerPage": 22.6,
+            "phoneInpLoadMs": 197.6,
+            "phoneInpLoadIqrMs": 9.2,
+            "phoneInpLoadWorstPageMs": 208
+          }
+        },
+        {
+          "id": "vinext",
+          "label": "Vinext",
+          "version": "1.4.7",
+          "metrics": {
+            "jsRequests": 9.2,
+            "cssRequests": 5.2,
+            "jsRequestsPrefetch": 4,
+            "cssRequestsPrefetch": 4,
+            "dataRequests": 12.6,
+            "totalRequests": 16.866666666666667,
+            "jsGzipKiB": 157.05751953125,
+            "jsRawKiB": 520.6068359375,
+            "jsGzipPrefetchKiB": 5.82724609375,
+            "cssGzipKiB": 3.8841796875,
+            "htmlGzipKiB": 12.01923828125,
+            "phoneLcpMs": 415.6,
+            "phoneLcpIqrMs": 6,
+            "phoneFcpMs": 415.6,
+            "phoneLoadMs": 759.9700000286102,
+            "phoneInpMs": 32,
+            "phoneInpIqrMs": 0,
+            "phoneInpWorstPageMs": 32,
+            "interactionsPerPage": 22.6,
+            "phoneInpLoadMs": 17.6,
+            "phoneInpLoadIqrMs": 6.4,
+            "phoneInpLoadWorstPageMs": 24
+          }
+        },
+        {
+          "id": "tanstack-start",
+          "label": "TanStack Start",
+          "version": "1.169.7",
+          "metrics": {
+            "jsRequests": 2.9,
+            "cssRequests": 3.2,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 7.1,
+            "jsGzipKiB": 122.28876953125,
+            "jsRawKiB": 390.99326171875,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 3.281640625,
+            "htmlGzipKiB": 8.324609375000001,
+            "phoneLcpMs": 408.4,
+            "phoneLcpIqrMs": 7.2,
+            "phoneFcpMs": 408.4,
+            "phoneLoadMs": 610.2399999380111,
+            "phoneInpMs": 32,
+            "phoneInpIqrMs": 0,
+            "phoneInpWorstPageMs": 32,
+            "interactionsPerPage": 22.6,
+            "phoneInpLoadMs": 123.2,
+            "phoneInpLoadIqrMs": 4,
+            "phoneInpLoadWorstPageMs": 136
+          }
+        },
+        {
+          "id": "react-router",
+          "label": "React Router",
+          "version": "8.5.3",
+          "metrics": {
+            "jsRequests": 6.9,
+            "cssRequests": 4.2,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 1,
+            "totalRequests": 13.1,
+            "jsGzipKiB": 120.30849609375,
+            "jsRawKiB": 374.93369140625,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 3.656640625,
+            "htmlGzipKiB": 9.3458984375,
+            "phoneLcpMs": 434.8,
+            "phoneLcpIqrMs": 6.6,
+            "phoneFcpMs": 434.8,
+            "phoneLoadMs": 504.6,
+            "phoneInpMs": 32,
+            "phoneInpIqrMs": 0,
+            "phoneInpWorstPageMs": 32,
+            "interactionsPerPage": 22.6,
+            "phoneInpLoadMs": 153.6,
+            "phoneInpLoadIqrMs": 3.6,
+            "phoneInpLoadWorstPageMs": 176
+          }
+        },
+        {
+          "id": "astro",
+          "label": "Astro",
+          "version": "7.4.13",
+          "metrics": {
+            "jsRequests": 16.6,
+            "cssRequests": 0,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 17.6,
+            "jsGzipKiB": 73.30322265625,
+            "jsRawKiB": 225.6025390625,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 0,
+            "htmlGzipKiB": 11.65712890625,
+            "phoneLcpMs": 254.8,
+            "phoneLcpIqrMs": 5.4,
+            "phoneFcpMs": 212.8,
+            "phoneLoadMs": 215.3,
+            "phoneInpMs": 32,
+            "phoneInpIqrMs": 0,
+            "phoneInpWorstPageMs": 32,
+            "interactionsPerPage": 22.6,
+            "phoneInpLoadMs": 14.4,
+            "phoneInpLoadIqrMs": 5.6,
+            "phoneInpLoadWorstPageMs": 16
+          }
+        },
+        {
+          "id": "effect-ui",
+          "label": "Effect UI",
+          "version": "33dbab6",
+          "metrics": {
+            "jsRequests": 2.2,
+            "cssRequests": 2.2,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 5.4,
+            "jsGzipKiB": 144.95185546875,
+            "jsRawKiB": 432.42958984375,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 3.1830078125,
+            "htmlGzipKiB": 7.331640625,
+            "phoneLcpMs": 406.4,
+            "phoneLcpIqrMs": 5.4,
+            "phoneFcpMs": 406.4,
+            "phoneLoadMs": 713.8299999952317,
+            "phoneInpMs": 32.8,
+            "phoneInpIqrMs": 0.8,
+            "phoneInpWorstPageMs": 40,
+            "interactionsPerPage": 22.6,
+            "phoneInpLoadMs": 144,
+            "phoneInpLoadIqrMs": 6,
+            "phoneInpLoadWorstPageMs": 176
+          }
+        },
+        {
+          "id": "xote",
+          "label": "Xote",
+          "version": "7.2.0",
+          "metrics": {
+            "jsRequests": 1,
+            "cssRequests": 1,
+            "jsRequestsPrefetch": 0,
+            "cssRequestsPrefetch": 0,
+            "dataRequests": 0,
+            "totalRequests": 3,
+            "jsGzipKiB": 73.5458984375,
+            "jsRawKiB": 437.6787109375,
+            "jsGzipPrefetchKiB": 0,
+            "cssGzipKiB": 10.40625,
+            "htmlGzipKiB": 6.98583984375,
+            "phoneLcpMs": 430.8,
+            "phoneLcpIqrMs": 5.4,
+            "phoneFcpMs": 430.8,
+            "phoneLoadMs": 507.1700000524521,
+            "phoneInpMs": 32,
+            "phoneInpIqrMs": 0,
+            "phoneInpWorstPageMs": 32,
+            "interactionsPerPage": 22,
+            "phoneInpLoadMs": 150.4,
+            "phoneInpLoadIqrMs": 8,
+            "phoneInpLoadWorstPageMs": 160
+          }
+        }
+      ],
+      "phoneProfile": {
+        "latencyMs": 150,
+        "mbps": 5,
+        "cpuSlowdown": 4,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "note": "Versions current in this commit. Foldkit was replaced by Effect UI. INP was recorded for the first time, and phone medians use 15 loads per page."
+    }
+  ]
+}

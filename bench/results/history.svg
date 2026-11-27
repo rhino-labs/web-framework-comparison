@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="722" viewBox="0 0 1300 722" role="img" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif">
+<title>The same 10 pages over time</title>
+<rect x="0.5" y="0.5" width="1299" height="721" rx="14" fill="#fafafa" stroke="#e5e7eb"/>
+<text x="24" y="44" fill="#111827" font-size="19" font-weight="600">The same 10 pages over time</text>
+<line x1="24" y1="68" x2="42" y2="68" stroke="#2563eb" stroke-width="2.25" stroke-linecap="round"/>
+<circle cx="33" cy="68" r="3.25" fill="#2563eb" stroke="#fafafa" stroke-width="1.5"/>
+<text x="48" y="72" fill="#374151" font-size="13">Next.js 16.4.6</text>
+<line x1="157.57000000000002" y1="68" x2="175.57000000000002" y2="68" stroke="#6d28d9" stroke-width="2.25" stroke-linecap="round"/>
+<circle cx="166.57000000000002" cy="68" r="3.25" fill="#6d28d9" stroke="#fafafa" stroke-width="1.5"/>
+<text x="181.57000000000002" y="72" fill="#374151" font-size="13">Vinext 1.4.7</text>
+<line x1="279.96000000000004" y1="68" x2="297.96000000000004" y2="68" stroke="#0f766e" stroke-width="2.25" stroke-linecap="round"/>
+<circle cx="288.96000000000004" cy="68" r="3.25" fill="#0f766e" stroke="#fafafa" stroke-width="1.5"/>
+<text x="303.96000000000004" y="72" fill="#374151" font-size="13">TanStack Start 1.169.7</text>
+<line x1="475.02" y1="68" x2="493.02" y2="68" stroke="#c2410c" stroke-width="2.25" stroke-linecap="round"/>
+<circle cx="484.02" cy="68" r="3.25" fill="#c2410c" stroke="#fafafa" stroke-width="1.5"/>
+<text x="499.02" y="72" fill="#374151" font-size="13">React Router 8.5.3</text>
+<line x1="638.88" y1="68" x2="656.88" y2="68" stroke="#be185d" stroke-width="2.25" stroke-linecap="round"/>
+<circle cx="647.88" cy="68" r="3.25" fill="#be185d" stroke="#fafafa" stroke-width="1.5"/>
+<text x="662.88" y="72" fill="#374151" font-size="13">Astro 7.4.13</text>
+<line x1="761.79" y1="68" x2="779.79" y2="68" stroke="#0e7490" stroke-width="2.25" stroke-linecap="round"/>
+<circle cx="770.79" cy="68" r="3.25" fill="#0e7490" stroke="#fafafa" stroke-width="1.5"/>
+<text x="785.79" y="72" fill="#374151" font-size="13">Effect UI 33dbab6</text>
+<line x1="927.4699999999999" y1="68" x2="945.4699999999999" y2="68" stroke="#3f6212" stroke-width="2.25" stroke-linecap="round"/>
+<circle cx="936.4699999999999" cy="68" r="3.25" fill="#3f6212" stroke="#fafafa" stroke-width="1.5"/>
+<text x="951.4699999999999" y="72" fill="#374151" font-size="13">Xote 7.2.0</text>
+<line x1="1035.82" y1="68" x2="1053.82" y2="68" stroke="#4b5563" stroke-width="2.25" stroke-linecap="round" stroke-dasharray="4 3"/>
+<circle cx="1044.82" cy="68" r="3.25" fill="#4b5563" stroke="#fafafa" stroke-width="1.5"/>
+<text x="1059.82" y="72" fill="#374151" font-size="13">Foldkit 0.169.0</text>
+<text x="24" y="108" fill="#111827" font-size="14" font-weight="600">Requests per page</text>
+<line x1="60" y1="328" x2="561" y2="328" stroke="#e5e7eb" stroke-width="1"/>
+<text x="52" y="328" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">0</text>
+<line x1="60" y1="275" x2="561" y2="275" stroke="#e5e7eb" stroke-width="1"/>
+<text x="52" y="275" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">5</text>
+<line x1="60" y1="222" x2="561" y2="222" stroke="#e5e7eb" stroke-width="1"/>
+<text x="52" y="222" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">10</text>
+<line x1="60" y1="169" x2="561" y2="169" stroke="#e5e7eb" stroke-width="1"/>
+<text x="52" y="169" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">15</text>
+<line x1="60" y1="116" x2="561" y2="116" stroke="#e5e7eb" stroke-width="1"/>
+<text x="52" y="116" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">20</text>
+<text x="76" y="344" text-anchor="middle" fill="#6b7280" font-size="11">Oct 27</text>
+<text x="76" y="358" text-anchor="middle" fill="#6b7280" font-size="11">00:18</text>
+<text x="232.33333333333334" y="344" text-anchor="middle" fill="#6b7280" font-size="11">Oct 27</text>
+<text x="232.33333333333334" y="358" text-anchor="middle" fill="#6b7280" font-size="11">01:25</text>
+<text x="388.6666666666667" y="344" text-anchor="middle" fill="#6b7280" font-size="11">Oct 27</text>
+<text x="388.6666666666667" y="358" text-anchor="middle" fill="#6b7280" font-size="11">02:10</text>
+<text x="545" y="344" text-anchor="middle" fill="#6b7280" font-size="11">Nov 27</text>
+<text x="545" y="358" text-anchor="middle" fill="#6b7280" font-size="11">01:12</text>
+<polyline data-id="next" data-metric="requests" fill="none" stroke="#2563eb" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="76.0,229.4 232.3,229.4 388.7,229.4 545.0,229.4"/>
+<polyline data-id="vinext" data-metric="requests" fill="none" stroke="#6d28d9" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="76.0,175.4 232.3,175.4 388.7,175.4 545.0,175.4"/>
+<polyline data-id="tanstack-start" data-metric="requests" fill="none" stroke="#0f766e" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="76.0,242.1 232.3,242.1 388.7,242.1 545.0,263.3"/>
+<polyline data-id="react-router" data-metric="requests" fill="none" stroke="#c2410c" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="76.0,210.3 232.3,210.3 388.7,210.3 545.0,210.3"/>
+<polyline data-id="astro" data-metric="requests" fill="none" stroke="#be185d" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="232.3,162.6 388.7,162.6 545.0,152.0"/>
+<polyline data-id="xote" data-metric="requests" fill="none" stroke="#3f6212" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="232.3,306.8 388.7,306.8 545.0,306.8"/>
+<polyline data-id="foldkit" data-metric="requests" fill="none" stroke="#4b5563" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4" points="76.0,306.8 232.3,306.8 388.7,306.8"/>
+<circle data-id="next" data-metric="requests" data-value="9.3" cx="76.0" cy="229.4" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="next" data-metric="requests" data-value="9.3" cx="232.3" cy="229.4" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="next" data-metric="requests" data-value="9.3" cx="388.7" cy="229.4" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="next" data-metric="requests" data-value="9.3" cx="545.0" cy="229.4" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="requests" data-value="14.399999999999999" cx="76.0" cy="175.4" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="requests" data-value="14.399999999999999" cx="232.3" cy="175.4" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="requests" data-value="14.399999999999999" cx="388.7" cy="175.4" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="requests" data-value="14.399999999999999" cx="545.0" cy="175.4" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="requests" data-value="8.1" cx="76.0" cy="242.1" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="requests" data-value="8.1" cx="232.3" cy="242.1" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="requests" data-value="8.1" cx="388.7" cy="242.1" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="requests" data-value="6.1" cx="545.0" cy="263.3" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="requests" data-value="11.100000000000001" cx="76.0" cy="210.3" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="requests" data-value="11.100000000000001" cx="232.3" cy="210.3" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="requests" data-value="11.100000000000001" cx="388.7" cy="210.3" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="requests" data-value="11.100000000000001" cx="545.0" cy="210.3" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="requests" data-value="15.6" cx="232.3" cy="162.6" r="4.25" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="requests" data-value="15.6" cx="388.7" cy="162.6" r="4.25" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="requests" data-value="16.6" cx="545.0" cy="152.0" r="4.25" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="effect-ui" data-metric="requests" data-value="4.4" cx="545.0" cy="281.4" r="4.25" fill="#0e7490" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="requests" data-value="2" cx="232.3" cy="306.8" r="4.25" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="requests" data-value="2" cx="388.7" cy="306.8" r="4.25" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="requests" data-value="2" cx="545.0" cy="306.8" r="4.25" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="foldkit" data-metric="requests" data-value="2" cx="76.0" cy="306.8" r="4.25" fill="#4b5563" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="foldkit" data-metric="requests" data-value="2" cx="232.3" cy="306.8" r="4.25" fill="#4b5563" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="foldkit" data-metric="requests" data-value="2" cx="388.7" cy="306.8" r="4.25" fill="#4b5563" stroke="#fafafa" stroke-width="2"/>
+<text x="569.0" y="229.4" dominant-baseline="middle" fill="#2563eb" font-size="12" font-weight="600">9.3</text>
+<text x="569.0" y="175.4" dominant-baseline="middle" fill="#6d28d9" font-size="12" font-weight="600">14.4</text>
+<text x="569.0" y="263.3" dominant-baseline="middle" fill="#0f766e" font-size="12" font-weight="600">6.1</text>
+<text x="569.0" y="210.3" dominant-baseline="middle" fill="#c2410c" font-size="12" font-weight="600">11.1</text>
+<text x="569.0" y="152.0" dominant-baseline="middle" fill="#be185d" font-size="12" font-weight="600">16.6</text>
+<text x="569.0" y="281.4" dominant-baseline="middle" fill="#0e7490" font-size="12" font-weight="600">4.4</text>
+<text x="569.0" y="306.8" dominant-baseline="middle" fill="#3f6212" font-size="12" font-weight="600">2</text>
+<text x="661" y="108" fill="#111827" font-size="14" font-weight="600">JS per page (gzip)</text>
+<line x1="697" y1="328" x2="1198" y2="328" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="328" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">0</text>
+<line x1="697" y1="275" x2="1198" y2="275" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="275" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">50</text>
+<line x1="697" y1="222" x2="1198" y2="222" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="222" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">100</text>
+<line x1="697" y1="169" x2="1198" y2="169" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="169" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">150</text>
+<line x1="697" y1="116" x2="1198" y2="116" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="116" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">200</text>
+<text x="713" y="344" text-anchor="middle" fill="#6b7280" font-size="11">Oct 27</text>
+<text x="713" y="358" text-anchor="middle" fill="#6b7280" font-size="11">00:18</text>
+<text x="869.3333333333334" y="344" text-anchor="middle" fill="#6b7280" font-size="11">Oct 27</text>
+<text x="869.3333333333334" y="358" text-anchor="middle" fill="#6b7280" font-size="11">01:25</text>
+<text x="1025.6666666666667" y="344" text-anchor="middle" fill="#6b7280" font-size="11">Oct 27</text>
+<text x="1025.6666666666667" y="358" text-anchor="middle" fill="#6b7280" font-size="11">02:10</text>
+<text x="1182" y="344" text-anchor="middle" fill="#6b7280" font-size="11">Nov 27</text>
+<text x="1182" y="358" text-anchor="middle" fill="#6b7280" font-size="11">01:12</text>
+<polyline data-id="next" data-metric="js" fill="none" stroke="#2563eb" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="713.0,180.6 869.3,180.6 1025.7,180.6 1182.0,180.7"/>
+<polyline data-id="vinext" data-metric="js" fill="none" stroke="#6d28d9" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="713.0,165.8 869.3,165.8 1025.7,165.8 1182.0,161.5"/>
+<polyline data-id="tanstack-start" data-metric="js" fill="none" stroke="#0f766e" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="713.0,197.3 869.3,197.3 1025.7,197.3 1182.0,198.4"/>
+<polyline data-id="react-router" data-metric="js" fill="none" stroke="#c2410c" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="713.0,205.2 869.3,205.2 1025.7,201.3 1182.0,200.5"/>
+<polyline data-id="astro" data-metric="js" fill="none" stroke="#be185d" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="869.3,250.4 1025.7,250.4 1182.0,250.3"/>
+<polyline data-id="xote" data-metric="js" fill="none" stroke="#3f6212" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="869.3,253.7 1025.7,253.7 1182.0,250.0"/>
+<polyline data-id="foldkit" data-metric="js" fill="none" stroke="#4b5563" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4" points="713.0,159.1 869.3,159.1 1025.7,159.1"/>
+<circle data-id="next" data-metric="js" data-value="139.07041015625" cx="713.0" cy="180.6" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="next" data-metric="js" data-value="139.07041015625" cx="869.3" cy="180.6" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="next" data-metric="js" data-value="139.07041015625" cx="1025.7" cy="180.6" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="next" data-metric="js" data-value="138.93818359375" cx="1182.0" cy="180.7" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="js" data-value="153.0009765625" cx="713.0" cy="165.8" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="js" data-value="153.0087890625" cx="869.3" cy="165.8" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="js" data-value="152.99970703125" cx="1025.7" cy="165.8" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="js" data-value="157.05751953125" cx="1182.0" cy="161.5" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="js" data-value="123.33583984375" cx="713.0" cy="197.3" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="js" data-value="123.33583984375" cx="869.3" cy="197.3" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="js" data-value="123.33583984375" cx="1025.7" cy="197.3" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="js" data-value="122.28876953125" cx="1182.0" cy="198.4" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="js" data-value="115.82587890625" cx="713.0" cy="205.2" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="js" data-value="115.82587890625" cx="869.3" cy="205.2" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="js" data-value="119.51689453125" cx="1025.7" cy="201.3" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="js" data-value="120.30849609375" cx="1182.0" cy="200.5" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="js" data-value="73.245703125" cx="869.3" cy="250.4" r="4.25" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="js" data-value="73.245703125" cx="1025.7" cy="250.4" r="4.25" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="js" data-value="73.30322265625" cx="1182.0" cy="250.3" r="4.25" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="effect-ui" data-metric="js" data-value="144.95185546875" cx="1182.0" cy="174.4" r="4.25" fill="#0e7490" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="js" data-value="70.1337890625" cx="869.3" cy="253.7" r="4.25" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="js" data-value="70.1337890625" cx="1025.7" cy="253.7" r="4.25" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="js" data-value="73.5458984375" cx="1182.0" cy="250.0" r="4.25" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="foldkit" data-metric="js" data-value="159.2978515625" cx="713.0" cy="159.1" r="4.25" fill="#4b5563" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="foldkit" data-metric="js" data-value="159.298828125" cx="869.3" cy="159.1" r="4.25" fill="#4b5563" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="foldkit" data-metric="js" data-value="159.298828125" cx="1025.7" cy="159.1" r="4.25" fill="#4b5563" stroke="#fafafa" stroke-width="2"/>
+<text x="1206.0" y="197.5" dominant-baseline="middle" fill="#2563eb" font-size="12" font-weight="600">139 KiB</text>
+<text x="1206.0" y="161.5" dominant-baseline="middle" fill="#6d28d9" font-size="12" font-weight="600">157 KiB</text>
+<text x="1206.0" y="215.5" dominant-baseline="middle" fill="#0f766e" font-size="12" font-weight="600">122 KiB</text>
+<text x="1206.0" y="233.5" dominant-baseline="middle" fill="#c2410c" font-size="12" font-weight="600">120 KiB</text>
+<text x="1206.0" y="269.5" dominant-baseline="middle" fill="#be185d" font-size="12" font-weight="600">73 KiB</text>
+<text x="1206.0" y="179.5" dominant-baseline="middle" fill="#0e7490" font-size="12" font-weight="600">145 KiB</text>
+<text x="1206.0" y="251.5" dominant-baseline="middle" fill="#3f6212" font-size="12" font-weight="600">74 KiB</text>
+<text x="24" y="398" fill="#111827" font-size="14" font-weight="600">LCP on 4G phone</text>
+<line x1="60" y1="618" x2="561" y2="618" stroke="#e5e7eb" stroke-width="1"/>
+<text x="52" y="618" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">0</text>
+<line x1="60" y1="547.3333333333334" x2="561" y2="547.3333333333334" stroke="#e5e7eb" stroke-width="1"/>
+<text x="52" y="547.3333333333334" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">200</text>
+<line x1="60" y1="476.6666666666667" x2="561" y2="476.6666666666667" stroke="#e5e7eb" stroke-width="1"/>
+<text x="52" y="476.6666666666667" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">400</text>
+<line x1="60" y1="406" x2="561" y2="406" stroke="#e5e7eb" stroke-width="1"/>
+<text x="52" y="406" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">600</text>
+<text x="76" y="634" text-anchor="middle" fill="#6b7280" font-size="11">Oct 27</text>
+<text x="76" y="648" text-anchor="middle" fill="#6b7280" font-size="11">00:18</text>
+<text x="232.33333333333334" y="634" text-anchor="middle" fill="#6b7280" font-size="11">Oct 27</text>
+<text x="232.33333333333334" y="648" text-anchor="middle" fill="#6b7280" font-size="11">01:25</text>
+<text x="388.6666666666667" y="634" text-anchor="middle" fill="#6b7280" font-size="11">Oct 27</text>
+<text x="388.6666666666667" y="648" text-anchor="middle" fill="#6b7280" font-size="11">02:10</text>
+<text x="545" y="634" text-anchor="middle" fill="#6b7280" font-size="11">Nov 27</text>
+<text x="545" y="648" text-anchor="middle" fill="#6b7280" font-size="11">01:12</text>
+<polyline data-id="next" data-metric="lcp" fill="none" stroke="#2563eb" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="76.0,439.5 232.3,438.2 388.7,437.8 545.0,444.9"/>
+<polyline data-id="vinext" data-metric="lcp" fill="none" stroke="#6d28d9" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="76.0,458.2 232.3,464.1 388.7,461.1 545.0,471.2"/>
+<polyline data-id="tanstack-start" data-metric="lcp" fill="none" stroke="#0f766e" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="76.0,467.5 232.3,466.6 388.7,465.8 545.0,473.7"/>
+<polyline data-id="react-router" data-metric="lcp" fill="none" stroke="#c2410c" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="76.0,460.7 232.3,455.6 388.7,457.2 545.0,464.4"/>
+<polyline data-id="astro" data-metric="lcp" fill="none" stroke="#be185d" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="232.3,520.5 388.7,518.5 545.0,528.0"/>
+<polyline data-id="xote" data-metric="lcp" fill="none" stroke="#3f6212" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" points="232.3,457.7 388.7,458.9 545.0,465.8"/>
+<polyline data-id="foldkit" data-metric="lcp" fill="none" stroke="#4b5563" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4" points="76.0,449.5 232.3,457.9 388.7,460.6"/>
+<circle data-id="next" data-metric="lcp" data-value="505.2" cx="76.0" cy="439.5" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="next" data-metric="lcp" data-value="508.8" cx="232.3" cy="438.2" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="next" data-metric="lcp" data-value="510" cx="388.7" cy="437.8" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="next" data-metric="lcp" data-value="490" cx="545.0" cy="444.9" r="4.25" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="lcp" data-value="452.4" cx="76.0" cy="458.2" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="lcp" data-value="435.6" cx="232.3" cy="464.1" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="lcp" data-value="444" cx="388.7" cy="461.1" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="lcp" data-value="415.6" cx="545.0" cy="471.2" r="4.25" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="lcp" data-value="426" cx="76.0" cy="467.5" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="lcp" data-value="428.4" cx="232.3" cy="466.6" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="lcp" data-value="430.8" cx="388.7" cy="465.8" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="lcp" data-value="408.4" cx="545.0" cy="473.7" r="4.25" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="lcp" data-value="445.2" cx="76.0" cy="460.7" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="lcp" data-value="459.6" cx="232.3" cy="455.6" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="lcp" data-value="455.2" cx="388.7" cy="457.2" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="lcp" data-value="434.8" cx="545.0" cy="464.4" r="4.25" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="lcp" data-value="276" cx="232.3" cy="520.5" r="4.25" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="lcp" data-value="281.6" cx="388.7" cy="518.5" r="4.25" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="lcp" data-value="254.8" cx="545.0" cy="528.0" r="4.25" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="effect-ui" data-metric="lcp" data-value="406.4" cx="545.0" cy="474.4" r="4.25" fill="#0e7490" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="lcp" data-value="453.6" cx="232.3" cy="457.7" r="4.25" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="lcp" data-value="450.4" cx="388.7" cy="458.9" r="4.25" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="lcp" data-value="430.8" cx="545.0" cy="465.8" r="4.25" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="foldkit" data-metric="lcp" data-value="476.8" cx="76.0" cy="449.5" r="4.25" fill="#4b5563" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="foldkit" data-metric="lcp" data-value="453.2" cx="232.3" cy="457.9" r="4.25" fill="#4b5563" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="foldkit" data-metric="lcp" data-value="445.6" cx="388.7" cy="460.6" r="4.25" fill="#4b5563" stroke="#fafafa" stroke-width="2"/>
+<text x="569.0" y="444.9" dominant-baseline="middle" fill="#2563eb" font-size="12" font-weight="600">490 ms</text>
+<text x="569.0" y="500.4" dominant-baseline="middle" fill="#6d28d9" font-size="12" font-weight="600">416 ms</text>
+<text x="569.0" y="518.4" dominant-baseline="middle" fill="#0f766e" font-size="12" font-weight="600">408 ms</text>
+<text x="569.0" y="464.4" dominant-baseline="middle" fill="#c2410c" font-size="12" font-weight="600">435 ms</text>
+<text x="569.0" y="554.4" dominant-baseline="middle" fill="#be185d" font-size="12" font-weight="600">255 ms</text>
+<text x="569.0" y="536.4" dominant-baseline="middle" fill="#0e7490" font-size="12" font-weight="600">406 ms</text>
+<text x="569.0" y="482.4" dominant-baseline="middle" fill="#3f6212" font-size="12" font-weight="600">431 ms</text>
+<text x="661" y="398" fill="#111827" font-size="14" font-weight="600">INP while loading</text>
+<line x1="697" y1="618" x2="1198" y2="618" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="618" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">0</text>
+<line x1="697" y1="575.6" x2="1198" y2="575.6" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="575.6" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">50</text>
+<line x1="697" y1="533.2" x2="1198" y2="533.2" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="533.2" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">100</text>
+<line x1="697" y1="490.8" x2="1198" y2="490.8" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="490.8" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">150</text>
+<line x1="697" y1="448.4" x2="1198" y2="448.4" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="448.4" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">200</text>
+<line x1="697" y1="406" x2="1198" y2="406" stroke="#e5e7eb" stroke-width="1"/>
+<text x="689" y="406" text-anchor="end" dominant-baseline="middle" fill="#6b7280" font-size="11">250</text>
+<text x="947.5" y="634" text-anchor="middle" fill="#6b7280" font-size="11">Nov 27</text>
+<text x="947.5" y="648" text-anchor="middle" fill="#6b7280" font-size="11">01:12</text>
+<circle data-id="next" data-metric="inp" data-value="197.6" cx="947.5" cy="450.4" r="5.5" fill="#2563eb" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="vinext" data-metric="inp" data-value="17.6" cx="947.5" cy="603.1" r="5.5" fill="#6d28d9" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="tanstack-start" data-metric="inp" data-value="123.2" cx="947.5" cy="513.5" r="5.5" fill="#0f766e" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="react-router" data-metric="inp" data-value="153.6" cx="947.5" cy="487.7" r="5.5" fill="#c2410c" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="astro" data-metric="inp" data-value="14.4" cx="947.5" cy="605.8" r="5.5" fill="#be185d" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="effect-ui" data-metric="inp" data-value="144" cx="947.5" cy="495.9" r="5.5" fill="#0e7490" stroke="#fafafa" stroke-width="2"/>
+<circle data-id="xote" data-metric="inp" data-value="150.4" cx="947.5" cy="490.5" r="5.5" fill="#3f6212" stroke="#fafafa" stroke-width="2"/>
+<text x="1206.0" y="450.4" dominant-baseline="middle" fill="#2563eb" font-size="12" font-weight="600">198 ms</text>
+<text x="1206.0" y="592.0" dominant-baseline="middle" fill="#6d28d9" font-size="12" font-weight="600">18 ms</text>
+<text x="1206.0" y="541.7" dominant-baseline="middle" fill="#0f766e" font-size="12" font-weight="600">123 ms</text>
+<text x="1206.0" y="487.7" dominant-baseline="middle" fill="#c2410c" font-size="12" font-weight="600">154 ms</text>
+<text x="1206.0" y="610.0" dominant-baseline="middle" fill="#be185d" font-size="12" font-weight="600">14 ms</text>
+<text x="1206.0" y="523.7" dominant-baseline="middle" fill="#0e7490" font-size="12" font-weight="600">144 ms</text>
+<text x="1206.0" y="505.7" dominant-baseline="middle" fill="#3f6212" font-size="12" font-weight="600">150 ms</text>
+<text x="24" y="684" fill="#6b7280" font-size="12.5">Same pages, production builds, HTTP/2 + gzip, cold cache, prefetching excluded. Requests are JS plus CSS. Ticks are runs, equally spaced. Phone medians (150 ms RTT, 5 Mbit/s, 4× CPU): 5 loads per</text>
+<text x="24" y="701" fill="#6b7280" font-size="12.5">page on 2026-10-27; 15 loads per page on 2026-11-27. INP while loading starts on 2026-11-27. The legend names the latest plotted version. Not plotted: 2026-10-26.</text>
+</svg>
